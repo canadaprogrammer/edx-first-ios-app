@@ -70,3 +70,82 @@
 10. Play the app on Simulator
     1. Choose iOS, iPhone 8
     2. Click Start the active scheme
+
+### Create your first app with SwiftUI
+
+1. Open Xcode
+2. Create a new Xcode project
+3. Choose a template
+    - platform: iOs
+    - Application: App
+    - Next
+4. Choose options
+    - Project Name: FirstAppSwiftUI
+    - Organization Identifier: jin
+    - Interface: SwiftUI
+    - Language: Swift
+    - Uncheck all
+    - Next
+5. Choose folder
+    1. Choose or create folder
+    2. Uncheck Create Git repository on my Mac
+    3. Create
+6. Preview
+    1. Click `Resume`
+    2. Choose a device on the toolbar
+    3. Change code to 'hello, Jin' on `ContentView.swift`
+7. Add a button and the action
+    1. Remove `Text().padding()` from `ContentView.swift`
+    2. Click '+' (Library)
+    3. Drag Button to the location of `Text`
+    4. Change the text to `Button("Our MOOC") {`
+    5. Click '+' (Library)
+    6. Type `vertical stack` and drag it to above the Button
+    7. Move the Button into `VStack {}`
+    8. Create a varibale and add action
+    9. Add an image
+        1. Download an image
+        2. Click `Assets.xcassets`
+        3. Drag the image to it
+        4. Click `ContentView.swift`
+        5. Click '+' (Library)
+        6. Drag `vertical stack` into condition
+        7. Click '+' (Library)
+        8. Drag `image` into the `VStack`
+        9. Copy the image name and paste into `Image("filename")`
+        
+- ```swift
+  import SwiftUI
+
+  struct ContentView: View {
+      @State private var theMOOC = false
+      var body: some View {
+          VStack {
+              Button("Our MOOC") {
+                  self.theMOOC.toggle()
+              }
+              if theMOOC {
+                  VStack {
+                      Image("floral-welcome-sign")
+                          .resizable()
+                          .scaledToFit()
+                      Text("Welcome to the MOOC!")
+                          .font(.largeTitle)
+                  }
+              }
+
+          }
+
+
+      }
+  }
+
+  struct ContentView_Previews: PreviewProvider {
+      static var previews: some View {
+          ContentView()
+      }
+  }
+  ```
+
+
+

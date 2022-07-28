@@ -159,7 +159,7 @@
   :exit
   ```
 
-### On Playground
+#### On Playground
 
 1. Open Xcode
 2. File / New /Playground
@@ -169,3 +169,34 @@
 5. Enter `print("Hello World")`
 6. Click play botton below the line
 7. Result will appear in the bottom of screen
+
+### Constants and Variables
+
+- Variable: store a value in memory
+    - var <variable_name> = <variable_value>
+- Constant: store a value that won't change, in memory
+    - let <constant_name> = <constant_value>
+
+### Data Types
+
+- Defining a variable's data type to be stored in a variable happens when carting it
+    - var <varibale_name>: <data_type> = <varible_value>
+    - |Type Name|Symbol|Purpose|Example|
+      |---|---|---|---|
+      |Interger|Int|For whole numbers, integers|4|
+      |Double|Double|Numbers with decimal points|4.6|
+      |Boolean|Bool|True or False|true|
+      |String|String|Text|"Here"|
+
+### Operators
+
+- Are symbols, singular or combined, that allow you to check, change or combine values
+    - |Operator Name|Symbol|Purpose|Example|
+      |---|---|---|---|
+      |Assignment| = |Assign a value to a variable|Greeting = "Hello"|
+      |Addition| + |Add the values together|25 + 25 = 50|
+      |Subtraction| - |Subtract the values|22 - 11 = 11|
+      |Multiplication| * |Multiply the values together|4 * 7 = 28|
+      |Division| / |Divide the values|12 / 4 = 3|
+      |Remainder|%|Returns the remainder of dividing the numbers|12 % 5 = 2|
+      

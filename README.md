@@ -147,5 +147,25 @@
   }
   ```
 
+### Hello World
 
+#### On Terminal
 
+1. Open terminal
+
+- ```
+  swift
+  print("Hello World")
+  :exit
+  ```
+
+### On Playground
+
+1. Open Xcode
+2. File / New /Playground
+3. iOS / Blank / Next
+4. FirstPlayground / Create
+5. Remove all code except `inport UIKit`
+5. Enter `print("Hello World")`
+6. Click play botton below the line
+7. Result will appear in the bottom of screen

@@ -200,3 +200,99 @@
       |Division| / |Divide the values|12 / 4 = 3|
       |Remainder|%|Returns the remainder of dividing the numbers|12 % 5 = 2|
       
+## Control Flow and Advanced Variables
+
+### if-else
+
+- ```
+  if <condition> {
+    <code to execute when condition is true>
+  } else {
+    <code to execute when condition is false>
+  }
+  ```
+
+### Logical Operators
+
+- |Operator|Description|
+  |---|---|
+  | == |The items must be equal to each other|
+  | != |The values must not be equal to each other|
+  | > |The value on the left is greather than the value on the right|
+  | >= |The value in the left is greather than or equal to the value on the right|
+  | < |The value on the left is smaller than the value on the right|
+  | <= |The value on the left is smaller than or equal to the value on the right|
+  | && |AND - the condition on the left must be true AND the condition on the right must be true|
+  | &#124;&#124; |OR - the condition on the left must be true OR the condition on the right must be true|
+  | ! |NOT - the opposite of the conditional statement immediately following the operator is returned|
+  
+### Switch
+
+- ```
+  var numberOfSiblings: Int = 2
+  switch numberOfSiblings {
+  case 0:
+    print("only child")
+  case 1:
+    print("A single sibling")
+  case 2:
+    print("Two siblings")
+  default:
+    print("Wow...")
+    
+  // result: "Two siblings"
+  ```
+
+- Comparison Range
+
+  - `...` or `..<`
+  
+    - case 0..<2: // equal to 0...1
+    
+### Collecgions
+
+#### Array
+
+- An ordered list of data of the same type
+
+  - `var myIntegerList: [Int] = [1,2,3,4]`
+  
+- Data in an array is accessed by its index number
+
+  - `print(myIntegerList[0] // returns 1`
+  
+- Operations that can be performed upon an array
+
+  - |Operation name|Description|
+    |---|---|
+    |<array_name>.contains(x)|If x is in the array, returns true else false|
+    |<array_name>.isEmpty|Returns true if array is empty, otherwise returns false|
+    |<array_name>.append(x)|Appends x to the end of the array|
+    |<array_name>.insert(x, at:y)|Inserts x into the array at position y|
+    |<array_name>.remove(at:y)|Removes the item at position y in the array|
+    |<array_name>.removeLast()|Removes the last item in the array|
+    |<array_name>.removeAll()|Removes everything from the array|
+    
+#### Dictionary
+
+- An unordered collection, and there is a key and a value
+
+  - `var myDictionary = ["Name": "Jin", "Age": 20]
+  
+- Accessing a Key's value is done using if-let
+
+  - ```
+    if let age = myDictionary["Age"]{
+      print(age)
+    }
+    ```
+    
+  - This ensures that the key exists before attempting to do anything with a value
+
+- Changing a Dictionary
+
+  - ```
+    myDictionary["Age"] = 22 // replace the value if the key exists
+    myDictionary.updateValue(39, forKey: "Age") // update
+    myDictionary.removeValue(forKey: "Age") // remove
+    ```    

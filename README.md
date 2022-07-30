@@ -395,23 +395,6 @@
 		- You can choose a device for 'Start the active Scheme'
 		- You can connect iOS device via cable or wirelessly, and the connected device will show
 		
-- Pair an iOS device with Xcode
-
-	1. Choose Window > Devices and Simulators, then in the window that appears, click Devices.
-	2. Connect the iOS device to your Mac with a lightning cable.
-	3. Note: The first time you connect an iOS device to your Mac, you may need to click Trust on the device to continue.
-	4. In the left column, select the device.
-	5. In the detail area, select Connect via network.
-	6. Xcode pairs with the iOS device.
-	7. Disconnect the lightning cable.
-	- In the left column, a device that is connected (using a lightning cable or over the network) appears under Connected. If a network icon appears next to the device, the device is paired and it is safe to disconnect the lightning cable.
-	
-	- Error: Xcode "Device Locked" when iPhone is unlocked
-		1. Unplug device
-		2. Quit Xcode
-		3. Open Xcode
-		4. plug in device
-	
 - `Main.storyboard`
 
 	- We can preview our device on the Editor area
@@ -426,3 +409,30 @@
 - `Info.plist`
 
 	- It contains the properties and setting of the app
+
+## Pair iOS device with Xcode
+
+1. Choose Window > Devices and Simulators, then in the window that appears, click Devices.
+2. Connect the iOS device to your Mac with a lightning cable.
+3. Note: The first time you connect an iOS device to your Mac, you may need to click Trust on the device to continue.
+4. In the left column, select the device.
+5. In the detail area, select Connect via network.
+6. Xcode pairs with the iOS device.
+7. Disconnect the lightning cable.
+- In the left column, a device that is connected (using a lightning cable or over the network) appears under Connected. If a network icon appears next to the device, the device is paired and it is safe to disconnect the lightning cable.
+
+- Error: Xcode "Device Locked" when iPhone is unlocked
+	1. Unplug device
+	2. Quit Xcode
+	3. Open Xcode
+	4. plug in device
+
+- Error: Signing for "..." requires a development team.
+	1. Add you Apple ID in Xcode 
+		- On menu bar, Xcode > Preferences > Accounts > Add Apple ID
+	2. Choose your project > Choose a target > Click Signing & Capabilities tab
+		- Check Automatically manage signing
+		- Choose Team
+
+- Untrusted Developer on iPhone
+	- Settings > General > VPN & Device Management > Select Developer App > Trust

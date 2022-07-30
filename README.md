@@ -296,3 +296,62 @@
     myDictionary.updateValue(39, forKey: "Age") // update
     myDictionary.removeValue(forKey: "Age") // remove
     ```    
+
+### for-in
+
+- Allows us to repeat something that is in a sequence or range or collection
+
+  - ```
+    for num in 10...15{
+      print("Number is: \(num)")
+    }
+    /* return
+     * Number is: 10
+     * Number is: 11
+     * Number is: 12
+     * Number is: 13
+     * Number is: 14
+     * Number is: 15
+     */
+     
+    var lectures = ["David", "Paul", "Andrew"]
+    for lecture in lectures{
+      print("Lecturer is: \(lecturer)")
+    }
+    /* return
+     * Lecturer is David
+     * Lecturer is Paul
+     * Lecturer is Andrew
+     */
+     
+    var ages = ["David": 20, "Paul": 30, "Andrew": 40]
+    for person in ages{
+      print(person)
+      print(person.key)
+    }
+    /* return
+     * (key: "Andrew", value: 40)
+     * Andrew
+     * (key: "Paul", value: 30)
+     * Paul
+     * (key: "David", value: 20)
+     * David
+     */
+    ```
+
+### while
+
+- Keeps looping until a condition is met
+
+  - ```
+    var points = 5
+    var numberOfServes = 1
+    while points < 50 && numberOfServes < 3{
+      print("Playon, points = \(points)")
+      points = points * 2
+      numberOfServes = numberOfServes + 1
+    }
+    /* return
+     * Playon, points = 5
+     * Playon, points = 10
+     */

@@ -355,3 +355,74 @@
      * Playon, points = 5
      * Playon, points = 10
      */
+
+## Xcode
+
+- Create a new project
+
+	1. Choose a template
+		- iOS / App / Next
+	2. Choose options
+		- Product Name: TextChanger
+		- Interface: Storyboard
+		- Language: Swift
+		- Next
+	3. Choose a folder / Create
+	4. Check the created project
+		- Build Settings
+			- Swift Language Version
+			
+- Navigation area (the left-hand side)
+
+	- You can check files and the project structure
+	
+- Editor area (the middle)
+
+	- We will see our code and do a while lot of things
+	- On the top, there are 'Enable Code Review', 'Adjust Editor Options', and 'Add Editor on Right'
+	- When you hold option key, the button will change to Add Editor Below
+	
+- Utility area (the right hand side)
+
+	- options depending on what is selected
+	- On the top, there are 'Show the File Inspector', 'Show the History Inspector', and 'Show Quick Help Inspector'
+
+- Toolbar (the top)
+
+	- On the right side, there are 'Library', 'Show or Hide Code Review', and 'Hide or Show the Inspector'
+	- On the left side, there are 'Hide or Show the Navigator' and 'Start the active scheme'
+	- On the middle, there are Project Name and Device
+		- You can choose a device for 'Start the active Scheme'
+		- You can connect iOS device via cable or wirelessly, and the connected device will show
+		
+- Pair an iOS device with Xcode
+
+	1. Choose Window > Devices and Simulators, then in the window that appears, click Devices.
+	2. Connect the iOS device to your Mac with a lightning cable.
+	3. Note: The first time you connect an iOS device to your Mac, you may need to click Trust on the device to continue.
+	4. In the left column, select the device.
+	5. In the detail area, select Connect via network.
+	6. Xcode pairs with the iOS device.
+	7. Disconnect the lightning cable.
+	- In the left column, a device that is connected (using a lightning cable or over the network) appears under Connected. If a network icon appears next to the device, the device is paired and it is safe to disconnect the lightning cable.
+	
+	- Error: Xcode "Device Locked" when iPhone is unlocked
+		1. Unplug device
+		2. Quit Xcode
+		3. Open Xcode
+		4. plug in device
+	
+- `Main.storyboard`
+
+	- We can preview our device on the Editor area
+	- On the toolbar, change the device and click the 'Start the active scheme' button
+		- Simulator of the changed device will be created
+		- On the menu bar, you can handle the simulator on the device tab
+
+- `Assets.xcassets`
+
+	- This is used to store things in it
+	
+- `Info.plist`
+
+	- It contains the properties and setting of the app

@@ -354,7 +354,8 @@
     /* return
      * Playon, points = 5
      * Playon, points = 10
-     */
+    */
+		```
 
 ## Xcode
 
@@ -436,3 +437,46 @@
 
 - Untrusted Developer on iPhone
 	- Settings > General > VPN & Device Management > Select Developer App > Trust
+ 
+## Interface Builder
+
+- .storyboard files:
+
+	- contain parts of the interface
+	- define the layout of one or many screens
+	- the moving from one screen to another
+
+### Elements position center on different devices and the rotation
+
+- `Main.storyboard`
+
+	1. Click '+' (Library), and add Button and Label
+	2. Select Button on the preview
+		1. Click "Show the Attribute Inspector" on the right hand side
+		2. Change the Title to 'TextChange'
+		3. Click "Align" on the bottom of the preview
+		4. Check "Horizontally in Contianer" and "Vertically in Container"
+		5. Click "Add 2 Constraints"
+		6. Change the device on the bottom of the preview and test it
+		7. Click the "orientation" on the bottom of the preview and test it 
+	3. Select Label on the preview
+		1. Click "Add New Constraints" button on the bottom of the preview
+		2. Click the red line below the black box in the middle to select the Spacing to nearest neighbor, and uncheck "Constrain to margins"
+		3. Click "Add 1 Constraint" button
+		4. Click "Align" on the bottom of the preview
+		5. Check "Horizontally in Container"
+		6. Click Add 1 "Constraints"
+	4. You can check added Constraints on View Controller Scene > View Controller > View > Constraints
+	5. You can check what is the scene by click "Show the Identity Inspector" on the right hand side
+
+### Add the button action
+
+1. Control + click the button on the storyboard and drag the bottom to line 16 (between the last two brackets) on `ViewController.swift`
+2. Change the type to "UIButton"
+3. Name: textChange
+4. Click Connect
+5. Control + click the label on the storyboard and drag the bottom to line 11 (under the UIViewController line) on `ViewController.swift`
+6. Name: theMessage
+7. Click Connect
+8. Type `print("You pressed the button!")`
+9. When you click the button, you can see the text appear at the bottom of your screen, in the debug area

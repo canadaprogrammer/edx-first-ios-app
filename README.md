@@ -478,5 +478,36 @@
 5. Control + click the label on the storyboard and drag the bottom to line 11 (under the UIViewController line) on `ViewController.swift`
 6. Name: theMessage
 7. Click Connect
-8. Type `print("You pressed the button!")`
+8. Type action code
+	- ```
+		theMessage.text = "I'm an app developer"
+		print("You pressed the button!")
+		```
 9. When you click the button, you can see the text appear at the bottom of your screen, in the debug area
+
+## Developer Documentation
+
+- Hover over the UIlabel
+- While you've got the Option key down, a question mark appears
+- Click the question mark
+- The developer documentation has ginve you a brief summary
+- Click "Open in Developer Documentation"
+
+## Debugging
+
+- Compiler Errors
+
+	- When the run button is clicked, Xcode takes the code you wrote, combines it with the code in things such as UILabel & creates an executeable file
+	- This is called comiling your code
+	- The executable file is what runs on the device
+	- When the code can't compile, a compiler error occurs
+	- These usually occur when the written code has an error in it
+	
+- Run time Errors
+
+	- These are what are really referred to as Bugs
+	- The code compiles without errors and starts executing
+	- While running the code stops or crashes
+	- This is where the code did something it wasn't meant to and can't continue on
+	- Most of use have experienced these when using software, and they avr frustrating for both users and developers
+	

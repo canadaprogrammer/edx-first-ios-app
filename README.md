@@ -354,7 +354,7 @@
     /* return
      * Playon, points = 5
      * Playon, points = 10
-    */
+     */
 		```
 
 ## Xcode
@@ -511,3 +511,149 @@
 	- This is where the code did something it wasn't meant to and can't continue on
 	- Most of use have experienced these when using software, and they avr frustrating for both users and developers
 	
+## Exercise
+
+### Change Label
+
+- ```
+	//
+	//  ViewController.swift
+	//  TextChanger
+	//
+	//  Created by Jungjin Park on 2022-07-30.
+	//
+
+	import UIKit
+
+	class ViewController: UIViewController {
+
+			@IBOutlet weak var theMessage: UILabel!
+			@IBOutlet weak var counterDisplay: UILabel!
+
+			var iAmADeveloper : Bool = false
+			var counter: Int = 0
+
+			override func viewDidLoad() {
+					super.viewDidLoad()
+					// Do any additional setup after loading the view.
+			}
+
+			@IBAction func textChange(_ sender: UIButton) {
+					counter = counter + 1
+					if !iAmADeveloper{
+							theMessage.text = "I'm an app developer"
+					} else {
+							theMessage.text = "I'm going to be an App Developer!"
+					}
+					iAmADeveloper = !iAmADeveloper
+
+					print("You coded the button press!")
+					counterDisplay.text = "Counter: \(counter)"
+			}
+
+	}
+	```
+
+### Change background color depending on user input
+
+- ```
+	//
+	//  ViewController.swift
+	//  TextChanger
+	//
+	//  Created by Jungjin Park on 2022-07-30.
+	//
+
+	import UIKit
+
+	class ViewController: UIViewController {
+
+			@IBOutlet weak var theMessage: UILabel!
+			@IBOutlet weak var enteredColour: UITextField!
+
+			var userInput : String = ""
+
+			override func viewDidLoad() {
+					super.viewDidLoad()
+					// Do any additional setup after loading the view.
+			}
+
+			@IBAction func textChange(_ sender: UIButton) {
+					enteredColour.resignFirstResponder()
+					userInput = enteredColour.text!
+					switch userInput{
+					case "blue":
+							view.backgroundColor = UIColor.blue
+					case "green":
+							view.backgroundColor = UIColor.green
+					case "yellow":
+							view.backgroundColor = UIColor.yellow
+					case "orange":
+							view.backgroundColor = UIColor.orange
+					default:
+							theMessage.text = "It's an unknown colour entered."
+					}
+			}
+	}
+
+	```
+### Temperature Converter
+
+- ```swift
+	import UIKit
+
+	class ViewController: UIViewController {
+
+			@IBOutlet weak var celsiusInput: UITextField!
+			@IBOutlet weak var fahrenheitInput: UITextField!
+			@IBOutlet weak var convertedValue: UILabel!
+
+			var degreesValue: Double? = 100
+			var fahrenheitValue: Double? = 0.0
+
+			override func viewDidLoad() {
+					super.viewDidLoad()
+					// Do any additional setup after loading the view.
+			}
+
+			@IBAction func celToFah(_ sender: Any) {
+					fahrenheitInput.text = ""
+					if celsiusInput.text != ""{
+							view.backgroundColor = UIColor.green
+							degreesValue = Double(celsiusInput.text!)
+
+							fahrenheitValue = (degreesValue! * 9/5) + 32
+							convertedValue.text = "\(fahrenheitValue!) Fahrenheit"
+							print("\(degreesValue!) = \(fahrenheitValue!) in fahrenheit.")
+					} else {
+							convertedValue.text = "Enter Celsius Value"
+					}
+			}
+
+			@IBAction func fahToCel(_ sender: Any) {
+					celsiusInput.text = ""
+					if fahrenheitInput.text != "" {
+							view.backgroundColor = UIColor.yellow
+							fahrenheitValue = Double(fahrenheitInput.text!)
+							degreesValue = (fahrenheitValue! - 32) * 5/9
+							convertedValue.text = "\(degreesValue!) Degrees"
+							print("\(fahrenheitValue!) = \(degreesValue!) in degrees.")
+					} else {
+							convertedValue.text = "Enter Fahrenheit Value"
+					}
+			}
+	}
+	```
+
+## Errors
+
+### "this class is not key value coding-compliant for the key counter"
+
+- This means there was somthing called 'counter' which it can no longer find.
+- It's because I changed the label name after connect it from 'counter' to 'counterDisplay'
+- Solution:
+	1. Click the label on `Main.storyboard`
+	2. Control + drag the label to the 'counterDisplay' on `ViewController.swift`
+	3. Click "Show the connection inspector" on the right hand side
+	4. You can see there are two connections on Referencing Outlets
+	5. Remove 'counter' from it

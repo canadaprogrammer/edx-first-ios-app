@@ -228,7 +228,7 @@
   
 ### Switch
 
-- ```
+- ```swift
   var numberOfSiblings: Int = 2
   switch numberOfSiblings {
   case 0:
@@ -281,7 +281,7 @@
   
 - Accessing a Key's value is done using if-let
 
-  - ```
+  - ```swift
     if let age = myDictionary["Age"]{
       print(age)
     }
@@ -291,7 +291,7 @@
 
 - Changing a Dictionary
 
-  - ```
+  - ```swift
     myDictionary["Age"] = 22 // replace the value if the key exists
     myDictionary.updateValue(39, forKey: "Age") // update
     myDictionary.removeValue(forKey: "Age") // remove
@@ -301,7 +301,7 @@
 
 - Allows us to repeat something that is in a sequence or range or collection
 
-  - ```
+  - ```swift
     for num in 10...15{
       print("Number is: \(num)")
     }
@@ -343,7 +343,7 @@
 
 - Keeps looping until a condition is met
 
-  - ```
+  - ```swift
     var points = 5
     var numberOfServes = 1
     while points < 50 && numberOfServes < 3{
@@ -479,7 +479,7 @@
 6. Name: theMessage
 7. Click Connect
 8. Type action code
-	- ```
+	- ```swift
 		theMessage.text = "I'm an app developer"
 		print("You pressed the button!")
 		```
@@ -515,7 +515,7 @@
 
 ### Change Label
 
-- ```
+- ```swift
 	//
 	//  ViewController.swift
 	//  TextChanger
@@ -527,37 +527,35 @@
 
 	class ViewController: UIViewController {
 
-			@IBOutlet weak var theMessage: UILabel!
-			@IBOutlet weak var counterDisplay: UILabel!
+		@IBOutlet weak var theMessage: UILabel!
+		@IBOutlet weak var counterDisplay: UILabel!
 
-			var iAmADeveloper : Bool = false
-			var counter: Int = 0
+		var iAmADeveloper : Bool = false
+		var counter: Int = 0
 
-			override func viewDidLoad() {
-					super.viewDidLoad()
-					// Do any additional setup after loading the view.
+		override func viewDidLoad() {
+			super.viewDidLoad()
+			// Do any additional setup after loading the view.
+		}
+
+		@IBAction func textChange(_ sender: UIButton) {
+			counter = counter + 1
+			if !iAmADeveloper{
+				theMessage.text = "I'm an app developer"
+			} else {
+				theMessage.text = "I'm going to be an App Developer!"
 			}
+			iAmADeveloper = !iAmADeveloper
 
-			@IBAction func textChange(_ sender: UIButton) {
-					counter = counter + 1
-					if !iAmADeveloper{
-							theMessage.text = "I'm an app developer"
-					} else {
-							theMessage.text = "I'm going to be an App Developer!"
-					}
-					iAmADeveloper = !iAmADeveloper
-
-					print("You coded the button press!")
-					counterDisplay.text = "Counter: \(counter)"
-			}
-
+			print("You coded the button press!")
+			counterDisplay.text = "Counter: \(counter)"
+		}
 	}
 	```
 
 ### Change background color depending on user input
 
-- ```
-	//
+- ```swfit
 	//  ViewController.swift
 	//  TextChanger
 	//
@@ -568,35 +566,35 @@
 
 	class ViewController: UIViewController {
 
-			@IBOutlet weak var theMessage: UILabel!
-			@IBOutlet weak var enteredColour: UITextField!
+		@IBOutlet weak var theMessage: UILabel!
+		@IBOutlet weak var enteredColour: UITextField!
 
-			var userInput : String = ""
+		var userInput : String = ""
 
-			override func viewDidLoad() {
-					super.viewDidLoad()
-					// Do any additional setup after loading the view.
+		override func viewDidLoad() {
+			super.viewDidLoad()
+			// Do any additional setup after loading the view.
+		}
+
+		@IBAction func textChange(_ sender: UIButton) {
+			enteredColour.resignFirstResponder()
+			userInput = enteredColour.text!
+			switch userInput{
+			case "blue":
+				view.backgroundColor = UIColor.blue
+			case "green":
+				view.backgroundColor = UIColor.green
+			case "yellow":
+				view.backgroundColor = UIColor.yellow
+			case "orange":
+				view.backgroundColor = UIColor.orange
+			default:
+				theMessage.text = "It's an unknown colour entered."
 			}
-
-			@IBAction func textChange(_ sender: UIButton) {
-					enteredColour.resignFirstResponder()
-					userInput = enteredColour.text!
-					switch userInput{
-					case "blue":
-							view.backgroundColor = UIColor.blue
-					case "green":
-							view.backgroundColor = UIColor.green
-					case "yellow":
-							view.backgroundColor = UIColor.yellow
-					case "orange":
-							view.backgroundColor = UIColor.orange
-					default:
-							theMessage.text = "It's an unknown colour entered."
-					}
-			}
+		}
 	}
-
 	```
+
 ### Temperature Converter
 
 - ```swift
@@ -604,44 +602,43 @@
 
 	class ViewController: UIViewController {
 
-			@IBOutlet weak var celsiusInput: UITextField!
-			@IBOutlet weak var fahrenheitInput: UITextField!
-			@IBOutlet weak var convertedValue: UILabel!
+		@IBOutlet weak var celsiusInput: UITextField!
+		@IBOutlet weak var fahrenheitInput: UITextField!
+		@IBOutlet weak var convertedValue: UILabel!
 
-			var degreesValue: Double? = 100
-			var fahrenheitValue: Double? = 0.0
+		var degreesValue: Double? = 100
+		var fahrenheitValue: Double? = 0.0
 
-			override func viewDidLoad() {
-					super.viewDidLoad()
-					// Do any additional setup after loading the view.
+		override func viewDidLoad() {
+			super.viewDidLoad()
+			// Do any additional setup after loading the view.
+		}
+
+		@IBAction func celToFah(_ sender: Any) {
+			fahrenheitInput.text = ""
+			if celsiusInput.text != ""{
+				view.backgroundColor = UIColor.green
+				degreesValue = Double(celsiusInput.text!)
+
+				fahrenheitValue = (degreesValue! * 9/5) + 32
+				convertedValue.text = "\(fahrenheitValue!) Fahrenheit"
+				print("\(degreesValue!) = \(fahrenheitValue!) in fahrenheit.")
+			} else {
+				convertedValue.text = "Enter Celsius Value"
 			}
-
-			@IBAction func celToFah(_ sender: Any) {
-					fahrenheitInput.text = ""
-					if celsiusInput.text != ""{
-							view.backgroundColor = UIColor.green
-							degreesValue = Double(celsiusInput.text!)
-
-							fahrenheitValue = (degreesValue! * 9/5) + 32
-							convertedValue.text = "\(fahrenheitValue!) Fahrenheit"
-							print("\(degreesValue!) = \(fahrenheitValue!) in fahrenheit.")
-					} else {
-							convertedValue.text = "Enter Celsius Value"
-					}
+		}
+		@IBAction func fahToCel(_ sender: Any) {
+			celsiusInput.text = ""
+			if fahrenheitInput.text != "" {
+				view.backgroundColor = UIColor.yellow
+				fahrenheitValue = Double(fahrenheitInput.text!)
+				degreesValue = (fahrenheitValue! - 32) * 5/9
+				convertedValue.text = "\(degreesValue!) Degrees"
+				print("\(fahrenheitValue!) = \(degreesValue!) in degrees.")
+			} else {
+				convertedValue.text = "Enter Fahrenheit Value"
 			}
-
-			@IBAction func fahToCel(_ sender: Any) {
-					celsiusInput.text = ""
-					if fahrenheitInput.text != "" {
-							view.backgroundColor = UIColor.yellow
-							fahrenheitValue = Double(fahrenheitInput.text!)
-							degreesValue = (fahrenheitValue! - 32) * 5/9
-							convertedValue.text = "\(degreesValue!) Degrees"
-							print("\(fahrenheitValue!) = \(degreesValue!) in degrees.")
-					} else {
-							convertedValue.text = "Enter Fahrenheit Value"
-					}
-			}
+		}
 	}
 	```
 

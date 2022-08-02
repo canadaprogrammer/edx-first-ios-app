@@ -642,6 +642,70 @@
 	}
 	```
 
+## Functions
+
+- Functions are blocks of code that can be run over and over again to do the same things
+- They saves us writing out code over and over again, possibly introducing transcription errors
+- Functions should do one thing. If we want to do two things, we can write two functions
+- A function has two important components
+	1. The function definition, where we specify what the function does.
+		- A function definition has four components: name, input parameters, output return values and the body
+		- The function body is what turns the inputs into the outputs.
+		- `func functionName (InputParameters) -> OutputReturnType { // FunctionBody }`
+	2. The function call, where we execute the function
+		-  `functionName()`
+
+### Function Parameters 
+
+- They allow us to specify the name, type and quantity of data that will be processed by the function body. 
+- When we call the function, we can apply the same steps to different data
+- There are three board situations to consider:
+	- functions with no input parameter
+		- definition: `functionName() {}`
+		- call: `functionName()`
+	- functions with one input parameter
+		- definition: `functionName(parameter: type) {}`
+		- call: `functionName(parameter: value)`
+		- We must specify a name for the parameter that describes its purpose
+		- The parameter becomes a variable we can use within the function
+		- We also have to specify the data type of the parameter
+	- functions with multiple input parameters: 
+		- definition: `functionName(firstParameter:dataType, secondParameter:dataType) {}`
+		- call: `functionName(firstParameter: value, secondParameter: value)`
+		- a function should only do one thing; if we have too many (approx. > 6) parameters, it is likely doing to much
+- Default Parameter Values
+	- When calling the funciton, we don't have to specify all the parameters
+	- If we don't we need a default value to use so the function can still run
+	- We should have the default parameters at the end of the parameter list
+		- This ensures that all calls to the function use the same order for their non-default arguments, and makes it cleear that the same function is being called in each case
+	- definitions: `functionName(firstParameter: Int, secondParameter: Int = 10) {}`
+
+### Function Returns
+
+- The value(s) we calculated within the function can be used outside the function
+- when calling functions that return, we don't have to have the smae names for the variables storing the returns as within the function
+- No reutrns
+- One return
+	- All that is required is to make the last line of the function start with return, then specify the variable containing the value to return
+	- If you return earlier in the function, any lines afterwards will be ignored
+	- `return value`
+- Multiple returns
+	- All we have to do is separate the returns by a comma
+	- function definition
+		- ```swift
+			func thisDivides(number: Int) -> (Int, Int) {
+				let value1 = number / 2
+				let value2 = number / 4
+				return (value1, value2)
+			}
+			```
+	- function call
+		- ```swift
+			var (div_two, div_four) = thisDivides(number: 16)
+			print(div_two) // 8
+			print(div_four) // 4
+			```
+
 ## Errors
 
 ### "this class is not key value coding-compliant for the key counter"

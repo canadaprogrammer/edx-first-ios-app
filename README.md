@@ -706,6 +706,88 @@
 			print(div_four) // 4
 			```
 
+## Structures
+
+- A Structure contains one or more variables (called properties)
+	- ```swift
+		struct Person { var anme: string }
+		var aPreson = Person(name: "Tim")
+		print(aPerson.name)
+		// return Tim
+		```
+
+- We can also add methods (functions) to it as well
+	- ```swift
+		struct Person {
+			var name: String
+			func printHello() {
+				print("Hello, \(name)!")
+			}
+		}
+		aPreson.printHello()
+		// return Hello, Tim!
+		```
+
+- An `initializer` creates an instance of a structure
+	- This involves creating an instance of each property
+	- We can specify default values for the properties
+	- ```swift
+		struct WaterMeter {
+			var litreUsed: Int = 0
+		}
+		```
+
+- When we specify the values when we create an instance, this is called using the `memberwise initializer`
+	- `var aWaterMeter = WaterMeter(literUsed: 10)`
+
+- `Custom Initializer`: In more complicated situations, we may wish to write our own initializer functions
+	- ```swift
+		struct CarSpeed {
+			var kph: Double			// only kph is stored
+			init(kph: Double) {	// Basic initializer for kph
+				self.kph = kph
+			}
+			init(mph: Double) {	// Advaced logic in initializer for mph
+				self.kph = mph * 1.6
+			}
+		}
+		var firstSpeed = CarSpeed(kph: 100)
+		var sameSpeed = CarSpeed(mph: 60)
+		```
+
+- `Computed Properties`
+	- ```swift
+		struct CarSpeed {
+			var kph: Double
+			var nph: Double {
+				return kph / 1.6
+			}
+		}
+		```
+
+- `Mutating Methods`: Added methods to a structure that change the values of the properties
+	- ```swift
+		struct CarSpeed {
+			var kph: Int = 0
+			mutating func reset() {
+				kph = 0
+			}
+		}
+		var myCarSpeed = CarSpeed(kph: 100)	// kph is 100
+		myCarSpeed.reset()									// kph is 0
+		```
+
+- Type Properties and Methods stay the same for all instances of a structure
+	- Add `static` before a property or method
+	- ```swift
+		struct CarSpeed {
+			static var legalLimit = 100
+		}
+		```
+
+- `self` simply refers to the current instance of a structure (or other object)
+- This allows us to interact with the current instance, for example to set or access its properties
+
 ## Errors
 
 ### "this class is not key value coding-compliant for the key counter"

@@ -719,13 +719,19 @@
 - We can also add methods (functions) to it as well
 	- ```swift
 		struct Person {
-			var name: String
-			func printHello() {
-				print("Hello, \(name)!")
-			}
+				var name: String
+				var age: Int
+				var location: String
+
+				func whoAmI() {
+						print("Hi, I'm \(name)! I'm \(age) and live in \(location)")
+				}
 		}
-		aPreson.printHello()
-		// return Hello, Tim!
+		
+		let aPerson = Person(name: "Jin", age: 20, location: "Victoria")
+		
+		print(aPerson.name)	// Jin
+		aPerson.whoAmI() 		// Hi, I'm Jin! I'm 20 and live in Victoria
 		```
 
 - An `initializer` creates an instance of a structure
@@ -733,8 +739,15 @@
 	- We can specify default values for the properties
 	- ```swift
 		struct WaterMeter {
-			var litreUsed: Int = 0
+				var litersUsed: Int = 0
+				var customer: Person = Person(name: "Anonymous", age: 20, location: "Canada")
+
 		}
+
+		let theMeter = WaterMeter()
+
+		print(theMeter.litersUsed)		// 0
+		print(theMeter.customer.age)	// 20
 		```
 
 - When we specify the values when we create an instance, this is called using the `memberwise initializer`

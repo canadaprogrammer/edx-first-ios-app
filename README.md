@@ -834,6 +834,44 @@
 			}
 		}
 		```
+		
+- ```swift
+	class Animal {
+			var name: String
+			var numberOfLimbs: Int
+
+			func makeNoise() {
+					// Do nothing!
+			}
+			init(name: String, numberOfLimbs: Int) {
+					self.name = name
+					self.numberOfLimbs = numberOfLimbs
+			}
+	}
+
+	class Cat: Animal {
+			var breed: String = ""
+
+			override func makeNoise() {
+					print("Meow!")
+			}
+
+			init(name: String, numberOfLimbs: Int, breed: String) {
+					self.breed = breed
+					super.init(name: name, numberOfLimbs: numberOfLimbs)
+			}
+	}
+
+	let myCat = Cat(name: "Whiskers", numberOfLimbs: 4, breed: "Ragdoll")
+	print(myCat.name)
+	myCat.makeNoise()
+
+	let myAnimal = Animal(name: "Miscellaneous", numberOfLimbs: 0)
+	print(myAnimal.name)
+	myAnimal.makeNoise()
+
+	print(myCat.breed)
+	```
 
 ## Errors
 

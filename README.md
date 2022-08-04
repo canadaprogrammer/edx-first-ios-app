@@ -706,6 +706,21 @@
 			print(div_four) // 4
 			```
 
+- Exercise: Multiple Returns
+	- Define a function called 'calcSumDiff' that for two input parameters 'firstNum' and 'secondNum' will output the sum and the difference of the two numbers.
+	- Call your function and store the results in appropriately named variables.
+	- Then, print the values of these to confirm the function works as intended.
+		- ```swift
+			func calcSumDiff(firstNum: Int, secondNum: Int) -> (Int, Int) {
+					let sum = firstNum + secondNum
+					let diff = abs(firstNum - secondNum)
+					return (sum, diff)
+			}
+
+			let result = calcSumDiff(firstNum: 10, secondNum: 12)
+			print(result)
+			```
+
 ## Structures
 
 - A Structure contains one or more variables (called properties)
@@ -801,6 +816,30 @@
 - `self` simply refers to the current instance of a structure (or other object)
 - This allows us to interact with the current instance, for example to set or access its properties
 
+- Exercise: Detailed Person 
+	- Modify the Person structure such that we also store their favourite food and their height. Choose appropriate data types for these properties. 
+	- Add a second function to the Person structure named 'foodAndHeight' to output these new properties in a human-readable manner.
+	- Initialise the Structure you've created, and call your new function to confirm the changes work as intended.
+		- ```swift
+			struct Person {
+					var name: String;
+					var age: Int;
+					var location: String;
+					var favouriteFood: String;
+					var height: Int;
+
+					func whoAmI() {
+							print("Hi, I'm \(name)! I'm \(age) and live in \(location).");
+					}
+
+					func foodAndHeight() {
+							print("My favourite Food is \(favouriteFood), and I'm \(height)cm tall.")
+					}
+			}
+			let bPerson = Person(name: "Jin", age: 20, location: "Canada", favouriteFood: "Galbi", height: 180);
+			bPerson.foodAndHeight()
+			```
+
 ## Classes
 
 - Classes differ from structures as classes can hoave hierarchical relationship
@@ -872,6 +911,36 @@
 
 	print(myCat.breed)
 	```
+
+- Exercise: Another Animal
+	- Create a new Subclass of Animal for a Snake. It should store a true or false value regarding whether it is poisonous, a value of its length as well as ensuring its makeNoise function outputs a 'Hiss'. 
+	- Ensure that you have define the initialiser for the Snake. 
+	- As snakes can be (for this purpose) considered to have zero limbs, pass the value directly into the superclass initialiser.
+		- ```swift
+			class Snake:Animal {
+					var poisonous: Bool = false;
+					var snakeLength: Double
+
+					override func makeNoise() {
+							print("Hiss")
+					}
+					init(animalName: String, numberOfLimbs: Int = 0, poisonous: Bool, snakeLength: Double) {
+							self.poisonous = poisonous
+							self.snakeLength = snakeLength
+							super.init(animalName: animalName, numberOfLimbs: numberOfLimbs)
+					}
+			}
+			let aSnake = Snake(animalName: "Bell Snake", poisonous: true, snakeLength: 100)
+			let bSnake = Snake(animalName: "Bella Snake", numberOfLimbs: 4, poisonous: true, snakeLength: 100.3)
+
+			aSnake.makeNoise()
+			print(aSnake.numberOfLimbs)
+			print(aSnake.snakeLength)
+
+			bSnake.makeNoise()
+			print(bSnake.numberOfLimbs)
+			print(bSnake.snakeLength)
+			```
 
 ## Errors
 

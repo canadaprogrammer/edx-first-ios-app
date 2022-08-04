@@ -718,7 +718,7 @@
 			}
 
 			let result = calcSumDiff(firstNum: 10, secondNum: 12)
-			print(result)
+			print(result)	\\ return (22, 2)
 			```
 
 ## Structures
@@ -837,7 +837,7 @@
 					}
 			}
 			let bPerson = Person(name: "Jin", age: 20, location: "Canada", favouriteFood: "Galbi", height: 180);
-			bPerson.foodAndHeight()
+			bPerson.foodAndHeight() // returns My favourite Food is Galbi, and I'm 180cm tall.
 			```
 
 ## Classes
@@ -933,13 +933,13 @@
 			let aSnake = Snake(animalName: "Bell Snake", poisonous: true, snakeLength: 100)
 			let bSnake = Snake(animalName: "Bella Snake", numberOfLimbs: 4, poisonous: true, snakeLength: 100.3)
 
-			aSnake.makeNoise()
-			print(aSnake.numberOfLimbs)
-			print(aSnake.snakeLength)
+			aSnake.makeNoise()					// Hiss
+			print(aSnake.numberOfLimbs) // 0
+			print(aSnake.snakeLength)		// 100.0
 
-			bSnake.makeNoise()
-			print(bSnake.numberOfLimbs)
-			print(bSnake.snakeLength)
+			bSnake.makeNoise()					// Hiss
+			print(bSnake.numberOfLimbs)	// 4
+			print(bSnake.snakeLength)		// 100.3
 			```
 
 ## Errors

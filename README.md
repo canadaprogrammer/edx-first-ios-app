@@ -788,6 +788,40 @@
 - `self` simply refers to the current instance of a structure (or other object)
 - This allows us to interact with the current instance, for example to set or access its properties
 
+## Classes
+
+- Classes differ from structures as classes can hoave hierarchical relationship
+- Classes can have parents (named superclasses) or children (named subclasses)
+- Base Classes don't have a parent
+	- ```swift
+		class Animal {
+			var animalName: String
+			var numberOfLimbs: Int
+			func makeNoise() {
+				//
+			}
+		}
+		```
+- Subclassing allows us to extend an existing class by basing it on an existing class (and its methods and properties)
+	- ```swift
+		class Dog:Animal {
+			var breed: String
+			override function makeNoise() {
+				print("Woof!")
+			}
+		}
+		```
+- If we add more properties to our subclass, we need to override the initializer as it will only initialize the superclasses' properties
+	- ```swift
+		class Dog:Animal {
+			var breed: String
+			init(animalName: String, numberOfLimbs: Int, Breed: String) {
+				self.breed = breed
+				super.init(animalName: animalName, numberOfLimbs: numberOfLimbs)
+			}
+		}
+		```
+
 ## Errors
 
 ### "this class is not key value coding-compliant for the key counter"

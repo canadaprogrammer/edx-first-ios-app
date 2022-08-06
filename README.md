@@ -942,6 +942,54 @@
 			print(bSnake.snakeLength)		// 100.3
 			```
 
+## Introduction to User Interface Development
+
+### Basic Views
+
+- User Interface Components: Apple's UIKit provides us with the components we can use to make our own
+- Views: A view is a visual element that makes up our app
+	- We can create text, graphics, lines and more with them
+	- Most apps contain screens which are made up of many niews, which create what is termed a view hierarchy
+	- Views need a Frame (size and position) first
+- UIView: The UIView class is UIKit's foundational class
+	- This is subclassed to make many components we can use to build our app's interface
+- UILabel: A UILabel allows us to display a piece of short text (in our app) to the user
+- UIImageView: It allows us to display an image to the user
+- UITextView: It allows a user to interact with multiple lines of test within the app
+- UIScrollView: It allows users to scroll
+	- The benefit of this is to add and explore content larget than the viewport (screen/window)
+	- Scrollbars (or indicators as they termed) only appear when the user scrolls
+- UIToolbar: It displays a group of buttons at the bottom of the screen (usually)
+	- Buttons (or tools) allow users to perform an action
+- UINavigationBar: It can be thought of as the 'title bar' - but isn't the only way to make one
+	- It has buttons to navigate through the view hierarchy (back, forwards etc)
+	- It looks like it sometimes has other buttons (although they are not implemented using a UINavigationBar)
+- UITabBar: It looks similar to a UIToolbar, but serves a different yet similar purpose
+	- Rather than performing actions, a UITabBar allows the user to select between views
+	- It's used in conjunction with a TabBarController
+	- It is best used for when the app has multiple workflows i.e. doesn't just run from start to finish like a 'wizard'
+
+### Basic Controls
+
+- Controls allow us to setup Actions that respond to events (interactions) with the controls
+	- An Action is simply a special type of function
+- UIButton: It is a control which the user can 'tap'
+- UISegmentedCongrol: Think of a UISegmentedControl as a group of buttons where only one can be selected
+	- Code is run when the user selects a different button
+- UITextField: It is similar to a UITextView or a UILabel
+	- In that it allows the user to enter a single line of text - these are properties of those Views
+	- Code can also be bound to after each keystroke (use this carefully)
+- UISlider: It allows the user to select a continuous value between a lower and upper range
+	- As the user drags the slider toggle, code is run, so dragging can trigger an event many times
+- UISwitch: They are to controls what Boolean values are to variables
+	- Code can run for when the state changes or when it is set to a specific value
+- UIDatePicker: It sllows the user to select a date and time
+	- Code is executed when date and/or time is changed
+- UIViewController: It is not really a control, but a special case view
+	- Each screen in an app is usually a scene in Storyboards
+	- UIViewControllers manage each view - they contain the Actions and the Storyboards used to generate each screen or scene
+	- These are subclassed and overridden to allow us to make our own scenes
+
 ## Errors
 
 ### "this class is not key value coding-compliant for the key counter"

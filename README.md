@@ -969,6 +969,76 @@
 	- It's used in conjunction with a TabBarController
 	- It is best used for when the app has multiple workflows i.e. doesn't just run from start to finish like a 'wizard'
 
+#### Playgounds Basic Views
+
+- Single View
+	- Xcode > File > New > Playground > iOS > Single View
+	- ```swfit
+		//: A UIKit based Playground for presenting user interface
+
+		import UIKit
+		import PlaygroundSupport
+
+		class MyViewController : UIViewController {
+				override func loadView() {
+						let view = UIScrollView()
+						view.backgroundColor = .white
+						view.contentSize = CGSize(width: 375, height: 1000)
+
+						let label = UILabel()
+						label.frame = CGRect(x: 50, y: 200, width: 200, height: 20)
+						label.text = "Hello World!"
+						label.textColor = .black
+
+						view.addSubview(label)
+
+						let textView = UITextView()
+						textView.frame = CGRect(x:50, y:240, width: 200, height: 100)
+						textView.text = "Tap to edit me - I'm a TextView!"
+						textView.textColor = .black
+
+						view.addSubview(textView)
+
+						self.view = view
+				}
+		}
+		// Present the view controller in the Live View window
+		PlaygroundPage.current.liveView = MyViewController()
+		```
+
+- SwiftUI
+	- Xcode > File > New > Playground > iOS > Blank
+	- ```swift
+		import SwiftUI
+		import PlaygroundSupport
+
+		struct Name {
+				var firstName: String = ""
+				var lastName: String = ""
+		}
+
+		struct NameRow: View {
+				var name: Name
+				var body: some View {
+						HStack {
+								Text(name.firstName)
+								Text(name.lastName).bold()
+						}
+				}
+		}
+
+		struct NameView: View {
+				var body: some View {
+						Group {
+								NameRow(name: Name(firstName: "Jin", lastName: "Park")).offset(x:1, y:0)
+								NameRow(name: Name(firstName: "Jina", lastName: "Park")).offset(x:0, y:0)
+						}
+				}
+		}
+
+		PlaygroundPage.current.setLiveView(NameView().padding(150))
+		```
+
 ### Basic Controls
 
 - Controls allow us to setup Actions that respond to events (interactions) with the controls

@@ -7,143 +7,139 @@
 1. Open Xcode
 2. Create a new Xcode project
 3. Choose a template
-    - platform: iOs
-    - Application: App
-    - Next
+  - platform: iOs
+  - Application: App
+  - Next
 4. Choose options
-    - Project Name: FirstApp
-    - Organization Identifier: jin
-    - Interface: Storyboard
-    - Language: Swift
-    - Uncheck all
-    - Next
+  - Project Name: FirstApp
+  - Organization Identifier: jin
+  - Interface: Storyboard
+  - Language: Swift
+  - Uncheck all
+  - Next
 5. Choose folder
-    1. Choose or create folder
-    2. Uncheck Create Git repository on my Mac
-    3. Create
+  1. Choose or create folder
+  2. Uncheck Create Git repository on my Mac
+  3. Create
 6. Change the preview device
-    1. Click Main.storyboard on the navigator
-    2. option + cmd + return
-    3. Click '+' on the botton
-    4. Choose iPhoneSE 3rd
-    5. option + cmd + return
+  1. Click Main.storyboard on the navigator
+  2. option + cmd + return
+  3. Click '+' on the botton
+  4. Choose iPhoneSE 3rd
+  5. option + cmd + return
 7. Add a button to Main.storyboard
-    1. Click Main.storyboard
-    2. Click '+' (Library) button on the top
-    3. Drag Button into Storyboard
-    4. Modify the button
+  1. Click Main.storyboard
+  2. Click '+' (Library) button on the top
+  3. Drag Button into Storyboard
+  4. Modify the button
 8. Show ViewController.swift on the right editor
-    1. Click Add Editor button on Right on the top of editor
-    2. Click ViewController.swift
-    3. Close Main.storyboard on the Right Editor
+  1. Click Add Editor button on Right on the top of editor
+  2. Click ViewController.swift
+  3. Close Main.storyboard on the Right Editor
 9. Add controller for the button
-    1. ctrl + drag the button to line 16 on ViewController.swift
-    2. On the popup
-        - Connection: Action
-        - Object: View Controller
-        - Name: jinButton
-        - Type: UIButton
-        - Connect
-    3. Type code on ViewController.swift
-        - ```swift
-          import UIKit
+  1. ctrl + drag the button to line 16 on ViewController.swift
+  2. On the popup
+    - Connection: Action
+    - Object: View Controller
+    - Name: jinButton
+    - Type: UIButton
+    - Connect
+  3. Type code on ViewController.swift
+    - ```swift
+      import UIKit
+      class ViewController: UIViewController {
+        var colourIsYellow = false
+        override func viewDidLoad() {
+          super.viewDidLoad()
+          // Do any additional setup after loading the view.
+          view.backgroundColor = UIColor.purpleß
+        }
 
-          class ViewController: UIViewController {
-              var colourIsYellow = false
-              override func viewDidLoad() {
-                  super.viewDidLoad()
-                  // Do any additional setup after loading the view.
-                  view.backgroundColor = UIColor.purpleß
-              }
-
-              @IBAction func jinButton(_ sender: UIButton) {
-                  if colourIsYellow {
-                      view.backgroundColor = UIColor.purple
-                      colourIsYellow = false
-                  } else {
-                      view.backgroundColor = UIColor.yellow
-                      colourIsYellow = true
-                  }
-              }
+        @IBAction func jinButton(_ sender: UIButton) {
+          if colourIsYellow {
+            view.backgroundColor = UIColor.purple
+            colourIsYellow = false
+          } else {
+            view.backgroundColor = UIColor.yellow
+            colourIsYellow = true
           }
-          ```
+        }
+      }
+      ```
 10. Play the app on Simulator
-    1. Choose iOS, iPhone 8
-    2. Click Start the active scheme
+  1. Choose iOS, iPhone 8
+  2. Click Start the active scheme
 
 ### Create your first app with SwiftUI
 
 1. Open Xcode
 2. Create a new Xcode project
 3. Choose a template
-    - platform: iOs
-    - Application: App
-    - Next
+  - platform: iOs
+  - Application: App
+  - Next
 4. Choose options
-    - Project Name: FirstAppSwiftUI
-    - Organization Identifier: jin
-    - Interface: SwiftUI
-    - Language: Swift
-    - Uncheck all
-    - Next
+  - Project Name: FirstAppSwiftUI
+  - Organization Identifier: jin
+  - Interface: SwiftUI
+  - Language: Swift
+  - Uncheck all
+  - Next
 5. Choose folder
-    1. Choose or create folder
-    2. Uncheck Create Git repository on my Mac
-    3. Create
+  1. Choose or create folder
+  2. Uncheck Create Git repository on my Mac
+  3. Create
 6. Preview
-    1. Click `Resume`
-    2. Choose a device on the toolbar
-    3. Change code to 'hello, Jin' on `ContentView.swift`
+  1. Click `Resume`
+  2. Choose a device on the toolbar
+  3. Change code to 'hello, Jin' on `ContentView.swift`
 7. Add a button and the action
-    1. Remove `Text().padding()` from `ContentView.swift`
-    2. Click '+' (Library)
-    3. Drag Button to the location of `Text`
-    4. Change the text to `Button("Our MOOC") {`
+  1. Remove `Text().padding()` from `ContentView.swift`
+  2. Click '+' (Library)
+  3. Drag Button to the location of `Text`
+  4. Change the text to `Button("Our MOOC") {`
+  5. Click '+' (Library)
+  6. Type `vertical stack` and drag it to above the Button
+  7. Move the Button into `VStack {}`
+  8. Create a varibale and add action
+  9. Add an image
+    1. Download an image
+    2. Click `Assets.xcassets`
+    3. Drag the image to it
+    4. Click `ContentView.swift`
     5. Click '+' (Library)
-    6. Type `vertical stack` and drag it to above the Button
-    7. Move the Button into `VStack {}`
-    8. Create a varibale and add action
-    9. Add an image
-        1. Download an image
-        2. Click `Assets.xcassets`
-        3. Drag the image to it
-        4. Click `ContentView.swift`
-        5. Click '+' (Library)
-        6. Drag `vertical stack` into condition
-        7. Click '+' (Library)
-        8. Drag `image` into the `VStack`
-        9. Copy the image name and paste into `Image("filename")`
+    6. Drag `vertical stack` into condition
+    7. Click '+' (Library)
+    8. Drag `image` into the `VStack`
+    9. Copy the image name and paste into `Image("filename")`
         
 - ```swift
   import SwiftUI
 
   struct ContentView: View {
-      @State private var theMOOC = false
-      var body: some View {
+    @State private var theMOOC = false
+    var body: some View {
+      VStack {
+        Button("Our MOOC") {
+          self.theMOOC.toggle()
+        }
+        if theMOOC {
           VStack {
-              Button("Our MOOC") {
-                  self.theMOOC.toggle()
-              }
-              if theMOOC {
-                  VStack {
-                      Image("floral-welcome-sign")
-                          .resizable()
-                          .scaledToFit()
-                      Text("Welcome to the MOOC!")
-                          .font(.largeTitle)
-                  }
-              }
-
+            Image("floral-welcome-sign")
+              .resizable()
+              .scaledToFit()
+            Text("Welcome to the MOOC!")
+              .font(.largeTitle)
           }
-
-
+        }
       }
+    }
   }
 
   struct ContentView_Previews: PreviewProvider {
-      static var previews: some View {
-          ContentView()
-      }
+    static var previews: some View {
+      ContentView()
+    }
   }
   ```
 
@@ -173,32 +169,32 @@
 ### Constants and Variables
 
 - Variable: store a value in memory
-    - var <variable_name> = <variable_value>
+  - var <variable_name> = <variable_value>
 - Constant: store a value that won't change, in memory
-    - let <constant_name> = <constant_value>
+  - let <constant_name> = <constant_value>
 
 ### Data Types
 
 - Defining a variable's data type to be stored in a variable happens when carting it
-    - var <varibale_name>: <data_type> = <varible_value>
-    - |Type Name|Symbol|Purpose|Example|
-      |---|---|---|---|
-      |Interger|Int|For whole numbers, integers|4|
-      |Double|Double|Numbers with decimal points|4.6|
-      |Boolean|Bool|True or False|true|
-      |String|String|Text|"Here"|
+  - var <varibale_name>: <data_type> = <varible_value>
+  - |Type Name|Symbol|Purpose|Example|
+    |---|---|---|---|
+    |Interger|Int|For whole numbers, integers|4|
+    |Double|Double|Numbers with decimal points|4.6|
+    |Boolean|Bool|True or False|true|
+    |String|String|Text|"Here"|
 
 ### Operators
 
 - Are symbols, singular or combined, that allow you to check, change or combine values
-    - |Operator Name|Symbol|Purpose|Example|
-      |---|---|---|---|
-      |Assignment| = |Assign a value to a variable|Greeting = "Hello"|
-      |Addition| + |Add the values together|25 + 25 = 50|
-      |Subtraction| - |Subtract the values|22 - 11 = 11|
-      |Multiplication| * |Multiply the values together|4 * 7 = 28|
-      |Division| / |Divide the values|12 / 4 = 3|
-      |Remainder|%|Returns the remainder of dividing the numbers|12 % 5 = 2|
+  - |Operator Name|Symbol|Purpose|Example|
+    |---|---|---|---|
+    |Assignment| = |Assign a value to a variable|Greeting = "Hello"|
+    |Addition| + |Add the values together|25 + 25 = 50|
+    |Subtraction| - |Subtract the values|22 - 11 = 11|
+    |Multiplication| * |Multiply the values together|4 * 7 = 28|
+    |Division| / |Divide the values|12 / 4 = 3|
+    |Remainder|%|Returns the remainder of dividing the numbers|12 % 5 = 2|
       
 ## Control Flow and Advanced Variables
 
@@ -246,7 +242,6 @@
 - Comparison Range
 
   - `...` or `..<`
-  
     - case 0..<2: // equal to 0...1
     
 ### Collecgions
@@ -254,15 +249,12 @@
 #### Array
 
 - An ordered list of data of the same type
-
   - `var myIntegerList: [Int] = [1,2,3,4]`
   
 - Data in an array is accessed by its index number
-
   - `print(myIntegerList[0] // returns 1`
   
 - Operations that can be performed upon an array
-
   - |Operation name|Description|
     |---|---|
     |<array_name>.contains(x)|If x is in the array, returns true else false|
@@ -276,21 +268,17 @@
 #### Dictionary
 
 - An unordered collection, and there is a key and a value
-
   - `var myDictionary = ["Name": "Jin", "Age": 20]
   
 - Accessing a Key's value is done using if-let
-
   - ```swift
     if let age = myDictionary["Age"]{
       print(age)
     }
     ```
-    
   - This ensures that the key exists before attempting to do anything with a value
 
 - Changing a Dictionary
-
   - ```swift
     myDictionary["Age"] = 22 // replace the value if the key exists
     myDictionary.updateValue(39, forKey: "Age") // update
@@ -300,7 +288,6 @@
 ### for-in
 
 - Allows us to repeat something that is in a sequence or range or collection
-
   - ```swift
     for num in 10...15{
       print("Number is: \(num)")
@@ -734,13 +721,13 @@
 - We can also add methods (functions) to it as well
 	- ```swift
 		struct Person {
-				var name: String
-				var age: Int
-				var location: String
+      var name: String
+      var age: Int
+      var location: String
 
-				func whoAmI() {
-						print("Hi, I'm \(name)! I'm \(age) and live in \(location)")
-				}
+      func whoAmI() {
+        print("Hi, I'm \(name)! I'm \(age) and live in \(location)")
+      }
 		}
 		
 		let aPerson = Person(name: "Jin", age: 20, location: "Victoria")
@@ -754,9 +741,8 @@
 	- We can specify default values for the properties
 	- ```swift
 		struct WaterMeter {
-				var litersUsed: Int = 0
-				var customer: Person = Person(name: "Anonymous", age: 20, location: "Canada")
-
+      var litersUsed: Int = 0
+      var customer: Person = Person(name: "Anonymous", age: 20, location: "Canada")
 		}
 
 		let theMeter = WaterMeter()
@@ -822,19 +808,19 @@
 	- Initialise the Structure you've created, and call your new function to confirm the changes work as intended.
 		- ```swift
 			struct Person {
-					var name: String;
-					var age: Int;
-					var location: String;
-					var favouriteFood: String;
-					var height: Int;
+        var name: String;
+        var age: Int;
+        var location: String;
+        var favouriteFood: String;
+        var height: Int;
 
-					func whoAmI() {
-							print("Hi, I'm \(name)! I'm \(age) and live in \(location).");
-					}
+        func whoAmI() {
+          print("Hi, I'm \(name)! I'm \(age) and live in \(location).");
+        }
 
-					func foodAndHeight() {
-							print("My favourite Food is \(favouriteFood), and I'm \(height)cm tall.")
-					}
+        func foodAndHeight() {
+          print("My favourite Food is \(favouriteFood), and I'm \(height)cm tall.")
+        }
 			}
 			let bPerson = Person(name: "Jin", age: 20, location: "Canada", favouriteFood: "Galbi", height: 180);
 			bPerson.foodAndHeight() // returns My favourite Food is Galbi, and I'm 180cm tall.
@@ -876,29 +862,29 @@
 		
 - ```swift
 	class Animal {
-			var name: String
-			var numberOfLimbs: Int
+    var name: String
+    var numberOfLimbs: Int
 
-			func makeNoise() {
-					// Do nothing!
-			}
-			init(name: String, numberOfLimbs: Int) {
-					self.name = name
-					self.numberOfLimbs = numberOfLimbs
-			}
+    func makeNoise() {
+      // Do nothing!
+    }
+    init(name: String, numberOfLimbs: Int) {
+      self.name = name
+      self.numberOfLimbs = numberOfLimbs
+    }
 	}
 
 	class Cat: Animal {
-			var breed: String = ""
+    var breed: String = ""
 
-			override func makeNoise() {
-					print("Meow!")
-			}
+    override func makeNoise() {
+      print("Meow!")
+    }
 
-			init(name: String, numberOfLimbs: Int, breed: String) {
-					self.breed = breed
-					super.init(name: name, numberOfLimbs: numberOfLimbs)
-			}
+    init(name: String, numberOfLimbs: Int, breed: String) {
+      self.breed = breed
+      super.init(name: name, numberOfLimbs: numberOfLimbs)
+    }
 	}
 
 	let myCat = Cat(name: "Whiskers", numberOfLimbs: 4, breed: "Ragdoll")
@@ -918,17 +904,17 @@
 	- As snakes can be (for this purpose) considered to have zero limbs, pass the value directly into the superclass initialiser.
 		- ```swift
 			class Snake:Animal {
-					var poisonous: Bool = false;
-					var snakeLength: Double
+        var poisonous: Bool = false;
+        var snakeLength: Double
 
-					override func makeNoise() {
-							print("Hiss")
-					}
-					init(animalName: String, numberOfLimbs: Int = 0, poisonous: Bool, snakeLength: Double) {
-							self.poisonous = poisonous
-							self.snakeLength = snakeLength
-							super.init(animalName: animalName, numberOfLimbs: numberOfLimbs)
-					}
+        override func makeNoise() {
+          print("Hiss")
+        }
+        init(animalName: String, numberOfLimbs: Int = 0, poisonous: Bool, snakeLength: Double) {
+          self.poisonous = poisonous
+          self.snakeLength = snakeLength
+          super.init(animalName: animalName, numberOfLimbs: numberOfLimbs)
+        }
 			}
 			let aSnake = Snake(animalName: "Bell Snake", poisonous: true, snakeLength: 100)
 			let bSnake = Snake(animalName: "Bella Snake", numberOfLimbs: 4, poisonous: true, snakeLength: 100.3)
@@ -971,7 +957,7 @@
 
 #### Playgounds Basic Views
 
-- Single View
+- in Cocoa Touch
 	- Xcode > File > New > Playground > iOS > Single View
 	- ```swfit
 		//: A UIKit based Playground for presenting user interface
@@ -980,60 +966,60 @@
 		import PlaygroundSupport
 
 		class MyViewController : UIViewController {
-				override func loadView() {
-						let view = UIScrollView()
-						view.backgroundColor = .white
-						view.contentSize = CGSize(width: 375, height: 1000)
+      override func loadView() {
+        let view = UIScrollView()
+        view.backgroundColor = .white
+        view.contentSize = CGSize(width: 375, height: 1000)
 
-						let label = UILabel()
-						label.frame = CGRect(x: 50, y: 200, width: 200, height: 20)
-						label.text = "Hello World!"
-						label.textColor = .black
+        let label = UILabel()
+        label.frame = CGRect(x: 50, y: 200, width: 200, height: 20)
+        label.text = "Hello World!"
+        label.textColor = .black
 
-						view.addSubview(label)
+        view.addSubview(label)
 
-						let textView = UITextView()
-						textView.frame = CGRect(x:50, y:240, width: 200, height: 100)
-						textView.text = "Tap to edit me - I'm a TextView!"
-						textView.textColor = .black
+        let textView = UITextView()
+        textView.frame = CGRect(x:50, y:240, width: 200, height: 100)
+        textView.text = "Tap to edit me - I'm a TextView!"
+        textView.textColor = .black
 
-						view.addSubview(textView)
+        view.addSubview(textView)
 
-						self.view = view
-				}
+        self.view = view
+      }
 		}
 		// Present the view controller in the Live View window
 		PlaygroundPage.current.liveView = MyViewController()
 		```
 
-- SwiftUI
+- in SwiftUI
 	- Xcode > File > New > Playground > iOS > Blank
 	- ```swift
 		import SwiftUI
 		import PlaygroundSupport
 
 		struct Name {
-				var firstName: String = ""
-				var lastName: String = ""
+      var firstName: String = ""
+      var lastName: String = ""
 		}
 
 		struct NameRow: View {
-				var name: Name
-				var body: some View {
-						HStack {
-								Text(name.firstName)
-								Text(name.lastName).bold()
-						}
-				}
+      var name: Name
+      var body: some View {
+        HStack {
+          Text(name.firstName)
+          Text(name.lastName).bold()
+        }
+      }
 		}
 
 		struct NameView: View {
-				var body: some View {
-						Group {
-								NameRow(name: Name(firstName: "Jin", lastName: "Park")).offset(x:1, y:0)
-								NameRow(name: Name(firstName: "Jina", lastName: "Park")).offset(x:0, y:0)
-						}
-				}
+      var body: some View {
+        Group {
+          NameRow(name: Name(firstName: "Jin", lastName: "Park")).offset(x:1, y:0)
+          NameRow(name: Name(firstName: "Jina", lastName: "Park")).offset(x:0, y:0)
+        }
+      }
 		}
 
 		PlaygroundPage.current.setLiveView(NameView().padding(150))
@@ -1059,6 +1045,85 @@
 	- Each screen in an app is usually a scene in Storyboards
 	- UIViewControllers manage each view - they contain the Actions and the Storyboards used to generate each screen or scene
 	- These are subclassed and overridden to allow us to make our own scenes
+
+####Playgrounds: Basic Controls
+
+- in SwiftUI
+  - Xcode > File > New > Playgrounds > iOS > blank
+  - ```swift
+    import SwiftUI
+    import PlaygroundSupport
+
+    struct AToggle: View {
+        @State var isToggled = false
+        var offDescription: String
+        var onDescription: String
+        var body: some View {
+            Toggle(isOn: $isToggled) {
+                if(isToggled) {
+                    Text(onDescription)
+                } else {
+                    Text(offDescription)
+                }
+            }
+        }
+    }
+
+    struct MainView: View {
+        var body: some View {
+            VStack {
+                Group {
+                    AToggle(offDescription: "Off 1", onDescription: "On 1")
+                    AToggle(offDescription: "Off 2", onDescription: "On 2")
+                }
+                Button(action: {
+                    print("Tapped")
+                }, label: {
+                    Text("I am a button!")
+                })
+            }
+        }
+    }
+
+    PlaygroundPage.current.setLiveView(MainView().padding(150))
+    ```
+
+- in Cocoa Touch
+  - ```swift
+    import UIKit
+    import PlaygroundSupport
+
+    class MyViewController : UIViewController {
+        @objc func buttonTapped() {
+            print("Tapped the button!")
+        }
+        @objc func datePickerValueChanged() {
+            print("Changed value of the date picker!")
+        }
+        override func loadView() {
+            let view = UIScrollView()
+            view.backgroundColor = .white
+            view.contentSize = CGSize(width: 375, height: 1000)
+
+            let button = UIButton()
+            button.frame = CGRect(x:0, y: 20, width: 100, height: 20)
+            button.setTitle("Tap Me", for: .normal)
+            button.setTitleColor(.blue, for: .normal)
+            button.addTarget(self, action: #selector(buttonTapped), for: .touchDown)
+
+            view.addSubview(button)
+
+            let datePicker = UIDatePicker()
+            datePicker.frame = CGRect(x:0, y: 0, width: 375, height: 500)
+            datePicker.addTarget(self, action: #selector(datePickerValueChanged), for: .valueChanged)
+
+            view.addSubview(datePicker)
+            self.view = view
+        }
+    }
+    // Present the view controller in the Live View window
+    PlaygroundPage.current.liveView = MyViewController()
+    ```
 
 ## Errors
 

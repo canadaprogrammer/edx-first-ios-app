@@ -342,7 +342,7 @@
      * Playon, points = 5
      * Playon, points = 10
      */
-		```
+    ```
 
 ## Xcode
 
@@ -699,9 +699,9 @@
 	- Then, print the values of these to confirm the function works as intended.
 		- ```swift
 			func calcSumDiff(firstNum: Int, secondNum: Int) -> (Int, Int) {
-					let sum = firstNum + secondNum
-					let diff = abs(firstNum - secondNum)
-					return (sum, diff)
+        let sum = firstNum + secondNum
+        let diff = abs(firstNum - secondNum)
+        return (sum, diff)
 			}
 
 			let result = calcSumDiff(firstNum: 10, secondNum: 12)
@@ -1055,34 +1055,34 @@
     import PlaygroundSupport
 
     struct AToggle: View {
-        @State var isToggled = false
-        var offDescription: String
-        var onDescription: String
-        var body: some View {
-            Toggle(isOn: $isToggled) {
-                if(isToggled) {
-                    Text(onDescription)
-                } else {
-                    Text(offDescription)
-                }
-            }
+      @State var isToggled = false
+      var offDescription: String
+      var onDescription: String
+      var body: some View {
+        Toggle(isOn: $isToggled) {
+          if(isToggled) {
+            Text(onDescription)
+          } else {
+            Text(offDescription)
+          }
         }
+      }
     }
 
     struct MainView: View {
-        var body: some View {
-            VStack {
-                Group {
-                    AToggle(offDescription: "Off 1", onDescription: "On 1")
-                    AToggle(offDescription: "Off 2", onDescription: "On 2")
-                }
-                Button(action: {
-                    print("Tapped")
-                }, label: {
-                    Text("I am a button!")
-                })
-            }
+      var body: some View {
+        VStack {
+          Group {
+            AToggle(offDescription: "Off 1", onDescription: "On 1")
+            AToggle(offDescription: "Off 2", onDescription: "On 2")
+          }
+          Button(action: {
+            print("Tapped")
+          }, label: {
+            Text("I am a button!")
+          })
         }
+      }
     }
 
     PlaygroundPage.current.setLiveView(MainView().padding(150))
@@ -1094,32 +1094,32 @@
     import PlaygroundSupport
 
     class MyViewController : UIViewController {
-        @objc func buttonTapped() {
-            print("Tapped the button!")
-        }
-        @objc func datePickerValueChanged() {
-            print("Changed value of the date picker!")
-        }
-        override func loadView() {
-            let view = UIScrollView()
-            view.backgroundColor = .white
-            view.contentSize = CGSize(width: 375, height: 1000)
+      @objc func buttonTapped() {
+        print("Tapped the button!")
+      }
+      @objc func datePickerValueChanged() {
+        print("Changed value of the date picker!")
+      }
+      override func loadView() {
+        let view = UIScrollView()
+        view.backgroundColor = .white
+        view.contentSize = CGSize(width: 375, height: 1000)
 
-            let button = UIButton()
-            button.frame = CGRect(x:0, y: 20, width: 100, height: 20)
-            button.setTitle("Tap Me", for: .normal)
-            button.setTitleColor(.blue, for: .normal)
-            button.addTarget(self, action: #selector(buttonTapped), for: .touchDown)
+        let button = UIButton()
+        button.frame = CGRect(x:0, y: 20, width: 100, height: 20)
+        button.setTitle("Tap Me", for: .normal)
+        button.setTitleColor(.blue, for: .normal)
+        button.addTarget(self, action: #selector(buttonTapped), for: .touchDown)
 
-            view.addSubview(button)
+        view.addSubview(button)
 
-            let datePicker = UIDatePicker()
-            datePicker.frame = CGRect(x:0, y: 0, width: 375, height: 500)
-            datePicker.addTarget(self, action: #selector(datePickerValueChanged), for: .valueChanged)
+        let datePicker = UIDatePicker()
+        datePicker.frame = CGRect(x:0, y: 0, width: 375, height: 500)
+        datePicker.addTarget(self, action: #selector(datePickerValueChanged), for: .valueChanged)
 
-            view.addSubview(datePicker)
-            self.view = view
-        }
+        view.addSubview(datePicker)
+        self.view = view
+      }
     }
     // Present the view controller in the Live View window
     PlaygroundPage.current.liveView = MyViewController()

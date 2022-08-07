@@ -1135,6 +1135,66 @@
     PlaygroundPage.current.liveView = MyViewController()
     ```
 
+## Auto Layout
+
+1. Xcode > File > New > Project
+2. iOS > App > Next
+3. Interface: Storyboard, Language: Swift > Next
+4. Create
+5. Change device to iPhone8
+6. On `Main.storyboard`
+   1. Change the preview device to iPhoneSE
+   2. Centered button
+      1. Click Library on the toolbar (the top)
+      2. Add a button on the middle
+      3. Align > Check Horizontally in Container and Vertically in Container > Click Add 2 Constraints
+      4. Add New Constraints > Set 20 on each side > Click Add 2 Constraints
+   3. Warning - Fixed leading and trailing constraints with a center constraint may cause clipping
+      1. On Size Inspector > remove Horizontal center constraint
+         1. Click Horizontal Center Constraint
+         2. Pushing delete button
+      - When constraints have issues, solving methods
+        - Modifying Constraints form the Size Inspector on the Utility Area
+        - Clicking Resolve Auto Layout Issues on the bottom of the preview to change the constraints to fit the object
+        - Clicking Update Frames on the bottom of the preview to change the object to fit the constraints
+   4. Stack View
+      1. Add a label on the top center from library
+      2. Warning - Views without any layout constraints may clip their content or overlap other views
+         1. Align > Check Horizontally in Container > Add 1 Constraint
+      3. Warning - Vertical position is ambiguous for "Label"
+         1. Add New Constraints > Choose Safe Area on the top > Add 1 Constraint
+      4. Add a label below the label and change the Label to "Second Label"
+      5. Add New Constraints > Type 20 on the top > Add 1 Constraint
+      6. Warning - Horizontal position is ambiguous for "Second Label"
+         1. Align > Check Horizontally in Container > Add 1 Constraint
+      7. Add Third Label as same as the Second Label
+         1. Change the font to System 40
+      8. Select the three labels with Shift key
+      9. Editor on the menu bar > Embed In > Stack View
+      10. Align > Check Horizontally in Container > Add 1 Constraint
+      11. Add New Constraints
+          1. Choose Safe Area at the top
+          2. Type 100 at the bottom
+          3. Add 2 Constraints
+      12. On Attribute Inspector of Stack View
+          1. Axis
+          2. Alignment (Vertically)
+          3. Distribution (Horizontally)
+          4. Spacing
+          5. Click '+' (Add Variation) next to Spacing for iPad
+             1. Width: Regular
+             2. Height: Regular
+             3. Click Add Variation
+      13. Click layout at the bottom of the preview
+          1. You can test it on Full Screen or Split View
+      14. On Attribute Inspector of label
+          1. Click '+' (Add Variation) next to Drawing for iPad
+             1. Width: Compact
+             2. Height: Regular
+             3. Click Add Variation
+             4. Check Hidden
+             5. You can check it on layout at the bottom of the preview
+
 ## Errors
 
 ### "this class is not key value coding-compliant for the key counter"
@@ -1144,6 +1204,6 @@
 - Solution:
   1. Click the label on `Main.storyboard`
   2. Control + drag the label to the 'counterDisplay' on `ViewController.swift`
-  3. Click "Show the connection inspector" on the right hand side
+  3. Click "Show the connection inspector" on the Utility Area (the right hand side)
   4. You can see there are two connections on Referencing Outlets
   5. Remove 'counter' from it

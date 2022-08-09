@@ -1195,6 +1195,115 @@
              4. Check Hidden
              5. You can check it on layout at the bottom of the preview
 
+## Scenes
+
+- A scene is simply 'one thing' we can do in our app that is described by 'one screen'
+- Complex apps will require multiple scenes to be able to deliver the required functionality
+
+### Segues
+
+- A `segue` defines how a new ViewController appears over the previous ViewController
+- We can also use `segues` to dismiss View Controllers to move back to previous ones, and these are termed `modal segues`.
+
+### Triggers
+
+- Segues can be triggered either using the Interface Builder or programmatically using Swift code
+  - We generally connect the trigger to a control such as a button, so the segue is triggered when the user taps the button
+
+### Unwinding
+
+- Dismissing a segue is termed `unwinding` it
+  - We can't really do this using Interface Builder
+  - We do this programmatically by creating an `IBAction` function that takes a `UIStoryboardSegue` parameter
+  - We then need to connect the IBAction to a control, which we will do in the exercise
+
+### Navigation Controllers
+
+- Using a Navigation Controller we can push a new ViewController on top of the stack with a push transition
+
+### Navigation Bars and Items
+
+- This can be cusstomised visually in Interface Builder, keeping in mind the Human Interface guidelines
+- The Navigation Bar is implemented ad a `UINavigationBar`
+- To customize what the bar says, we need to modify the Navigation Item within our View Controller
+- We can customize the style by modifying the attributes of the Navigation Bar
+
+### Passing Information
+
+- Generally, we will need to pass information between View Controllers
+  - This is despite changing View Controllers to a different `task`, as it is still part of a larger workflow
+- We override the prepare function to setup data for transfer during a segue
+- The prepare function is how we programmatically define a segue
+
+## Tab Bar Controllers
+
+- Tab Bar Controllers are commonly seen in many apps to separate different workflows within an App
+- To add a Tab Bar Controller in Interface Builder, we drag it onto the Canvas from the Object library
+- To add a tab, we drag it from the Object library into our TabBarController
+- Each of these tabs is termed a Tab Bar Item
+- Tab Bar Item has a Label and an Image
+  - We can use a bunch of built-in icons or supply our own
+- We can customise the look and feel further using Swift code
+
+## ViewController Event Handling
+
+- Life Cycle States
+  - A View Controller can be in one of the following states:
+    - View not loaded
+    - View appearing
+    - View appeared
+    - View disappearing
+    - View disappeared
+- View Did Load
+  - The most common function is viewDidLoad, which runs when the View Controller is loaded
+  - Generally this function is used to programmatically initialise the View Controller
+    - Set up values, connect to resources, etc.
+- Overriding
+  - One think to be aware of is that as we are overloading each of these functions, you must call the superclass initialiser within them when you do so
+
+  - ```swift
+    override func viewWillAppear(_animated: Bool) {
+      super.viewWillAppear(animated)
+      // you write your code here
+    }
+    ```
+
+- Function with `will` run before the event, whereas functions with 'did' run afterwards
+
+## Navigation Hierarchy
+
+### Hierarchical Navigation
+
+- A user makes one choice per screen/scene until they reach their destination scene
+  - If they change destination, they have to start from the beginning, retracing their steps back to the start
+  - Used in apps such as Settings
+- Generally implemented with Navigation Controllers
+
+### Flat Navigation
+
+- Users can switch between different categories or 'workflows'
+- Ganerally implemented with a Tab Bar Controller
+
+### Content-Driven Navigation
+
+- This is a different and more free-flow type of navigation
+- Users can move in a non-linear fashion between elements of the App
+  - The most common example would be games
+
+### Workflows
+
+- It is best to consider what the User will be doing in the App before building it
+  - This is to be able to best design the navigation hierarchy
+  - Consider the features and how they will be built as View Controllers, as well as the movement between them
+
+### Design Guidelines
+
+- Apple recommend the following things to consider when designing a Navigation Hierarchy
+  - Design a structure to make it fast and easy to get to content
+  - Use standard navigation controls, such as a Navigation Bar when implementing a Hierarchical Navigation
+  - Use a Tab Bar when implementing multiple categories (modes, workflows) of content or functionality
+  - Use the correct style (modal va push) where appropriate
+
 ## Errors
 
 ### "this class is not key value coding-compliant for the key counter"

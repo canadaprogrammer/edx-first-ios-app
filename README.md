@@ -1205,6 +1205,33 @@
 - A `segue` defines how a new ViewController appears over the previous ViewController
 - We can also use `segues` to dismiss View Controllers to move back to previous ones, and these are termed `modal segues`.
 
+#### Demo: Creating Modal Segue Project
+
+1. Create project
+2. iOS > App > Next
+3. Storyboard / Swift > Next
+4. Create
+5. Click Main.storyboard from the navigation
+6. Select the view controller
+   - Change the Background color to yellow on the attribute inspector
+7. Click library and add a button at the middle and change the title to First
+8. Click library and add view controller to next to the view controller
+   - Change the Background color to purple on the attribute inspector
+9. Click the button and Ctl + drag it to the purple view controller
+   - Select "Present Modally"
+10. One more for yellow view controller
+11. Click Storyboard Segue between View Controllers
+    - You can change the attributes from the inspector
+12. On ViewController.swift, add below code after override func
+
+    - ```swift
+      @IBAction func unwindToOrange(unwindSegue: UIStoryboardSegue) {}
+      ```
+
+13. Click library and add a button to orange view and change the title to Dismiss
+    - Click the button and Ctl + drag it to exit at the top of the view controller
+    - Select unwindToOrangeWithUnwindSegue
+
 ### Triggers
 
 - Segues can be triggered either using the Interface Builder or programmatically using Swift code

@@ -1277,8 +1277,29 @@
 
 - Generally, we will need to pass information between View Controllers
   - This is despite changing View Controllers to a different `task`, as it is still part of a larger workflow
-- We override the prepare function to setup data for transfer during a segue
-- The prepare function is how we programmatically define a segue
+- We override the `prepare` function to setup data for transfer during a segue
+- The `prepare` function is how we programmatically define a segue
+
+#### Demo: Passing data between ViewControllers
+
+1. Cont'd Navigation Controller Demo
+2. Click Libaray and add Text Field to below the button on the first view controller
+3. Click the text field and drag it to above override func viewDidLoad() on ViewController.swift
+   1. Name: textField
+   2. Click Connect
+   3. It will create `@IBOutlet weak var textField: UITextField!`
+   4. Type a code below the code
+
+      - ```swift
+        override function prepare(for segue: UIStoryboardSegue, sender: Any?) {
+          segue.destination.navigationItem.title = textField.text
+        }
+        ```
+
+4. Click "Start the active scheme"
+5. On a simulator, type test text on the textField
+6. Click First button
+7. The test text will be shown as the navigation title on the second view controller
 
 ## Tab Bar Controllers
 
@@ -1301,7 +1322,7 @@
     - View disappeared
 - View Did Load
   - The most common function is viewDidLoad, which runs when the View Controller is loaded
-  - Generally this function is used to programmatically initialise the View Controller
+  - Generally this function is used to programmatically initialize the View Controller
     - Set up values, connect to resources, etc.
 - Overriding
   - One think to be aware of is that as we are overloading each of these functions, you must call the superclass initialiser within them when you do so

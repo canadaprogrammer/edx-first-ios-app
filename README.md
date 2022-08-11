@@ -1248,9 +1248,27 @@
 
 - Using a Navigation Controller we can push a new ViewController on top of the stack with a push transition
 
+#### Demo: Navigation Controller
+
+1. Cont'd Segue demo
+2. On Main.storyboard, Click the first View Controller
+3. On the menu bar
+   1. Editor > Embed In > Navigation Controller
+4. Click Segue between first and second view controller
+5. On the Attribute Inspector, change the Kind to "Show (e.g. Push)"
+   1. You can see "< Back" on the second view controller
+6. Same thing again to the seque between second and third
+7. Change Navigation title style
+   1. Click title on the Navigation Controller
+   2. On the Attribute Inspector, change the style, title,
+8. Click Library and add Bar Button Item to the right side of the navigation section on third view controller
+9. On the Attribute Inspector, change System Item to Custom and Title to Dismiss
+   1. Click the button and Ctl + drag it to exit at the top of the view controller
+   2. Select unwindToOrangeWithUnwindSegue
+
 ### Navigation Bars and Items
 
-- This can be cusstomised visually in Interface Builder, keeping in mind the Human Interface guidelines
+- This can be customized visually in Interface Builder, keeping in mind the Human Interface guidelines
 - The Navigation Bar is implemented ad a `UINavigationBar`
 - To customize what the bar says, we need to modify the Navigation Item within our View Controller
 - We can customize the style by modifying the attributes of the Navigation Bar
@@ -1270,7 +1288,7 @@
 - Each of these tabs is termed a Tab Bar Item
 - Tab Bar Item has a Label and an Image
   - We can use a bunch of built-in icons or supply our own
-- We can customise the look and feel further using Swift code
+- We can customize the look and feel further using Swift code
 
 ## ViewController Event Handling
 
@@ -1343,3 +1361,8 @@
   3. Click "Show the connection inspector" on the Utility Area (the right hand side)
   4. You can see there are two connections on Referencing Outlets
   5. Remove 'counter' from it
+
+### "Failed to instantiate the default view controller for UIMainStoryboardFile"
+
+- If you accidentally deleted that view controller, or otherwise made it not the default, then you’ll see the error “Failed to instantiate the default view controller for UIMainStoryboardFile 'Main' - perhaps the designated entry point is not set?” when your app launches, along with a plain black screen.
+- To fix the problem, open your Main.storyboard file and find whichever view controller you want to be shown when your app first runs. When it’s selected, go to the attributes inspector and check the box marked "Is Initial View Controller". You should see a right-facing arrow appear to the left of that view controller, showing that it’s your storyboard's entry point.

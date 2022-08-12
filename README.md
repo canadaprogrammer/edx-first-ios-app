@@ -1280,7 +1280,7 @@
 - We override the `prepare` function to setup data for transfer during a segue
 - The `prepare` function is how we programmatically define a segue
 
-#### Demo: Passing data between ViewControllers
+#### Demo: Passing Data between ViewControllers
 
 1. Cont'd Navigation Controller Demo
 2. Click Libaray and add Text Field to below the button on the first view controller
@@ -1300,6 +1300,55 @@
 5. On a simulator, type test text on the textField
 6. Click First button
 7. The test text will be shown as the navigation title on the second view controller
+
+#### Demo: Integrating Controls with Segues
+
+1. Cont'd Passing Data Demo
+2. Remove Navigation Controller
+3. Click the first view controller
+4. On the Attribute Inspector > Check "Is Initial View Controller"
+5. Remove Text Field from Main.storyboard and ViewController.swift
+6. Change the title of first button to Purple
+7. Click Library and add button to below the purple button
+8. Change the title to Orange
+9. Click Library and add switch to below the orange button
+10. Click First on the top of the first view controller
+11. Ctrl + Drag to the purple view controller > Select Present Modally
+12. Ctrl + Drag to the orange view controller > Select Present Modally
+13. Click the Storyboard Segue to purple
+    1. On the Attribute Inspector
+    2. Identifier: purple
+14. Click the Storyboard Segue to orange
+    1. On the Attribute Inspector
+    2. Identifier: orange
+15. Click the switch > Ctrl + drag into the first line of ViewController class on ViewController.swift
+    1. Connection: Outlet
+    2. Name: segueSwitch
+    3. Click Connect
+16. Click the purple button > Ctrl + drag into the next line of ViewController class on ViewController.swift
+    1. Connection: Action
+    2. Name: tapPurple
+    3. Click Connect
+17. Click the orange button > Ctrl + drag into the next line of ViewController class on ViewController.swift
+    1. Connection: Action
+    2. Name: tapOrange
+    3. Click Connect
+18. On ViewController.swift
+
+    - ```swift
+      @IBOutlet weak var segueSwitch: UISwitch!
+    
+      @IBAction func tapPurple(_ sender: Any) {
+          if segueSwitch.isOn {
+              performSegue(withIdentifier: "purple", sender: self)
+          }
+      }
+      @IBAction func tapOrange(_ sender: Any) {
+          if segueSwitch.isOn {
+              performSegue(withIdentifier: "orange", sender: self)
+          }
+      }
+      ```
 
 ## Tab Bar Controllers
 

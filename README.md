@@ -1360,6 +1360,26 @@
   - We can use a bunch of built-in icons or supply our own
 - We can customize the look and feel further using Swift code
 
+### Exercise: Tab Bar Controllers
+
+1. Create a new project
+2. Open Main.storyboard
+3. On menu bar, Editor > Embed In > Tab Bar Controller
+4. Create two View Controller; Click Library > View Controller
+5. Click Tab Bar Controller
+   1. Ctrl + Drag to the second view controller > Select View Controllers on Relationship Segue
+   2. Click the Relationship Segue > Enter Selector: second on the Attribute Inspector
+   3. Ctrl + Drag to the third view controller > Select View Controllers on Relationship Segue
+   4. Click the Relationship Segue > Enter Selector: third on the Attribute Inspector
+   5. Click the Relationship Segue with the first > Enter Selector: first on the Attribute Inspector
+6. Click the first view controller
+   1. Change the background color to system orange (,purple, yellow)
+   2. Click Item on the top
+   3. On the Attribute Inspector, change the title to First VC
+   4. Click Item on the bottom
+   5. On the Attribute Inspector, change the title to Orange
+7. for the second view controller and the third view controller do the same thing as the first
+
 ## ViewController Event Handling
 
 - Life Cycle States

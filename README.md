@@ -1562,6 +1562,57 @@
   5. Did become active
   6. Will terminate
 
+## Model View Controller
+
+- It is an architectureal design pattern
+- Separates
+  - the Model of the data
+  - the View the user sees
+  - the Control of what happens and where things go
+- Every object belongs to either the Model, the View or the Controller
+
+### A Model
+
+- Defines the structure of the data: group the data for something specific into a Model
+- Often relates to other Model objects
+- Knows nothing about the View
+- Models are often classes or structures
+- The arrays/dictionaries created to store the colours in our App were also Models
+
+### A View
+
+- The objects seen by the user, the User Interface: buttons, labels etc.
+- Can draw itself on screen
+- Can respond to user input
+- Displays the data from the Model to the user
+- Allows the user to interact with the App's data
+
+### A Controller
+
+- Manages the App
+- Configures the views for yours
+- Controls the View and Modal to ensure correct data is displayed
+- Is a message carrier between the Views and the Model(s)
+- View, Model and Helper Controllers
+
+### Projects in Xcode
+
+- An Xcode project can have a lot of files
+  - Views
+  - Storyboards
+  - Structures
+  - Classes
+  - Protocols
+  - Controllers
+- Organizing Projects
+  - File names must be descriptive
+  - Individual files for your types (classes, structures)
+  - Possible file structure
+    - View controllers
+    - Views
+    - Model
+    - Other
+
 ## Errors
 
 ### "this class is not key value coding-compliant for the key counter"

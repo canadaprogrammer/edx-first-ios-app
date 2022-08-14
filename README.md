@@ -37,6 +37,7 @@
    2. Click ViewController.swift
    3. Close Main.storyboard on the Right Editor
 9. Add controller for the button
+
    1. ctrl + drag the button to line 16 on ViewController.swift
    2. On the popup
       - Connection: Action
@@ -178,24 +179,24 @@
 
 - Defining a variable's data type to be stored in a variable happens when carting it
   - `var <variable_name>: <data_type> = <variable_value>`
-  - |Type Name|Symbol|Purpose|Example|
-    |---|---|---|---|
-    |Interger|Int|For whole numbers, integers|4|
-    |Double|Double|Numbers with decimal points|4.6|
-    |Boolean|Bool|True or False|true|
-    |String|String|Text|"Here"|
+  - | Type Name | Symbol | Purpose                     | Example |
+    | --------- | ------ | --------------------------- | ------- |
+    | Interger  | Int    | For whole numbers, integers | 4       |
+    | Double    | Double | Numbers with decimal points | 4.6     |
+    | Boolean   | Bool   | True or False               | true    |
+    | String    | String | Text                        | "Here"  |
 
 ### Operators
 
 - Are symbols, singular or combined, that allow you to check, change or combine values
-  - |Operator Name|Symbol|Purpose|Example|
-    |---|---|---|---|
-    |Assignment| = |Assign a value to a variable|Greeting = "Hello"|
-    |Addition| + |Add the values together|25 + 25 = 50|
-    |Subtraction| - |Subtract the values|22 - 11 = 11|
-    |Multiplication| * |Multiply the values together|4 * 7 = 28|
-    |Division| / |Divide the values|12 / 4 = 3|
-    |Remainder|%|Returns the remainder of dividing the numbers|12 % 5 = 2|
+  - | Operator Name  | Symbol | Purpose                                       | Example            |
+    | -------------- | ------ | --------------------------------------------- | ------------------ |
+    | Assignment     | =      | Assign a value to a variable                  | Greeting = "Hello" |
+    | Addition       | +      | Add the values together                       | 25 + 25 = 50       |
+    | Subtraction    | -      | Subtract the values                           | 22 - 11 = 11       |
+    | Multiplication | \*     | Multiply the values together                  | 4 \* 7 = 28        |
+    | Division       | /      | Divide the values                             | 12 / 4 = 3         |
+    | Remainder      | %      | Returns the remainder of dividing the numbers | 12 % 5 = 2         |
 
 ## Control Flow and Advanced Variables
 
@@ -211,18 +212,18 @@
 
 ### Logical Operators
 
-- |Operator|Description|
-  |---|---|
-  | == |The items must be equal to each other|
-  | != |The values must not be equal to each other|
-  | > |The value on the left is greather than the value on the right|
-  | >= |The value in the left is greather than or equal to the value on the right|
-  | < |The value on the left is smaller than the value on the right|
-  | <= |The value on the left is smaller than or equal to the value on the right|
-  | && |AND - the condition on the left must be true AND the condition on the right must be true|
-  | &#124;&#124; |OR - the condition on the left must be true OR the condition on the right must be true|
-  | ! |NOT - the opposite of the conditional statement immediately following the operator is returned|
-  
+- | Operator     | Description                                                                                    |
+  | ------------ | ---------------------------------------------------------------------------------------------- |
+  | ==           | The items must be equal to each other                                                          |
+  | !=           | The values must not be equal to each other                                                     |
+  | >            | The value on the left is greather than the value on the right                                  |
+  | >=           | The value in the left is greather than or equal to the value on the right                      |
+  | <            | The value on the left is smaller than the value on the right                                   |
+  | <=           | The value on the left is smaller than or equal to the value on the right                       |
+  | &&           | AND - the condition on the left must be true AND the condition on the right must be true       |
+  | &#124;&#124; | OR - the condition on the left must be true OR the condition on the right must be true         |
+  | !            | NOT - the opposite of the conditional statement immediately following the operator is returned |
+
 ### Switch
 
 - ```swift
@@ -236,7 +237,7 @@
     print("Two siblings")
   default:
     print("Wow...")
-    
+
   // result: "Two siblings"
   ```
 
@@ -251,26 +252,23 @@
 
 - An ordered list of data of the same type
   - `var myIntegerList: [Int] = [1,2,3,4]`
-  
 - Data in an array is accessed by its index number
   - `print(myIntegerList[0] // returns 1`
-  
 - Operations that can be performed upon an array
-  - |Operation name|Description|
-    |---|---|
-    |<array_name>.contains(x)|If x is in the array, returns true else false|
-    |<array_name>.isEmpty|Returns true if array is empty, otherwise returns false|
-    |<array_name>.append(x)|Appends x to the end of the array|
-    |<array_name>.insert(x, at:y)|Inserts x into the array at position y|
-    |<array_name>.remove(at:y)|Removes the item at position y in the array|
-    |<array_name>.removeLast()|Removes the last item in the array|
-    |<array_name>.removeAll()|Removes everything from the array|
+  - | Operation name               | Description                                             |
+    | ---------------------------- | ------------------------------------------------------- |
+    | <array_name>.contains(x)     | If x is in the array, returns true else false           |
+    | <array_name>.isEmpty         | Returns true if array is empty, otherwise returns false |
+    | <array_name>.append(x)       | Appends x to the end of the array                       |
+    | <array_name>.insert(x, at:y) | Inserts x into the array at position y                  |
+    | <array_name>.remove(at:y)    | Removes the item at position y in the array             |
+    | <array_name>.removeLast()    | Removes the last item in the array                      |
+    | <array_name>.removeAll()     | Removes everything from the array                       |
 
 #### Dictionary
 
 - An unordered collection, and there is a key and a value
   - `var myDictionary = ["Name": "Jin", "Age": 20]
-  
 - Accessing a Key's value is done using if-let
 
   - ```swift
@@ -305,7 +303,7 @@
      * Number is: 14
      * Number is: 15
      */
-     
+
     var lectures = ["David", "Paul", "Andrew"]
     for lecture in lectures{
       print("Lecturer is: \(lecturer)")
@@ -315,7 +313,7 @@
      * Lecturer is Paul
      * Lecturer is Andrew
      */
-     
+
     var ages = ["David": 20, "Paul": 30, "Andrew": 40]
     for person in ages{
       print(person)
@@ -482,7 +480,7 @@
   - While running the code stops or crashes
   - This is where the code did something it wasn't meant to and can't continue on
   - Most of use have experienced these when using software, and they avr frustrating for both users and developers
-  
+
 ## Exercise
 
 ### Change Label
@@ -662,6 +660,7 @@
   - If you return earlier in the function, any lines afterwards will be ignored
   - `return value`
 - Multiple returns
+
   - All we have to do is separate the returns by a comma
 
 - function definition
@@ -721,14 +720,15 @@
         print("Hi, I'm \(name)! I'm \(age) and live in \(location)")
       }
     }
-    
+
     let aPerson = Person(name: "Jin", age: 20, location: "Victoria")
-    
+
     print(aPerson.name) // Jin
     aPerson.whoAmI()   // Hi, I'm Jin! I'm 20 and live in Victoria
     ```
 
 - An `initializer` creates an instance of a structure
+
   - This involves creating an instance of each property
   - We can specify default values for the properties
 
@@ -774,7 +774,7 @@
     ```
 
 - `Mutating Methods`: Added methods to a structure that change the values of the properties
- 
+
   - ```swift
     struct CarSpeed {
       var kph: Int = 0
@@ -787,6 +787,7 @@
     ```
 
 - Type Properties and Methods stay the same for all instances of a structure
+
   - Add `static` before a property or method
 
   - ```swift
@@ -799,6 +800,7 @@
 - This allows us to interact with the current instance, for example to set or access its properties
 
 - Exercise: Detailed Person
+
   - Modify the Person structure such that we also store their favourite food and their height. Choose appropriate data types for these properties.
   - Add a second function to the Person structure named 'foodAndHeight' to output these new properties in a human-readable manner.
 
@@ -903,6 +905,7 @@
   ```
 
 - Exercise: Another Animal
+
   - Create a new Subclass of Animal for a Snake. It should store a true or false value regarding whether it is poisonous, a value of its length as well as ensuring its makeNoise function outputs a 'Hiss'.
   - Ensure that you have define the initialiser for the Snake.
 
@@ -964,6 +967,7 @@
 #### Playgounds Basic Views
 
 - in Cocoa Touch
+
   - Xcode > File > New > Playground > iOS > Single View
 
   - ```swfit
@@ -1000,6 +1004,7 @@
     ```
 
 - in SwiftUI
+
   - Xcode > File > New > Playground > iOS > Blank
 
   - ```swift
@@ -1057,6 +1062,7 @@
 #### Playgrounds: Basic Controls
 
 - in SwiftUI
+
   - Xcode > File > New > Playgrounds > iOS > blank
 
   - ```swift
@@ -1285,6 +1291,7 @@
 1. Cont'd Navigation Controller Demo
 2. Click Libaray and add Text Field to below the button on the first view controller
 3. Click the text field and drag it to above override func viewDidLoad() on ViewController.swift
+
    1. Name: textField
    2. Click Connect
    3. It will create `@IBOutlet weak var textField: UITextField!`
@@ -1337,7 +1344,7 @@
 
     - ```swift
       @IBOutlet weak var segueSwitch: UISwitch!
-    
+
       @IBAction func tapPurple(_ sender: Any) {
           if segueSwitch.isOn {
               performSegue(withIdentifier: "purple", sender: self)
@@ -1394,6 +1401,7 @@
   - Generally this function is used to programmatically initialize the View Controller
     - Set up values, connect to resources, etc.
 - Overriding
+
   - One think to be aware of is that as we are overloading each of these functions, you must call the superclass initialiser within them when you do so
 
   - ```swift
@@ -1438,6 +1446,102 @@
   - Use standard navigation controls, such as a Navigation Bar when implementing a Hierarchical Navigation
   - Use a Tab Bar when implementing multiple categories (modes, workflows) of content or functionality
   - Use the correct style (modal va push) where appropriate
+
+## Protocols
+
+- "defines a blueprint of methods, properties, and other requirements that suit a particular task or piece of functionality."
+- Swift defines many protocols
+- Types that conform to a protocol must implement all the requirements of protocol
+
+### CustomStringConvertible Protocol
+
+- A protocol to display how objects are printed to the console
+- A textual representation of the values contained in an object's variables
+
+- A Class without CustomStringConvertible Protocol
+
+  - ```swift
+    import UIKit
+
+    class Book {
+      var title: String
+      var author: String
+      var isbn: Int
+
+      init(title: String, author: String, isbn: Int) {
+        self.title = title
+        self.author = author
+        self.isbn = isbn
+      }
+    }
+    // Let's create a book
+    var book = Book(title: "Adventures", author: "John Doe", isbn: 100)
+    // Let's display the book
+    print("book is \(book)")  // book is __lldb_expr_7.Book
+    ```
+
+- A Class implementing CustomStringConvertible Protocol
+
+  - ```swift
+    import UIKit
+
+    class Book: CustomStringConvertible {
+      ...
+
+      var descritpion: String {
+        return "Book title: \(title), autho: \(author), ISBN: \(isbn)"
+      }
+    }
+    // Let's create a book
+    ...
+    // Let's display the book
+    print(book) // Book title: Adventures, author: John Doe, ISBN: 100
+    ```
+
+### Equatable Protocol
+
+- The Equatable protocol allows objects to be compared for equality
+
+  - ```swift
+    import UIKit
+
+    class Book: CustomStringConvertible, Equatable {
+        ...
+
+        static func == (bookOne: Book, bookTwo: Book) -> Bool {
+            let booksAreTheSame = bookOne.title == bookTwo.title &&
+                bookOne.author == bookTwo.author &&
+                bookOne.isbn == bookTwo.isbn
+            return booksAreTheSame
+        }
+    }
+    // Create two books
+    var firstBook = Book(title: "Adventures", author: "John Doe", isbn: 100)
+    var secondBook = Book(title: "Future Adventures", author: "John Doe", isbn: 101)
+    var thirdBook = Book(title: "Future Adventures", author: "John Doe", isbn: 101)
+    print(firstBook) // Book title: Adventures, author: John Doe, ISBN: 100
+    print(secondBook) // Book title: Future Adventures, author: John Doe, ISBN: 101
+    // Let's check if the books are the same with Equatable implemented
+    if firstBook == secondBook {
+      print("You have that book already")
+    } else {
+      print("Buy the book")
+    }
+    // Buy the book
+    if thirdBook == secondBook {
+      print("You have that book already")
+    } else {
+      print("Buy the book")
+    }
+    // You have that book already
+    ```
+
+## Delegation
+
+- Is a design pattern where a class or structure delegates responsibility to another
+- As with humans, there are 2 parties involved
+  - The one who delegates
+  - The one who it was delegated to
 
 ## Errors
 

@@ -1613,6 +1613,29 @@
     - Model
     - Other
 
+## Scroll Views
+
+- Used when what needs to be displayed in larger than the screen the App is running on
+- The class is the UIScrollView
+- Only scrolls if content's size is grater than the frame's width or height
+- Scroll Views can be implemented using Interface Builder's Auto Layout feature
+- Constraints can be added to the scroll view edges securing them to the view controller's view
+- This can ensure the scroll view and view controller's view are the same size
+- This means no matter was device it is displayed on the scroll view and view controller's view are the same size
+
+### UIScrollView Class
+
+- It requires 2 pieces of information
+  - Position & size of the scroll view. They stored in the frame property
+  - The size of the content to be displayed. It stored in the contentSize property
+  - These properties can be managed through AutoLayout and Interface Builder
+
+### Family of Scroll Views
+
+- Within the `UIKit`, `UIScrollView` has many child classes
+- Two such classes are `UITableView` and `UICollectionView`
+- All of `UIScrollView`'s functionality exists within `UITableView` and `UICollectionView` - the power of inheritance
+
 ## Errors
 
 ### "this class is not key value coding-compliant for the key counter"

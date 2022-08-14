@@ -1543,6 +1543,25 @@
   - The one who delegates
   - The one who it was delegated to
 
+## An App's Life Cycle
+
+- | The State of the App | Description                                              |
+  | :------------------: | -------------------------------------------------------- |
+  |     Not running      | The app isn't running                                    |
+  |       Inactive       | It is in the foreground but not receiving anything       |
+  |        Active        | It is in the foreground, running & receiving events etc  |
+  |      Background      | The app is running code code but isn't in the foreground |
+
+- <img src="./apps_life.png" alt="App\'s Life" width="300" />
+
+- The AppDelegate.swift file contains six important functions for your App, and these functions map to the lifecycle
+  1. Did finish launching
+  2. Will resign active
+  3. Did enter background
+  4. Will enter foreground
+  5. Did become active
+  6. Will terminate
+
 ## Errors
 
 ### "this class is not key value coding-compliant for the key counter"

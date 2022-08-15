@@ -1636,6 +1636,82 @@
 - Two such classes are `UITableView` and `UICollectionView`
 - All of `UIScrollView`'s functionality exists within `UITableView` and `UICollectionView` - the power of inheritance
 
+## Table Views
+
+- Probably the most widely used view in iOS Apps
+- It is a `UITableView` class
+- Large amounts of data can be simply and beautifully displayed to the user
+- Users can navigate through hierarchically structured data
+- An indexed list of items can be presented
+- Detailed information and controls can be displayed in visually distinct groupings
+- A selectable list of options can be presented
+- To facilitate large amounts a scrolling, single-column list is provided
+- The table view can have a header & footer
+- Each row can be divided into sections or groups
+- Each section can have
+  - A header above the first item
+  - A footer below the last item
+
+### Table View Controllers
+
+- Adding a Table View to a project can be done in 2 ways
+  - Add a table view instance directly to a view controller's
+  - Add a table view controller to the storyboard
+- The table view controller is a view controller subclass responsible to manage a single table view instance
+- Table View controller is the data source and delegate of the table view
+- These already contain a large amount of functionality
+- The benefits of Table View Controllers means most iOS developers use them
+
+### Table View Style
+
+- Plain
+  - The default style
+  - Rows separated into labeled sections
+  - Optional index along the right edge of the table
+  - Sections follow on immediately, no spacing, an unbroken list is created
+- Grouped
+  - Visually distinct groups or sections with in spacing between is possible when displaying rows
+  - Index along the edge is not possible
+
+### Table View Editing
+
+- Table Views can be set to editing mode
+- Users can then
+  - Insert new cells
+  - Delete cells
+  - Or, Reorder cells
+
+### Table View Cells
+
+- Every table row is represented with a table view cell: `UITableViewCell`
+- Cells are reusable views and can display: `Text`, `Images`, or Any other `UIView`
+- Each cell has an optional accessory view
+- Cell content size shrinks in editing mode, allowing space for the editing and reorder controls
+- Three properties are defined for cell content:
+  - `textLabel`, a `UILabel` for the title
+  - `detailTextLabel`, a `UILabel` for the subtitle
+  - `imageView`, a `UIImageView` for an image
+
+### Index Path
+
+- Points to a specific row in a specific section of a Table View
+- The row ans section properties facilitate access
+- They are zero based like arrays
+
+### Arrays
+
+- Table views are fantastic in displaying similar data and are often undergirded with a collection of model objects
+- An array is the usual choice although others are possible
+- An Array has the count property, facilitating knowledge of how many pieces of data it has
+- The table view's number of rows can be calculated from this
+
+### Dequeuing a Cell
+
+- In displaying large data amounts, a table view could have large numbers of cells
+- To prevent this Table Views only load the visible cells plus a small number above and below what is visible
+- Cells that leave the visible field can be reused on those things about to enter the visual field
+- This is dequeuing - it uses the `reuseIdentifier` along with the `dequeueReusableCell()` method
+
 ## Errors
 
 ### "this class is not key value coding-compliant for the key counter"

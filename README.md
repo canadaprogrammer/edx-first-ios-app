@@ -1554,11 +1554,6 @@
 
 - <img src="./apps_life.png" alt="App\'s Life" width="300" />
 
-## The App Delegate
-
-- As of iOS13, `Scenes` allow multiple instances (windows)
-- Each `Scene` is an independent instance that can be in foreground or background - as the above image
-- The App Delegate, within AppDelegate.swift, manages the creation of the App as well as creating and destroying Scenes
 - The AppDelegate.swift file contains six important functions for your App, and these functions map to the lifecycle
   1. Did finish launching
   2. Will resign active
@@ -1567,13 +1562,19 @@
   5. Did become active
   6. Will terminate
 
+## The App Delegate
+
+- As of iOS13, `Scenes` allow multiple instances (windows)
+- Each `Scene` is an independent instance that can be in foreground or background - as the above image
+- The App Delegate, within AppDelegate.swift, manages the creation of the App as well as creating and destroying Scenes
+
 ### AppDelegate Methods
 
 1. application(didFinishLaunchingWithOptions)
    - Run when the App has been opened, setup for all scenes
 2. application(configurationForConnecting) -> UISceneConfiguration
    - Run when a new Scene is created
-3. application(didDiscardSceneSession)
+3. application(didDiscardSceneSessions)
    - Run after a Scene is closed
 
 ## The Scene Delegate
@@ -1596,6 +1597,37 @@
    - When the Scene moves into the background from the foreground
 6. sceneDidDisconnect()
    - When the Scene is finished/closed/terminated
+
+### Playgrounds: An App's life cycle
+
+1. Create a new project
+2. Add `print("We are: [function_name]")` to each function on AppDelegate.swift, SceneDelegate.swift, and ViewController.swift
+3. Click `Show the debug area` on the bottom of the editor
+4. Launch the application
+5. You can see the progress on the debug area
+   1. didFinishLaunchingWithOptions
+   2. configurationForConnecting
+   3. willConnectTo
+   4. viewDidLoad()
+   5. sceneWillEnterForeground
+   6. sceneDidBecomeActive
+6. On the simulator, swipe up the app from the bottom
+   1. On the debug area, you can see `sceneWillResignActive`
+7. On the simulator, click the app
+   1. On the debug area, `sceneDidBecomeActive`
+8. On the simulator, swipe up the app from the bottom and click background
+   1. On the debug area
+      1. `sceneWilResignActive`
+      2. `sceneDidEnterBackground`
+9. On the simulator, click the app
+   1. On the debug area
+      1. `sceneWillEnterForeground`
+      2. `sceneDidBecomeActive`
+10. On the simulator, swipe up the app and then swipe up the app to terminate
+    1. On the debug area
+       1. `sceneWillResignActive`
+       2. `sceneDidDisconnect`
+       3. `didDiscardSceneSessions`
 
 ## Model View Controller
 

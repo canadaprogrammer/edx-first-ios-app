@@ -1554,6 +1554,11 @@
 
 - <img src="./apps_life.png" alt="App\'s Life" width="300" />
 
+## The App Delegate
+
+- As of iOS13, `Scenes` allow multiple instances (windows)
+- Each `Scene` is an independent instance that can be in foreground or background - as the above image
+- The App Delegate, within AppDelegate.swift, manages the creation of the App as well as creating and destroying Scenes
 - The AppDelegate.swift file contains six important functions for your App, and these functions map to the lifecycle
   1. Did finish launching
   2. Will resign active
@@ -1561,6 +1566,36 @@
   4. Will enter foreground
   5. Did become active
   6. Will terminate
+
+### AppDelegate Methods
+
+1. application(didFinishLaunchingWithOptions)
+   - Run when the App has been opened, setup for all scenes
+2. application(configurationForConnecting) -> UISceneConfiguration
+   - Run when a new Scene is created
+3. application(didDiscardSceneSession)
+   - Run after a Scene is closed
+
+## The Scene Delegate
+
+- Manages the lifecycle of each individual Scene
+- Need to manage the transitions of each scene between each state, foreground and background
+- Located within our (new) SceneDelegate.swift file
+
+### SceneDelegate Methods
+
+1. scene(willConnectTo, options)
+   - When the Scene is first created
+2. sceneWillEnterForeground()
+   - when the Scene enters the foreground. Run before the Scene is Active but is in the foreground
+3. sceneDidBecomeActive()
+   - Run after the Scene is active in the foreground
+4. sceneWillResignActive()
+   - When the Scene becomes inactive on the way to the background
+5. sceneDidEnterBackground()
+   - When the Scene moves into the background from the foreground
+6. sceneDidDisconnect()
+   - When the Scene is finished/closed/terminated
 
 ## Model View Controller
 
@@ -1711,6 +1746,8 @@
 - To prevent this Table Views only load the visible cells plus a small number above and below what is visible
 - Cells that leave the visible field can be reused on those things about to enter the visual field
 - This is dequeuing - it uses the `reuseIdentifier` along with the `dequeueReusableCell()` method
+
+---
 
 ## Errors
 

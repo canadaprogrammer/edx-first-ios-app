@@ -1703,6 +1703,93 @@
 - Two such classes are `UITableView` and `UICollectionView`
 - All of `UIScrollView`'s functionality exists within `UITableView` and `UICollectionView` - the power of inheritance
 
+### Demo: Scroll Views
+
+1. Create a new project
+2. Click Main.storyboard
+3. From the Objects Library, add Scroll View into the scene
+4. Make the Scroll View size to be the same as the View Controller's view
+5. Click "Add New Constraints" on the bottom
+   1. Click align constraint from each edge
+   2. Uncheck "Constraint to margin"
+   3. Click "Add 4 constraints"
+   4. Check Constraints if each one is to the safe area
+6. From the Objects Library, add Vertical Stack View into the Scroll View
+7. Make the Vertical Stack View size to be the same as the View Controller's view
+8. On the Document Outline
+   1. Click Stack View
+   2. Ctrl + Drag to Content Layout Guide
+   3. Cmd + Click four settings
+      1. Leading Space to Content Layout Guide
+      2. Top Space to Content Layout Guide
+      3. Trailing Space to Content Layout Guide
+      4. Bottom Space to Content Layout Guide
+   4. On the Constraints, if constraints have number remove the number
+      1. Click the Constraint
+      2. On the Attribute Inspector, change Constant to 0
+   5. For only scrolling vertically, not horizontally
+      1. Click Stack View
+      2. Ctrl + Drag to Frame Layout Guide
+      3. Click Equal Widths
+9. From the Objects Library
+   1. Add View
+   2. Add Label to the top left-hand corner
+   3. Add Text Field to the below the label
+10. Click View from the Document Outline
+    1. Adjust the height of View to be aligned with the bottom of the text field
+11. Adjust the width of Label and Text Field to be align with the left of the View
+12. Select Label
+    1. Click "Add New Constraint"
+    2. Add a constraint for each edge with 8
+    3. Click "Add 4 Constraints"
+13. Select Text Field
+    1. Click "Add New Constraint"
+    2. Add a constraint for each edge except the top
+    3. Click "Add 3 Constraints"
+14. On the Document Outline
+    1. Select the View
+    2. Copy and paste (Cmd + C, Cmmd + V) the View 10 times (11 Views)
+15. On the Document Outline
+    1. Select the Label of the first View
+    2. On the Attribute Inspector > Change the Text from label to First Name
+    3. Select the Text Field of the first View and Change the Placeholder to First Name
+    4. Change Label and Text Field on the View
+       1. Family Name, Address 1, Address 2, City, State, Postal Code, Country, Phone, Referee One, Referee Two
+16. To prevent keyboard from covering over
+
+    1. Click "Add Editor on Right"
+    2. Click ViewController.swift from the Navigation Area
+    3. Click Scroll View
+    4. Ctrl + Drag to above the viewDidLoad() on ViewController.swift
+    5. Connection: Outlet, Name: scrollView, Connect
+    6. Add below code on ViewController.swift
+
+       - ```swift
+         import UIKit
+         class ViewController: UIViewController {
+             @IBOutlet weak var scrollView: UIScrollView!
+
+             override func viewDidLoad() {
+                 super.viewDidLoad()
+                 let notificationCenter = NotificationCenter.default
+                 notificationCenter.addObserver(self, selector: #selector(adjustForKeyboard), name: UIResponder keyboardWillHideNotification, object: nil)
+                 notificationCenter.addObserver(self, selector: #selector(adjustForKeyboard), name: UIResponder keyboardWillChangeFrameNotification, object: nil)
+             }
+             @objc func adjustForKeyboard(notification: Notification) {
+                 guard let keyboardValue = notification.userInfo?[UIResponder.keyboardFrameEndUserInfoKey] as? NSValue else { return }
+                 let keyboardScreenEndFrame = keyboardValue.cgRectValue
+                 let keyboardViewEndFrame = view.convert(keyboardScreenEndFrame, from: view.window)
+
+                 if notification.name == UIResponder.keyboardWillHideNotification {
+                     scrollView.contentInset = .zero
+                 } else {
+                     scrollView.contentInset = UIEdgeInsets(top: 0, left: 0, bottom: keyboardViewEndFrame.height - view.safeAreaInsets bottom, right: 0)
+                 }
+                 scrollView.scrollIndicatorInsets = scrollView.contentInset
+             }
+         }
+         ```
+
 ## Table Views
 
 - Probably the most widely used view in iOS Apps

@@ -1866,13 +1866,131 @@
 - Cells that leave the visible field can be reused on those things about to enter the visual field
 - This is dequeuing - it uses the `reuseIdentifier` along with the `dequeueReusableCell()` method
 
+### Demo: Table Views
+
+1. Create a single view app
+2. Click ViewController.swift > Delete it > Click Move to Trash
+3. Click Main.storyboard > Click View Controller Scene > Delete it
+4. File > New > File
+5. iOS > Swift File > Next > Save As: Country > Create
+6. On Country.swift
+
+   - ```swift
+     import Foundation
+
+     class Country {
+         var flag: String
+         var name: String
+         var region: String
+         var population: String
+
+         init(flag: String, name: String, region: String, population: String) {
+             self.flag = flag
+             self.name = name
+             self.region = region
+             self.population = population
+         }
+     }
+     ```
+
+7. On Main.storyboard
+   1. From the Object Library, add Navigation Controller
+   2. Click the Navigation Controller
+   3. On the Attribute Inspector, Check "Is Initial View Controller"
+8. File > New > File
+9. iOS > Cocoa Touch Class > Next >
+   1. Class: CountryTableViewController
+   2. Subclass of: UITableViewController
+   3. Language: Swift
+   4. Next
+   5. Create
+10. On Main.storyboard
+    1. Click Root View Controller
+    2. Click "Show the Identity Inspector"
+    3. Class: CountryTableViewController
+    4. Click the Cell on the Root View Controller
+    5. Click "Show the Attributes Inspector"
+    6. Style: Subtitle
+11. On CountryTableViewController.swift, add below code over viewDidLoad()
+
+    - ```swift
+      var countries: [Country] = [
+          Country(flag: "🇦🇺", name: "Australia", region: "Oceania", population: "24.13m"),
+          Country(flag: "🇳🇿", name: "New Zealand", region: "Oceania", population: "4.69m"),
+          Country(flag: "🇨🇦", name: "Canada", region: "North America", population: "36.3m"),
+          Country(flag: "🇳🇴", name: "Norway", region: "Scandinavia", population: "3.8m"),
+          Country(flag: "🇸🇧", name: "Solomon Islands", region: "Micronesia", population: "611k"),
+          Country(flag: "🇮🇳", name: "India", region: "South Asia", population: "1.324b"),
+          Country(flag: "🇨🇳", name: "China", region: "East Asia", population: "1.379b"),
+      ]
+      ```
+
+12. On Main.storyboard, click Table View Cell
+    1. On the Attribute Inspector
+       1. Identifier: CountryCell
+13. On CountryTableViewController.swift, change code as below
+
+    - ```swift
+      override func numberOfSections(in tableView: UITableView) -> Int {
+          return 1
+      }
+
+      override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
+          if section == 0 {
+              return countries.count
+          }
+          else {
+              return 0
+          }
+      }
+
+      override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
+          let cell = tableView.dequeueReusableCell(withIdentifier: "CountryCell", for: indexPath)
+
+          let country = countries[indexPath.row]
+          cell.textLabel?.text = "\(country.flag) - \(country.name)"
+          cell.detailTextLabel?.text = country.region
+          return cell
+      }
+
+      override func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+          let country = countries[indexPath.row]
+          print("\(country.flag) \(indexPath)")
+      }
+      ```
+
+14. On Main.storyboard
+    1. From Object Library, add Bar Button Item to left of the Root View Controller
+    2. On the Attribute Inspector, System Item: Edit
+    3. Ctrl + Drag the button to above `var countries` on CountryTableViewController.swift
+       1. Connection: Action
+       2. Name: editButtonTapped
+       3. Type: UIBarButtomItem
+       4. Click Connect
+15. On CountryTableViewController.swift
+
+    - ```swift
+      @IBAction func editButtonTapped(_ sender: UIBarButtonItem) {
+          let tableViewEditingMode = tableView.isEditing
+          tableView.setEditing(!tableViewEditingMode, animated: true)
+      }
+
+      ...
+
+      override func tableView(_ tableView: UITableView, moveRowAt fromIndexPath: IndexPath, to: IndexPath) {
+          let movedCountry = countries.remove(at: fromIndexPath.row)
+          countries.insert(movedCountry, at: to.row)
+          tableView.reloadData()
+      }
+      ```
+
 ---
 
 ## Errors
 
 ### "this class is not key value coding-compliant for the key counter"
 
-- This means there was somthing called 'counter' which it can no longer find.
+- This means there was something called 'counter' which it can no longer find.
 - It's because I changed the label name after connect it from 'counter' to 'counterDisplay'
 - Solution:
   1. Click the label on `Main.storyboard`

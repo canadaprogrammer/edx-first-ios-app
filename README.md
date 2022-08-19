@@ -1984,6 +1984,129 @@
       }
       ```
 
+### Demo: Creating and combining views
+
+1. Create a new project
+   1. iOS > App > Next
+   2. Name: Landmarks
+   3. Interface: SwiftUI
+   4. Language: Swift
+   5. Next > Create
+2. On ContentView.swift
+   1. Click Resume on the Canvas (If you can't see the Canvas, Editor > Canvas on the tool bar)
+   2. When you change the code, the Canvas will show the results simultaneously
+3. On the Canvas
+   1. Cmd + Click the Text
+   2. Click Show SwiftUI Inspector
+   3. Change Text to Title
+   4. Change Font to Title
+      1. The changed will be applied on the Canvas and The code on ContentView.swift
+4. On ContentView.swift
+   1. Add code `.foregroundColor(.green)`
+      1. The Text color would be changed to green
+   2. Cmd + Click Text declaration
+   3. Click Show SwiftUI Inspector
+   4. Change color to blue
+      1. The foreground color would be changed to blue
+   5. Cmd + Click Text declaration
+   6. Click Embed in VStack
+   7. Form the Object Library,
+      1. Search Text
+      2. Click Show the Views Library
+      3. Drag Text to below the Text declaration
+      4. Cmd + Click the added Text declaration
+      5. Click Show Swift Inspector
+      6. Change Font to Subheadline
+5. On the Canvas
+   1. Cmd + Click the subheadline
+   2. Click Embed in HStack
+6. On ContentView.swift
+
+   1. From the Object Library,
+   2. Drag Text to below the Subheadline
+   3. Change the Font to Subheadline
+   4. Add code `Spacer()` between Subheadlines
+   5. Cmd + Click VStack
+   6. Click Show SwiftUI Inspector
+   7. Change Alignment to leading
+
+   - The result code on the body of ContentView.swift is below
+
+     - ```swift
+         VStack(alignment: .leading) {
+             Text("Turtle Rock")
+                 .font(.title)
+             HStack {
+                 Text("Name")
+                     .font(.subheadline)
+                 Spacer()
+                 Text("Location")
+                     .font(.subheadline)
+             }
+         }
+         .padding()
+       ```
+
+7. Drag an image file, turtlerock.jpg, to Assets.xcassets
+8. On the tool bar, File > New > File > iOS > SwiftUI View > Next > Save As: CircleImage.swift > Create
+9. Change the code inside body to below
+
+   - ```swift
+      Image("turtlerock")
+        .clipShape(Circle())
+        .overlay(Circle().stroke(Color.white, lineWidth: 4))
+        .shadow(radius: 10)
+     ```
+
+10. On the tool bar, File > New > File > iOS > SwiftUI View > Next > Save As: MapView.swift > Create
+11. Type code `import MapKit` under `import SwiftUI`
+12. Change the MapView to below code
+
+    - ```swift
+      struct MapView: UIViewRepresentable {
+          func makeUIView(context: Context) -> MKMapView {
+              MKMapView(frame: .zero)
+          }
+
+          func updateUIView(_ uiView: MKMapView, context: Context) {
+              let coordinate = CLLocationCoordinate2D(latitude: 34.011_286, longitude: -116.166_868)
+              let span = MKCoordinateSpan(latitudeDelta: 2.0, longitudeDelta: 2.0)
+              let region = MKCoordinateRegion(center: coordinate, span: span)
+              uiView.setRegion(region, animated: true)
+          }
+      }
+      ```
+
+13. On ContentView.swift, Cmd + Click VStack > Embed In VStack
+14. Add MapView and CircleImage before the text as below
+
+    - ```swift
+        VStack {
+            MapView()
+                .edgesIgnoringSafeArea(.top)
+                .frame(height: 300) /* height 300, width: 100% */
+
+            CircleImage()
+                .offset(y: -130) /* like margin-top: -1390 */
+                .padding(.bottom, -130) /* need to remove bottom space because of offset */
+
+            VStack(alignment: .leading) {
+                Text("Turtle Rock")
+                    .font(.title)
+                HStack {
+                    Text("Name")
+                        .font(.subheadline)
+                    Spacer()
+                    Text("Location")
+                        .font(.subheadline)
+                }
+            }
+            .padding()
+
+            Spacer() /* like justify-content: flex-start */
+        }
+      ```
+
 ---
 
 ## Errors
@@ -2003,3 +2126,8 @@
 
 - If you accidentally deleted that view controller, or otherwise made it not the default, then you’ll see the error “Failed to instantiate the default view controller for UIMainStoryboardFile 'Main' - perhaps the designated entry point is not set?” when your app launches, along with a plain black screen.
 - To fix the problem, open your Main.storyboard file and find whichever view controller you want to be shown when your app first runs. When it’s selected, go to the attributes inspector and check the box marked "Is Initial View Controller". You should see a right-facing arrow appear to the left of that view controller, showing that it’s your storyboard's entry point.
+
+## Tips
+
+- Changing default simulator
+  - On the tool bar, Product > Destination > Choose Destination > Select device

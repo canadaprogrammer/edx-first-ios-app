@@ -2,6 +2,11 @@
 
 ## Starting App Development
 
+- Projects VS Playgrounds
+  - an Xcode Project allows you to create your finished apps ready for the App Store, whereas the Xcode Playground is more of a testing ground.
+  - Projects allow you to store assets for your app development, along with describing the relationships between these assets. These could include things such as source code, libraries, images and frameworks.
+  - Playgrounds are an interactive environment within Xcode that allows you to develop and test your Swift code in real-time. By clicking a 'Play' button at any stage of your development, you're able to check how your code is working. However, fully-fledged apps can't be made in Playgrounds.
+
 ### Create your first app
 
 1. Open Xcode

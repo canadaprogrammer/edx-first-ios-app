@@ -2075,11 +2075,53 @@
    4. Next > Create
 4. On Main.storyboard
    1. Click CountryCell
-   2. On the Identity Inspector, Selector CountryTableViewCell as the Class
+   2. On the Identity Inspector, Select CountryTableViewCell as the Class
+      1. If you didn't select the class, you couldn't Ctrl + Drag the label to the class
 5. Click CountryTableViewCell.swift and click Add Editor on Right
-6. Click flag label from Main.storyboard and drag above awakeFromNib on CountryTableViewCell.swift
-   1. Connection: Outlet, Name: flagLabel, Type: UILable > Connect
-   2.
+6. Click each label from Main.storyboard and drag above awakeFromNib on CountryTableViewCell.swift
+   1. flag - Connection: Outlet, Name: flagLabel, Type: UILabel > Connect
+   2. Country - Connection: Outlet, Name: countryLabel, Type: UILabel > Connect
+   3. Region - Connection: Outlet, Name: regionLabel, Type: UILabel > Connect
+7. On CountryTableViewCell.swift, add below code under the variables
+
+   - ```swift
+     func update(with country: Country) {
+      flagLabel.text = country.flag
+      nameLabel.text = country.name
+      regionLabel.text = country.region
+     }
+     ```
+
+8. To change the labels, we need to work on `CellForRowAt` on CountryTableViewController.swift
+   1. Add `as! CountryTableViewCell` to the dequeuing
+   2. Change `cell.textLabel` and `cell.detailTextLabel` to `cell.update(with: country)`
+9. To edit the cell on simulator, add below code under `didSelectRowAt` on CountryTableViewController.swift
+
+   1. Add `override func tableView` with `UITableView` and `editingStyleForRowAt`
+
+      1. Add `return .none` to the function
+         1. When you execute a simulator and click edit, the `-` button next to country would be disappeared
+      2. `return .inset`
+         1. When you execute a simulator and click edit, the `-` button next to country would be `+`
+      3. `return .delete`
+         1. When you execute a simulator and click edit, the `-` button would be shown next to country
+
+      - ```swift
+        override func tableView(_ tableView: UITableView, editingStyleForRowAt indexPath: IndexPath) -> UITableViewCell.EditingStyle {
+            return .delete
+        }
+        ```
+
+   2. Add `override func tableView` with `UITableView` and `commit forRowAt`
+
+      - ```swift
+        override func tableView(_ tableView: UITableView, commit editingStyle: UITableViewCell.EditingStyle, forRowAt indexPath: IndexPath) {
+            if editingStyle == .delete {
+                countries.remove(at: indexPath.row)
+                tableView.deleteRows(at: [indexPath], with: .fade)
+            }
+        }
+        ```
 
 ## Demo: Creating and combining views
 

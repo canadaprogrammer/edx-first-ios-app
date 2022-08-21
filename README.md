@@ -1989,7 +1989,99 @@
       }
       ```
 
-### Demo: Creating and combining views
+## More Complex Table Views
+
+- Create a custom table view cell for different reasons:
+  - to display more text, more buttons etc.
+  - customize object locations within cells
+- Custom View Creation: Steps Involved
+  - Select the Cell
+  - In the Attributes inspector set Style to Custom
+  - Using Interface Builder tools, we can customize it
+- Content Hugging
+  - The flag needs to fit snugly into the content area
+  - Change the horizontal field priority in Content Hugging Priority
+  - From 251 to 252
+  - Priorities the placement by the Auto Layout Engine
+- New Cell SubClass
+  - A custom table view class is needed
+  - We can create outlets for configuring the cell
+  - Ensure it is a Custom class of FlagTableViewCell
+- Editing Table Views
+  - In editing mode the table view calls the delegate method: `tableView(_: editingStyleForRowAt: )`
+  - There are 3 options: `.none`, `.delete`, `.insert`
+- Delegate Methods
+  - Delegate methods are called in order in edit mode
+    1. `tableView(_: canEditRowAt: )`
+    2. `tableView(_: editingStyleRowAt: )`
+    3. User does something here...
+    4. `tableView(_: commit: forRowAt: )`
+- Adding to the Flags
+  - Add a + button to the navigation bar
+  - Use a new view controller to add details
+  - the same view controller for edits and additions can be used
+  - A static Table View is used in this situation
+- Static Table Views
+  - Use a table view controller
+  - Do NOT implement the data source protocol
+  - Populate the table view using `viewDidLoad()`
+- Add a Navigation Controller
+- To the Navigation Controller
+- Develop the Table View
+  - Setting the content to Static Cells
+  - Change the labels to reflect the content
+- Saving and Canceling
+  - Add Navigation Bar items
+  - Almost all Apps have these buttons: Save and Cancel
+  - Save only when something changed
+
+### Demo: More Complex Table Views
+
+- Cont'd Demo: Table Views
+
+1. On CountryTableViewController.swift
+   1. Add `viewWillAppear` for reloading data below `viewDidLoad`
+2. On Main.storyboard
+   1. Click CountryCell on the editor
+   2. On the Attribute Inspector, change the style to Custom
+   3. From Object Library, add Horizontal Stack View to the table view cell
+      1. you can see it's on the Content View: CountryCell > Content View > Stack View
+   4. On the Attribute Inspector, change Spacing to 8
+   5. Click Add New Constraints
+      1. Spacing to nearest neighbor to all 0
+      2. Check Constrain to margins
+      3. Click Add 4 Constraints
+   6. From Object Library, add Label into the Horizontal Stack View
+      1. Drag label to navigation on the editor: CountryCell > Content View > Horizontal Stack View > Label
+   7. On the Attribute Inspector,
+      1. Change Font size to 24
+      2. Change Label to Flag emoji
+      3. Change Alignment to center
+   8. From Object Library, Add Vertical Stack View into the Horizontal Stack View
+      1. CountryCell > Content View > Horizontal Stack View > Vertical Stack View
+      2. On the Attribute Inspector, change Distribution to Fill Equally
+   9. From Object Library, add label into the Vertical Stack View
+      1. CountryCell > Content View > Horizontal Stack View > Vertical Stack View > Label
+      2. Change the first label to Country
+      3. Change the second label to Region
+   10. Content Hugging
+       1. Select flag label
+       2. On the Size Inspector, change Horizontal of Content Hugging Priority to 252
+          1. The label will now only be as wide as is needed
+3. Create a custom tableView cell class
+   1. File > New > file
+   2. iOS > Cocoa Touch Class > Next
+   3. Class: CountryTableViewCell, Subclass of: UITableViewCell, Language: Swift
+   4. Next > Create
+4. On Main.storyboard
+   1. Click CountryCell
+   2. On the Identity Inspector, Selector CountryTableViewCell as the Class
+5. Click CountryTableViewCell.swift and click Add Editor on Right
+6. Click flag label from Main.storyboard and drag above awakeFromNib on CountryTableViewCell.swift
+   1. Connection: Outlet, Name: flagLabel, Type: UILable > Connect
+   2.
+
+## Demo: Creating and combining views
 
 1. Create a new project
    1. iOS > App > Next

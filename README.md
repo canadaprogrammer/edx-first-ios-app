@@ -2123,6 +2123,40 @@
         }
         ```
 
+10. Change title of Table View to Flags of the World
+11. From Object Library, add Navigation Controller to Main.storyboard
+12. From Object Library, add Bar Button Item to the right of previous Table View Navigation
+    1. On the Attribute Inspector, change System Item to Add
+    2. Ctrl + Drag from Bar Button Item to the new Navigation Controller
+    3. Select Action Segue / Present Modally
+13. Click CountryCell
+    1. Ctrl + Drag to the new Navigation Controller
+    2. Select Selection Segue / Present Modally
+    3. Click the Segue
+       1. On the Attribute Inspector
+       2. Change Identifier to EditFlag
+14. Comment out `tableView` with `didSelectRowAt` on CountryTableViewController.swift
+15. On Main.storyboard
+    1. Select the new Table View
+    2. On the Attribute Inspector
+       1. Change Content to Static Cells
+       2. Change Sections to 4
+    3. Change each Section to having 1 Rows
+       1. Click Section > On the Attribute Inspector > Change Rows to 1
+    4. Click Table View
+       1. On the Attribute Inspector
+          1. Change Style to Grouped
+    5. Change Header of each Section
+       1. FLAG
+       2. COUNTRY
+       3. REGION
+       4. POPULATION
+    6. From Object Library, Add Text Field to each Content View
+       1. Change the width to fit the width of Content View
+       2. Click Add New Constraint
+       3. Check Content View on the left and right and Click Add 2 Constraints
+       4. Click Add Missing Constraints
+
 ## Demo: Creating and combining views
 
 1. Create a new project

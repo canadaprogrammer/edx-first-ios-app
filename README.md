@@ -2156,6 +2156,105 @@
        2. Click Add New Constraint
        3. Check Content View on the left and right and Click Add 2 Constraints
        4. Click Add Missing Constraints
+16. File > New > File
+    1. iOS > Cocoa Touch Class > Next
+    2. Select Subclass of: to UITableViewController
+    3. Class: AddEditFlagTableViewController
+    4. Click Next > Create
+    5. Don't implement any of the data source methods in this class
+       1. Comment out `numberOfSections` and `tableView`
+17. On CountryTableViewController.swift
+
+    1. Uncomment `prepare` method at the bottom and add below code into the method
+
+    - ```swift
+      override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
+          if segue.identifier == "EditFlag" {
+              let indexPath = tableView.indexPathForSelectedRow!
+              let country = countries[indexPath.row]
+              let navController = segue.destination as! UINavigationController
+              let AddEditFlagTableViewController = navController.topViewController as! AddEditFlagTableViewController
+              AddEditFlagTableViewController.flag = country
+          }
+      }
+      ```
+
+18. On Main.storyboard
+
+    1. Click Root View Controller
+       1. On the Identity Inspector, change Class to AddEditFlagTableViewController
+    2. Click the title, and change it to Add Edit Flag
+    3. Click Add Editor on Right
+    4. Click AddEditFlagTableViewController
+       1. Add `var flag: Country?` to above `viewDidLoad`
+    5. Click FLAG / Table View Cell / Content View / Round Style Text Field
+       1. Ctrl + Drag to above `viewDidLoad`
+          1. Connection: Outlet, Name: flagTextField > Connect
+    6. Do 5 for each Round Style Text Field
+    7. Write below code inside `viewDidLoad`
+
+       - ```swift
+         override func viewDidLoad() {
+             super.viewDidLoad()
+             if let flag = flag {
+                 flagTextField.text = flag.flag
+                 countryTextField.text = flag.name
+                 regionTextField.text = flag.region
+                 populationTextField.text = flag.population
+             }
+         }
+         ```
+
+    8. From Object Library, add Bar Button Item to the left of Add Edit Flag Table View and the right
+       1. the left button
+          1. On the Attribute Inspector, change System Item to Cancel
+       2. the right button, change System Item to Save
+
+19. On CountryTableViewController.swift, add below code
+
+    - ```swift
+      @IBAction func unwindToCountryTableView(segue: UIStoryboardSegue) {
+
+      }
+      ```
+
+20. On Main.storyboard
+    1. Click the Save Button on Add Edit Flag
+    2. Click the Navigation Controller of Add Edit Flag
+    3. Ctrl + Drag from the Save Button to Exit Icon on the Navigation Controller
+       1. Select unwindToCountryTableViewWithSegue
+    4. Click Unwind segue to "unwind...
+       1. On the Attribute Inspector, Identifier: saveUnwind
+    5. Ctrl + Drag from the Cancel Button to Exit Icon on the Navigation Controller
+       1. Select unwindToCountryTableViewWithSeque
+    6. Click the new Unwind segue to
+    7. Click + Drag from the Save Button to AddEditFlagTableViewController
+       1. Connection: Outlet, Name: saveButton, Connect
+21. On AddEditFlagTableViewController.swift
+
+    1. Add `updateSaveButtonState()` into `viewDidLoad`, and add below code to under `viewDidLoad`
+
+       - ```swift
+         func updateSaveButtonState() {
+             let flagText = flagTextField.text ?? ""
+             let countryText = countryTextField.text ?? ""
+             let regionText = regionTextField.text ?? ""
+             let populationText = populationTextField.text ?? ""
+             saveButton.isEnabled = !flagText.isEmpty && !countryText.isEmpty && !regionText.isEmpty && !populationText.isEmpty
+         }
+
+         @IBAction func textEditingChanged(_ sender: UITextField) {
+             updateSaveButtonState()
+         }
+         ```
+
+22. On Main.storyboard
+    1. Click Flag Text Field
+    2. Ctrl + Click it
+    3. Click + Drag from Editing Changed to textEditingChanged on AddEditFlagTableViewController.swift
+    4. Close the Flag Text Field window
+    5. Do 1 ~ 4 for each text field
+    6. On the simulator, the Save button will be inactive when the text fields are empty
 
 ## Demo: Creating and combining views
 

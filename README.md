@@ -2249,12 +2249,68 @@
          ```
 
 22. On Main.storyboard
+
     1. Click Flag Text Field
     2. Ctrl + Click it
     3. Click + Drag from Editing Changed to textEditingChanged on AddEditFlagTableViewController.swift
     4. Close the Flag Text Field window
     5. Do 1 ~ 4 for each text field
     6. On the simulator, the Save button will be inactive when the text fields are empty
+
+23. On AddEditFlagTableViewController.swift
+
+    1. Uncomment prepare function and add below code into the function
+
+       - ```swift
+         super.prepare(for: segue, sender: sender)
+         guard segue.identifier == "saveUnwind" else {return}
+         let theFlag = flagTextField.text ?? ""
+         let country = countryTextField.text ?? ""
+         let region = regionTextField.text ?? ""
+         let population = populationTextField.text ?? ""
+
+         flag = Country(flag: theFlag, name: country, region: region, population: population)
+         ```
+
+24. On CountryTableViewController.swift, add below code into unwindToCountryTableView function
+
+    - ```swift
+      guard segue.identifier == "saveUnwind",
+            let sourceViewController = segue.source as? AddEditFlagTableViewController,
+            let flag = sourceViewController.flag else {return}
+      if let selectedIndexPath = tableView.indexPathForSelectedRow {
+          countries[selectedIndexPath.row] = flag
+          tableView.reloadRows(at: [selectedIndexPath], with: .none)
+      }
+      else {
+          let newIndexPath = IndexPath(row: countries.count, section: 0)
+          countries.append(flag)
+          tableView.insertRows(at: [newIndexPath], with: .automatic)
+      }
+      ```
+
+25. On Main.storyboard
+    1. Click Region Label on Flags of the World Table View
+       1. On the Attribute Inspector
+          1. Change Lines to 0
+          2. Change Font to System 14.0
+       2. On the Size Inspector
+          1. On the Content Compression Resistance Priority
+             1. change Horizontal and Vertical to 752
+    2. Click Country Label on Flags of the World Table View
+       1. On the Size Inspector
+          1. On the Content Compression Resistance Priority
+             1. change Horizontal and Vertical to 751
+    3. Click Flag Label on Flags of the World Table View
+       1. On the Size Inspector
+          1. On the Content Compression Resistance Priority
+             1. change Horizontal and Vertical to 753
+26. On CountryTableViewController.swift, add below code into viewDidLoad function
+
+    - ```swift
+      tableView.rowHeight = UITableView.automaticDimension
+      tableView.estimatedRowHeight = 44.0
+      ```
 
 ## Demo: Creating and combining views
 

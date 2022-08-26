@@ -2435,6 +2435,83 @@
         }
       ```
 
+## Saving and Persistent Data
+
+- To save data the Codable protocol is implemented
+- An object that conforms to Codable can save & load data
+- To conform to Codable protocol requires two methods to be implemented
+- Most built in Swift types already conform
+
+### Encoder object and the Decoder
+
+- An Encoder object is used to encode the data for saving
+- A Decoder object is used to decode the data from its saved state
+
+  - ```swift
+      // create a book
+      var book = Book(title: "Adventures", author: "John Doe", isbn: 100)
+
+      // Encode the book and print the encoded book
+      let propertyListEncoder = PropertyListEncoder()
+      if let encodedBook = try? propertyListEncoder.encode(book) {
+        print(encodedBook)
+
+        // Decode the encoded book and decoded book
+        let propertyListDecoder = PropertyListDecoder()
+        if let decodedBook = try? propertyListDecoder.decode(Book.self, from: encodedBook) {
+          print(decodedBook)
+        }
+      }
+    ```
+
+    - The encode method is a throwing method, hence we use `try?` with it
+    - It now will return optional Data instead of errors
+    - Print gives us the number of bytes in it
+
+    - The decode method is also a throwing method, hence we use `try?` with it
+    - It returns optional data instead of errors
+    - Printing gives us the book instance
+
+### SandBoxing
+
+- iOS uses sandboxing to protect data from rogue apps
+- Sandboxing
+  - App1 can not access any of App2's resources
+  - Certain cases with user permission access is permitted
+
+### Documents Folder
+
+- An app has certain folders to save data to
+- Documents folder, the location your app saves & modifies its information
+- The path to the Documents folder changes
+- The path is like a URL to the folder
+- A FileManager class function gives access to the Documents folder
+
+  - ```swift
+      // Set up FileManager to save the data to file
+      let documentsDirectory = FileManager.default.urls(for: .documentDirectory, in: .userDomainMask).first!
+
+      // documentsDirectory holds the URL to that folder
+      let archiveURL = documentsDirectory
+          .appendingPathComponent("book_library")
+          .appendingPathComponent("plist")
+
+      // Encode the book, write the encoded book to file
+      let propertyListEncoder = PropertyListEncoder()
+      let encodedBook = try? propertyListEncoder(book)
+      try? encodedBook?.write(to: archiveURL, options: .noFileProtection)
+
+      // Set up to retrieve the data from the file
+      let propertyListDecoder = PropertyListDecoder()
+      if let retrievedBookData = try? Data(contentsOf: archiveURL),
+          let decodedBook = try? propertyListDecoder.decode(Book.self, from: retrievedBookData) {
+          print(decodedBook)
+      }
+    ```
+
+    - The actual path is in the sidebar
+    - Using `try?` to take the encodedObject (encodedBook) and write it to the archiveURL
+
 ---
 
 ## Errors

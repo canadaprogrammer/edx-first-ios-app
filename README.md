@@ -2512,6 +2512,60 @@
     - The actual path is in the sidebar
     - Using `try?` to take the encodedObject (encodedBook) and write it to the archiveURL
 
+### Demo: Saving and Persisting Data
+
+- ```swift
+  import UIKit
+  import Foundation
+
+  class Book: CustomStringConvertible, Codable {
+      var title: String
+      var author: String
+      var isbn: Int
+
+      init(title: String, author: String, isbn: Int) {
+          self.title = title
+          self.author = author
+          self.isbn = isbn
+      }
+
+      var description: String {
+          return "Book title: \(title), author: \(author), ISBN: \(isbn)"
+      }
+  }
+  // Create a book
+  var book = Book(title: "Tristan's Adventures", author: "D.A. McMeekin", isbn: 100)
+  print(book)
+
+  // Save Data
+  let propertyListEncoder = PropertyListEncoder()
+  if let encodedBook = try? propertyListEncoder.encode(book) {
+      print(encodedBook)
+
+      let propertyListDecoder = PropertyListDecoder()
+      if let decodedBook = try? propertyListDecoder.decode(Book.self, from: encodedBook) {
+          print(decodedBook)
+      }
+  }
+
+  // Persistent Data
+  let documentsDirectory = FileManager.default.urls(for: .documentDirectory, in: .userDomainMask).first!
+
+  let archiveURL = documentsDirectory.appendingPathComponent("book_library.plist")
+
+  let propertyListEncoder_1 = PropertyListEncoder()
+
+  let encodedBook_1 = try?propertyListEncoder.encode(book)
+
+  try? encodedBook_1?.write(to: archiveURL, options: .noFileProtection)
+
+  let propertyListDecoder_1 = PropertyListDecoder()
+
+  if let retrievedBookData = try? Data(contentsOf: archiveURL), let decodedBook_1 = try? propertyListDecoder_1.decode(Book.self, from: retrievedBookData) {
+      print(decodedBook_1)
+  }
+  ```
+
 ---
 
 ## Errors

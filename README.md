@@ -2487,30 +2487,34 @@
 - The path is like a URL to the folder
 - A FileManager class function gives access to the Documents folder
 
-  - ```swift
-      // Set up FileManager to save the data to file
-      let documentsDirectory = FileManager.default.urls(for: .documentDirectory, in: .userDomainMask).first!
+- ```swift
+  // Set up FileManager to save the data to file
 
-      // documentsDirectory holds the URL to that folder
-      let archiveURL = documentsDirectory
-          .appendingPathComponent("book_library")
-          .appendingPathComponent("plist")
+  let documentsDirectory = FileManager.default.urls(for: .documentDirectory, in: .userDomainMask).first!
 
-      // Encode the book, write the encoded book to file
-      let propertyListEncoder = PropertyListEncoder()
-      let encodedBook = try? propertyListEncoder(book)
-      try? encodedBook?.write(to: archiveURL, options: .noFileProtection)
+  // documentsDirectory holds the URL to that folder
 
-      // Set up to retrieve the data from the file
-      let propertyListDecoder = PropertyListDecoder()
-      if let retrievedBookData = try? Data(contentsOf: archiveURL),
-          let decodedBook = try? propertyListDecoder.decode(Book.self, from: retrievedBookData) {
-          print(decodedBook)
-      }
-    ```
+  let archiveURL = documentsDirectory
+      .appendingPathComponent("book_library")
+      .appendingPathComponent("plist")
 
-    - The actual path is in the sidebar
-    - Using `try?` to take the encodedObject (encodedBook) and write it to the archiveURL
+  // Encode the book, write the encoded book to file
+
+  let propertyListEncoder = PropertyListEncoder()
+  let encodedBook = try? propertyListEncoder(book)
+  try? encodedBook?.write(to: archiveURL, options: .noFileProtection)
+
+  // Set up to retrieve the data from the file
+
+  let propertyListDecoder = PropertyListDecoder()
+  if let retrievedBookData = try? Data(contentsOf: archiveURL),
+      let decodedBook = try? propertyListDecoder.decode(Book.self, from: retrievedBookData) {
+      print(decodedBook)
+  }
+  ```
+
+  - The actual path is in the sidebar
+  - Using `try?` to take the encodedObject (encodedBook) and write it to the archiveURL
 
 ### Demo: Saving and Persisting Data
 
@@ -2534,10 +2538,12 @@
       }
   }
   // Create a book
+
   var book = Book(title: "Tristan's Adventures", author: "D.A. McMeekin", isbn: 100)
   print(book)
 
   // Save Data
+
   let propertyListEncoder = PropertyListEncoder()
   if let encodedBook = try? propertyListEncoder.encode(book) {
       print(encodedBook)
@@ -2549,6 +2555,7 @@
   }
 
   // Persistent Data
+
   let documentsDirectory = FileManager.default.urls(for: .documentDirectory, in: .userDomainMask).first!
 
   let archiveURL = documentsDirectory.appendingPathComponent("book_library.plist")
@@ -2565,6 +2572,232 @@
       print(decodedBook_1)
   }
   ```
+
+## System Controllers in Apps & User Input
+
+### System View Controllers
+
+- Provide a way to
+  - Display alerts
+  - Share content
+  - Send messages
+  - Access photo library, camera etc
+- Different Controllers
+  - `UIActivityController`: share with other apps
+  - `SFSafariViewController`: display things from the web
+  - `UIAlertController`: present information & options
+  - `UIImagePickerViewController`: camera or photolibrary
+  - `MFMailComposeViewController`: send email
+
+### UIActivityViewController
+
+- Tapping Share button creates a UIActivityViewController instance
+- Grab the image from the UIImageView
+- UIActivityViewController's initializer takes a parameter activityItems
+- activityItems is an array of type Any
+- Add the image to the array
+- Present the activity controller
+- The code:
+
+  - ```swift
+      @IBAction func shareButtonTapped(_ sender: UIButton) {
+        guard let image = imageView.image else {return}
+        let activityController = UIActivityViewController(activityItem: [image], applicationActivities: nil)
+        activityController.popoverPresentationController?.sourceView = sender
+        present(activityController, animated: true, completion: nil)
+      }
+    ```
+
+    - An image variable is created from UIImageView
+    - image is added to the activity controller's array parameter
+    - We won't use applicationActivities
+    - popoverPresentationController from where the view controller is presented to the user
+
+### SFSafariViewController
+
+- Opens a Safari web browser within our App
+- SafariServices framework must be imported
+- Three things are required:
+  - Create a URL from a string, a web address
+  - Create an instance of SFSafariViewController with the URL
+  - Present the view to the user
+- The code:
+
+  - ```swift
+      @IBAction func safariButtonTapped(_ sender: UIButton) {
+        if let url = URL(string: "https://www.curtin.edu.au") {
+          let safariViewController = SFSafariViewController(url: url)
+          present(safariViewController, animated: true, completion: nil)
+        }
+      }
+    ```
+
+    - A URL is created
+    - An instance of SFSafariViewController is created
+    - The view controller is presented to the user
+
+### UIAlertController
+
+- Used to allow users to interact with your App
+- Get user's attention, present options, get choice
+- Things that need to be done:
+  - Specify the Alert title
+  - Create the message
+  - Decide how to present it to the user:
+    - .alert at centre of screen
+    - .actionSheet at bottom of screen
+- The code
+
+  - ```swift
+      @IBAction func photoButtonTapped(_ sender: UIButton) {
+        let alertController = UIAlertController(title: "Choose Image Source", message: nil, preferredStyle: .alert)
+        let cancelAction = UIAlertAction(title: "Cancel", style: .cancel, handler: nil)
+        alertController.addAction(cancelAction)
+        alertController.popoverPresentationController?.sourceView = sender
+        present(alertController, animated: true, completion: nil)
+      }
+    ```
+
+    - A UIAlertController is created with a title & style is set to .alert
+    - The UIAlertAction is crated to respond to the user's choice, with title, style & handler
+    - It is added adn the UIAlertController is presented
+
+### UIImagePickerController
+
+- UIImagePickerController provides access to the camera & the photo library
+- Two protocols must be adopted:
+  - UIImagePickerControllerDelegate
+  - UINavigationControllerDelegate
+- Create an instance of UIImagePickerController
+- Set the view controller as the delegate
+- The user is presented with choices
+- The UIAlertController will need to handle responses
+- The camera and/or photo library should only be presented if they are available
+- UIImagePickerController.isSourceTypeAvailable(\_:) is used for this, returning a Bool
+- The code(1)
+
+  - ```swift
+      @IBAction func photoButtonTapped(_ sender: UIButton) {
+        let imagePicker = UIImagePickerController()
+        imagePicker.delegate = self
+
+        let alertController = UIAlertController(title: "Choose Source", message: nil, preferredStyle: .actionSheet)
+        let cancelAction = UIAlertAction(title: "Cancel", style: .cancel, handler: nil)
+        alertController.addAction(cancelAction)
+      }
+    ```
+
+    - Create the UIImagePickerController instance
+    - Set the delegate to self
+    - Create & configure the UIAlertControllers as we did earlier
+
+- The code(2)
+
+  - ```swift
+      if UIImagePickerController.isSourceTypeAvailable(.camera) {
+        let cameraAction = UIAlertAction(title: "Camera", style: .default, handler: {
+          action in
+          imagePicker.sourceType = .camera
+          self.present(imagePicker, animated: true, completion: nil)
+        })
+        alertController.addAction(cameraAction)
+      }
+      if UIImagePickerController.isSourceTypeAvailable(.photoLibrary) {
+        let photoLibraryAction = UIAlertAction(title: "Photo library", style: .default, handler: {
+          action in
+          imagePicker.sourceType = .photoLibrary
+          self.present(imagePicker, animated: true, completion: nil)
+        })
+        alertController.addAction(photoLibraryAction)
+      }
+      present(alertController, animated: true, completion: nil)
+    ```
+
+- Changing the image
+
+  - imagePickerController(\_: didFinishPickingMeediaWithInfo:) method is used
+
+  - ```swift
+      func imagePickerController(_ picker: UIImagePickerController, didFinishPickingMediaWithInfo info: [UIImagePickerController.InfoKey : Any]) {
+        guard let selectedImage = info[.originalImage] as? UIImage else {return}
+        imageView.image = selectedImage
+        dismiss(animated: true, completion: nil)
+      }
+    ```
+
+- Info.plist
+  - The App won't behave as we think, not quite yet
+  - The project Info.plist needs to be adjusted giving accesss to the photo library and camera
+
+### MFMailComposeViewController
+
+- Allows email to be sent from within your App
+- The MessageUI framwork must be iported
+- The mailComposeDelegate is responsible to dismiss the mail compose view controller
+- The ViewController class must adopt the protocol: MFMailComposeViewControllerDelegate
+- Check if mail services are available
+  - canSendMail()
+- Create an instance of MFMailComposeViewController
+- Set the .mailComposeDelegate to self
+- Configure different aspects of the mail message
+- Present and then dismiss the view controller
+- The code
+
+  - ```swift
+      @IBAction func emailButtonTapped(_ sender: UIButton) {
+        guard !MFMailComposeViewController.canSendMail() else {
+          print("Can not send mail")
+          return
+        }
+        let mailComposer = MFMailComposeViewController()
+        mailComposer.mailComoseDelegate = self
+        mailComposer.setToRecipients(["Taylor@swift.com"])
+        mailComposer.setSubject("Testing for you Taylor Swift")
+        mailComposer.setMessageBody("Hello, Taylor!", isHTML: false)
+        present(mailComposer, animated: true, completion: nil)
+      }
+    ```
+
+    - Checked if mail can be sent
+    - Created the MFMailComposeViewController instance
+    - Set mailComposeDelegate to self
+    - Presented it to the user
+
+- MailComposeController
+
+  - Use a delegate method to dismiss the view controller
+
+    - ```swift
+        func mailConposeController(_ controller: MFMailComposeViewController, didFinishWith result: MFMailComposeResult, error: Error?) {
+          dismiss(animated: true, completion: nil)
+        }
+      ```
+
+### Input Screens
+
+- User Input
+  - Not all Apps are for entertainment, some are for preductivity
+  - Apps are used for business, research, data collection
+  - These Apps can require complex user input
+  - Multiple control types and views need to be used
+  - More common than you might think
+- Data Model
+  - What data are you collecting from the user?
+  - What type fo data is it?
+  - What will you do with that data?
+  - How will you use the data?
+  - Plan the data model accordingly
+- Collecting the Data
+  - What views are best for your data collection?
+  - Prevent user input errors
+  - Dates: what kind of data format?
+  - Numbers: integers, doubles?
+  - Addresses, City names, Airport codes etc
+- Collecting String Input
+- Collecting Date Input
+- Collecting Integer Input
+- Sliding Scale Input
+- Collecting Binary Input
 
 ---
 

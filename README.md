@@ -2807,6 +2807,27 @@
     2. Do samething for the other buttons
     3. Add `print("shareButtonTapped") into the buttons on ViewController.swift
 
+#### Implementing the Share and Safari Buttons
+
+- Add below code into shareButtonTapped on ViewController.swift
+
+  - ```swift
+      guard let image = imageView.image else {return}
+      let activityController = UIActivityViewController(activityItems: [image], applicationActivities: nil)
+      activityController.popoverPresentationController?.sourceView = sender
+      present(activityController, animated: true, completion: nil)
+    ```
+
+- Add `import SafariServices` to below `import UIKit`
+- Add below code into safariButtonTapped
+
+  - ```swift
+      if let url = URL(string: "https://www.curtin.edu.au") {
+          let safariViewController = SFSafariViewController (url: url)
+          present(safariViewController, animated: true, completion: nil)
+      }
+    ```
+
 ### Input Screens
 
 - User Input

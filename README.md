@@ -2773,6 +2773,40 @@
         }
       ```
 
+### Demo: System View Controllers
+
+#### Getting Started with Building Image App
+
+1. Create a new xcode project
+2. iOS > App > Next
+3. Interface: Stroyboard, Language: Swfit > Next
+4. Create
+5. Click Main.storyboard
+6. From Object Library, add Image View to the top
+   1. Make the height to about over half way
+   2. Make the width wider
+   3. Click Add New Constraints
+      1. 0, 20, 20, 380 and check constraint to the margins
+      2. Click Add 4 constraints
+7. From Object Library, add Horizontal Stack View to below the Image View
+   1. Make the width wider
+   2. Click Add New Constraints
+      1. Standard, 20, 20, 330 and check constraint to the margins
+      2. Click Add 4 constraints
+8. From Object Library, add 4 Buttons into the Horizontal Stack View
+   1. Change the titles to Share, Safari, Camera, and Email
+9. Click an image and drag to Assets.xcassets
+10. Click Main.storyboard and click UIImageView
+    1. On the Attribute Inspector, select the image as Image
+11. Click Add Editor on Right
+12. Click ViewController.swift
+13. Click image on Main.storyboard and Ctrl + Drag to above viewDidLoad() on ViewController.swift
+    1. Connection: Outlet, Name: imageView, Type: UIImageView > Connect
+14. Click Share button on Main.storyboard and Ctrl + Drag to below viewDidLoad() on ViewController.swift
+    1. Connection: Action, Name: shareButtonTapped, Type: UIButton, Event: Touch Up Inside > Connect
+    2. Do samething for the other buttons
+    3. Add `print("shareButtonTapped") into the buttons on ViewController.swift
+
 ### Input Screens
 
 - User Input

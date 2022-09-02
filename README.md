@@ -2896,6 +2896,33 @@
       }
      ```
 
+#### Implementing the Email Button
+
+1. Add `import MessageUI` to below `import SafariServices`
+2. Add `MFMailComposeViewControllerDelegate` next to `UINavigationControllerDelegate`
+3. Add below code into `emailButtonTapped`
+
+   - ```swift
+      if !MFMailComposeViewController.canSendMail() {
+          print("Cna not send mail")
+          return
+      }
+      let mailComposer = MFMailComposeViewController()
+      mailComposer.mailComposeDelegate = self // to use mailComposeDelegate
+      mailComposer.setToRecipients(["Taylor@swift.com"])
+      mailComposer.setSubject("Testing for you Taylor Swift")
+      mailComposer.setMessageBody("Hello, Taylor!", isHTML: false)
+      present(mailComposer, animated: true, completion: nil)
+     ```
+
+4. Add below code to below `emailButtonTapped` for sending email
+
+   - ```swift
+      func mailComposeController(_ controller: MFMailComposeViewController, didFinishWith result: MFMailComposeResult, error: Error?) {
+          dismiss(animated: true, completion: nil)
+      }
+     ```
+
 ### Input Screens
 
 - User Input

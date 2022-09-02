@@ -2828,6 +2828,74 @@
       }
     ```
 
+#### Commencing the Implementation of the Camera Button
+
+- Add below code into cameraButtonTapped
+
+  - ```swift
+      let alertController = UIAlertController(title: "Choose Image Source", message: nil, preferredStyle:  actionSheet)
+      let cancelAction = UIAlertAction(title: "Cancel", style: .cancel, handler: nil)
+      let cameraAction = UIAlertAction(title: "Camera", style: .default, handler: {action in print("Camera  wasselected")})
+      let photoLibraryAction = UIAlertAction(title: "Photo Library", style: .default, handler: {action in prin ("Photo Library was selected")})
+
+      alertController.addAction(cancelAction)
+      alertController.addAction(cameraAction)
+      alertController.addAction(photoLibraryAction)
+
+      alertController.popoverPresentationController?.sourceView = sender
+      present(alertController, animated: true, completion: nil)
+    ```
+
+#### Contonuing the implementation of the Camera Button
+
+1. Add `UIImagePickerControllerDelegate` and `UINavigationControllerDelegate` after `UIViewController`
+2. Remove `cameraAction` and `photoLibraryAction`
+3. Add below code into `cameraButtonTapped`
+
+   - ```swift
+      let imagePicker = UIImagePickerController()
+      imagePicker.delegate = self
+
+      let alertController = UIAlertController(title: "Choose Image Source", message: nil, preferredStyle: .actionSheet)
+      let cancelAction = UIAlertAction(title: "Cancel", style: .cancel, handler: nil)
+
+      if UIImagePickerController.isSourceTypeAvailable(.camera) {
+          let cameraAction = UIAlertAction(title: "Camera", style: .default, handler: {action in imagePicker.sourceType = .camera
+              self.present(imagePicker, animated: true, completion: nil)})
+          alertController.addAction(cameraAction)
+      }
+      if UIImagePickerController.isSourceTypeAvailable(.photoLibrary) {
+          let photoLibraryAction = UIAlertAction(title: "Photo library", style: .default, handler: {action in imagePicker.sourceType = .photoLibrary
+              self.present(imagePicker, animated: true, completion: nil)})
+          alertController.addAction(photoLibraryAction)
+      }
+     ```
+
+4. When it is played, the camera won't show up on the simulator because there is no carema
+5. Play it on your device
+6. When you click Camera, an error will happen, "This app has crashed becuase it attempted to access privacy-sensitive data without a usage description
+
+#### Completing the implementation of the Camera Button
+
+1. On Info.plist
+   1. Click `+` button next to Information Property List to add a new key
+   2. Type `Privacy - Photo Library Usage Description`
+   3. Type `Access to the photos` as the value
+   4. Click `+` button next to the `Privacy - Photo Library Usage Description`
+   5. Type `Privacy - Camera Usage Description`
+   6. Type `Using the camera` as the value
+2. It asks the user for permission to use the camera or to access the photo library
+3. Add below code to above `emailButtonTapped` for applying the selected image on the imageView
+
+   - ```swift
+      func imagePickerController(_ picker: UIImagePickerController, didFinishPickingMediaWithInfo info: [UIImagePickerController.InfoKey: Any]) {
+          if let selectedImage = info[UIImagePickerController.InfoKey.originalImage] as? UIImage {
+              imageView.image = selectedImage
+              dismiss(animated: true, completion: nil)
+          }
+      }
+     ```
+
 ### Input Screens
 
 - User Input

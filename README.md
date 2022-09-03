@@ -3026,6 +3026,132 @@
       2. Click the each Tabel View Cell on the navigation area
       3. On the Size Inspector, change Row Height to `216`
       4. Move the each Data Picker to the center of the each Table View Cell
+4. To collect the date information
+
+   1. Ctrl + Click Drag from the labels starting Jan and date pickers to below `freguentFlyerTextField` of `AddFlightTableViewController`
+      1. The label of departure date
+         1. Connection: Outlet, Name: departureDateLabel > Connect
+      2. The date picker of departure date
+         1. Connection: Outlet, Name: departureDatePicker > Connect
+      3. Do same thing for return date
+   2. Add below code into `viewDidLoad`
+
+      - ```swift
+          let midnightToday = Calendar.current.startOfDay(for: Date())
+          departureDatePicker.minimumDate = midnightToday
+        ```
+
+   3. Add below code to under `doneButtonTapped`
+
+      - ```swift
+          func updateDateViews() {
+              let dateFormatter = DateFormatter()
+              dateFormatter.dateStyle = .medium
+
+              returnDatePicker.minimumDate = departureDatePicker.date.addingTimeInterval(86400)
+
+              departureDateLabel.text = dateFormatter.string(from: departureDatePicker.date)
+
+              returnDateLabel.text = dateFormatter.string(from: returnDatePicker.date)
+          }
+        ```
+
+   4. Ctrl + Click Drag from the departure date picker to under `updateDateViews`
+      1. Connection: Action, Name: departureDatePicker, Type: UIDatePicker > Connect
+      2. Add `updateDateViews()` into the function `departureDatePicker`
+   5. Do same thing for return date picker
+   6. Add `updateDateViews()` into the function `viewDidLoad`
+   7. Add below code into function `doneButtonTapped`
+
+      - ```swift
+          let departureDate = departureDatePicker.date
+          let returnDate = returnDatePicker.date
+
+          print("departureDate: \(departureDate)")
+          print("returnDate: \(returnDate)")
+        ```
+
+   8. To show and hide action to Date Pickers
+
+      1. Add below code to below function `returnDatePicker`
+
+         - ```swift
+            let departureDatePickerCellIndexPath = IndexPath(row: 1, section: 1)
+            let returnDatePickerCellIndexPath = IndexPath(row: 3, section: 1)
+
+            var isDepartureDatePickerShown: Bool = false {
+                didSet {
+                    departureDatePicker.isHidden = !isDepartureDatePickerShown
+                }
+            }
+
+            var isReturnDatePickerShown: Bool = false {
+                didSet {
+                    returnDatePicker.isHidden = !isReturnDatePickerShown
+                }
+            }
+
+            override func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
+                switch indexPath {
+                case departureDatePickerCellIndexPath:
+                    if isDepartureDatePickerShown {
+                        return 216.0
+                    }
+                    else {
+                        return 0.0
+                    }
+                case returnDatePickerCellIndexPath:
+                    if isReturnDatePickerShown {
+                        return 216.0
+                    }
+                    else {
+                        return 0.0
+                    }
+                default:
+                    return 44.0
+                }
+            }
+
+            let departureDateLabelCellIndexPath = IndexPath(row: 0, section: 1)
+            let returnDateLabelCellIndexPath = IndexPath(row: 2, section: 1)
+
+            override func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+                tableView.deselectRow(at: indexPath, animated: true)
+
+                switch indexPath {
+                case departureDateLabelCellIndexPath:
+                    if isDepartureDatePickerShown {
+                        isDepartureDatePickerShown = false
+                    }
+                    else if isReturnDatePickerShown {
+                        isReturnDatePickerShown = false
+                        isDepartureDatePickerShown = true
+                    }
+                    else {
+                        isDepartureDatePickerShown = true
+                    }
+                    tableView.beginUpdates()
+                    tableView.endUpdates()
+
+                case returnDateLabelCellIndexPath:
+                    if isReturnDatePickerShown {
+                        isReturnDatePickerShown = false
+                    }
+                    else if isDepartureDatePickerShown {
+                        isDepartureDatePickerShown = false
+                        isReturnDatePickerShown = true
+                    }
+                    else {
+                        isReturnDatePickerShown = true
+                    }
+                    tableView.beginUpdates()
+                    tableView.endUpdates()
+
+                default:
+                    break
+                }
+            }
+           ```
 
 ---
 

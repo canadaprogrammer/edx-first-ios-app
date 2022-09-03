@@ -2949,6 +2949,55 @@
 - Sliding Scale Input
 - Collecting Binary Input
 
+#### Demo: User Input Screens - a Travel App
+
+1. Create a new Xcode project
+2. iOS > App
+3. Interface: Storyboard
+4. Remove ViewController.swift
+5. Remove View Controller Scene from Main.storyboard
+6. From Object Library, add Navigation Controller into Main.storyboard
+7. On the Attribute Inspector of Navigation Controller, check `Is Initial View Controller`
+8. On the Attribute Inspector of Root View Controller,
+   1. change Content to `Static Cells`
+   2. change Style to `Grouped`
+9. From Object Library, add three Text Fields to the Root View Controller
+   1. Make them wider to fit the width
+   2. Click Add New Constraints
+   3. Click the edges > Add 4 Constraints
+10. On the tool bar
+    1. File > New > File
+    2. iOS > Cocoa Touch Class > Next
+    3. Class: AddFlightTableViewController, Subclass of: UITableViewController, Language: Swift > Next
+    4. Create
+11. On Identity Inspector of Root View Controller on Main.storyboard
+    1. Select Class as AddFlightTableViewController
+12. On AddFlightTableViewController
+    1. Comment out `memberOfSections` and `tableView`
+13. Click Add Editor on Right
+14. Ctrl + Click + Drag the Text Fields on the Root View Controller above `viewDidLoad`
+    1. For the first Text Field, Connection: Outlet, Name: firstNameTextField > Connect
+    2. For the second one, Connection: Outlet, Name: lastNameTextField > Connect
+    3. For the third one, Connection: Outlet, Name: frequentFlyerTextField > Connect
+15. On the Root View Controller
+    1. Click the first Text Field, and on the Attribute Inspector
+       1. Type `First Name` to Placeholder
+    2. Do same thing for the Text Fields
+16. From Object Library, add Bar Button Item to the right of Root View Controller title
+    1. On the Attribute Inspector, change System Item to `Done`
+17. Crtl + Drag from the button to below `viewDidLoad` on AddFlightTableViewController
+    1. Connection: Action, Name: doneButtonTapped, Type: UIBarButtonItem > Connect
+18. Add below code into `doneButtonTapped` on `AddFlightTableViewController.swift`
+
+    - ```swift
+      let firstName = firstNameTextField.text ?? ""
+      let lastName = lastNameTextField.text ?? ""
+      let frequentFlyer = frequentFlyerTextField.text ?? ""
+      print("firstName: \(firstName)")
+      print("lastName: \(lastName)")
+      print("frequentFlyer: \(frequentFlyer)")
+      ```
+
 ---
 
 ## Errors
@@ -2968,6 +3017,14 @@
 
 - If you accidentally deleted that view controller, or otherwise made it not the default, then you’ll see the error “Failed to instantiate the default view controller for UIMainStoryboardFile 'Main' - perhaps the designated entry point is not set?” when your app launches, along with a plain black screen.
 - To fix the problem, open your Main.storyboard file and find whichever view controller you want to be shown when your app first runs. When it’s selected, go to the attributes inspector and check the box marked "Is Initial View Controller". You should see a right-facing arrow appear to the left of that view controller, showing that it’s your storyboard's entry point.
+
+### "Terminating app due to uncaught exception 'NSUnknownKeyException', reason: '[<TravelApp.AddFlightTableViewController 0x1415051f0> setValue:forUndefinedKey:]: this class is not key value coding-compliant for the key frequentTextField.'"
+
+- I found connection between frequentTextField and Root View Controller from the Connection Inspector of Frequent Flyer Text Field on Main.storyboard
+- I removed the connection and the issue solved.
+- It's because I removed `@IBOutlet weak var frequentTextField` on `AddFlightTableViewController`
+
+---
 
 ## Tips
 

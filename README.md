@@ -2952,10 +2952,12 @@
 #### Demo: User Input Screens - a Travel App
 
 1. Create a new Xcode project
+
    1. iOS > App
    2. Interface: Storyboard
    3. Remove ViewController.swift
    4. Remove View Controller Scene from Main.storyboard
+
 2. To collect the user information
 
    1. From Object Library, add Navigation Controller into Main.storyboard
@@ -3002,6 +3004,7 @@
          ```
 
 3. To display the date information
+
    1. Click Table View on the navigation area of Main.storyboard
       1. On the Attribute Inspector, change Sections to 2
    2. Click the second Tabel View Section on the navigation area of Main.storyboard
@@ -3026,6 +3029,7 @@
       2. Click the each Tabel View Cell on the navigation area
       3. On the Size Inspector, change Row Height to `216`
       4. Move the each Data Picker to the center of the each Table View Cell
+
 4. To collect the date information
 
    1. Ctrl + Click Drag from the labels starting Jan and date pickers to below `freguentFlyerTextField` of `AddFlightTableViewController`
@@ -3152,6 +3156,24 @@
                 }
             }
            ```
+
+5. To display the family information
+
+   1. Click Table View on Main.storyboard
+      1. On the Attribute Inspector, change Sections to 3
+      2. You can see the third section by scrolling up
+   2. Click the third Table View Section
+      1. On the Attribute Inspector, change Rows to 2
+   3. Remove Labels and Date Picker from inside the third Table View Section
+   4. Click the second Table View Cell on the third Table View Section
+      1. On the Size Inspector, delete the value of Row Height
+   5. From Object Library
+      1. Add Label to the left of the first Table View Cell, Title: Adults
+      2. Add Stepper to the right of the first Table View Cell, Alignment: Right
+      3. Add Label next to the Stepper, Alignment: Right, Title: 0
+      4. Add Label to the left of the second Table View Cell, Title: Children
+      5. Add Stepper to the right of the second Table View Cell, Alignment: Right
+      6. Add Label next to the Stepper, Alignment: Right, Title: 0
 
 ---
 

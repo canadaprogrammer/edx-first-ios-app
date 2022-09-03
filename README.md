@@ -2952,51 +2952,80 @@
 #### Demo: User Input Screens - a Travel App
 
 1. Create a new Xcode project
-2. iOS > App
-3. Interface: Storyboard
-4. Remove ViewController.swift
-5. Remove View Controller Scene from Main.storyboard
-6. From Object Library, add Navigation Controller into Main.storyboard
-7. On the Attribute Inspector of Navigation Controller, check `Is Initial View Controller`
-8. On the Attribute Inspector of Root View Controller,
-   1. change Content to `Static Cells`
-   2. change Style to `Grouped`
-9. From Object Library, add three Text Fields to the Root View Controller
-   1. Make them wider to fit the width
-   2. Click Add New Constraints
-   3. Click the edges > Add 4 Constraints
-10. On the tool bar
-    1. File > New > File
-    2. iOS > Cocoa Touch Class > Next
-    3. Class: AddFlightTableViewController, Subclass of: UITableViewController, Language: Swift > Next
-    4. Create
-11. On Identity Inspector of Root View Controller on Main.storyboard
-    1. Select Class as AddFlightTableViewController
-12. On AddFlightTableViewController
-    1. Comment out `memberOfSections` and `tableView`
-13. Click Add Editor on Right
-14. Ctrl + Click + Drag the Text Fields on the Root View Controller above `viewDidLoad`
-    1. For the first Text Field, Connection: Outlet, Name: firstNameTextField > Connect
-    2. For the second one, Connection: Outlet, Name: lastNameTextField > Connect
-    3. For the third one, Connection: Outlet, Name: frequentFlyerTextField > Connect
-15. On the Root View Controller
-    1. Click the first Text Field, and on the Attribute Inspector
-       1. Type `First Name` to Placeholder
-    2. Do same thing for the Text Fields
-16. From Object Library, add Bar Button Item to the right of Root View Controller title
-    1. On the Attribute Inspector, change System Item to `Done`
-17. Crtl + Drag from the button to below `viewDidLoad` on AddFlightTableViewController
-    1. Connection: Action, Name: doneButtonTapped, Type: UIBarButtonItem > Connect
-18. Add below code into `doneButtonTapped` on `AddFlightTableViewController.swift`
+   1. iOS > App
+   2. Interface: Storyboard
+   3. Remove ViewController.swift
+   4. Remove View Controller Scene from Main.storyboard
+2. To collect the user information
 
-    - ```swift
-      let firstName = firstNameTextField.text ?? ""
-      let lastName = lastNameTextField.text ?? ""
-      let frequentFlyer = frequentFlyerTextField.text ?? ""
-      print("firstName: \(firstName)")
-      print("lastName: \(lastName)")
-      print("frequentFlyer: \(frequentFlyer)")
-      ```
+   1. From Object Library, add Navigation Controller into Main.storyboard
+   2. On the Attribute Inspector of Navigation Controller, check `Is Initial View Controller`
+   3. On the Attribute Inspector of Root View Controller,
+      1. change Content to `Static Cells`
+      2. change Style to `Grouped`
+   4. From Object Library, add three Text Fields to the Root View Controller
+      1. Make them wider to fit the width
+      2. Click Add New Constraints
+      3. Click the edges > Add 4 Constraints
+   5. On the tool bar
+      1. File > New > File
+      2. iOS > Cocoa Touch Class > Next
+      3. Class: AddFlightTableViewController, Subclass of: UITableViewController, Language: Swift > Next
+      4. Create
+   6. On Identity Inspector of Root View Controller on Main.storyboard
+      1. Select Class as AddFlightTableViewController
+   7. On AddFlightTableViewController
+      1. Comment out `memberOfSections` and `tableView`
+   8. Click Add Editor on Right
+   9. Ctrl + Click + Drag the Text Fields on the Root View Controller above `viewDidLoad`
+      1. For the first Text Field, Connection: Outlet, Name: firstNameTextField > Connect
+      2. For the first Text Field, Connection: Outlet, Name: firstNameTextField > Connect
+      3. For the second one, Connection: Outlet, Name: lastNameTextField > Connect
+      4. For the third one, Connection: Outlet, Name: frequentFlyerTextField > Connect
+   10. On the Root View Controller
+       1. Click the first Text Field, and on the Attribute Inspector
+          1. Type `First Name` to Placeholder
+       2. Do same thing for the Text Fields
+   11. From Object Library, add Bar Button Item to the right of Root View Controller title
+       1. On the Attribute Inspector, change System Item to `Done`
+   12. Crtl + Drag from the button to below `viewDidLoad` on AddFlightTableViewController
+       1. Connection: Action, Name: doneButtonTapped, Type: UIBarButtonItem > Connect
+   13. Add below code into `doneButtonTapped` on `AddFlightTableViewController.swift`
+
+       - ```swift
+         let firstName = firstNameTextField.text ?? ""
+         let lastName = lastNameTextField.text ?? ""
+         let frequentFlyer = frequentFlyerTextField.text ?? ""
+         print("firstName: \(firstName)")
+         print("lastName: \(lastName)")
+         print("frequentFlyer: \(frequentFlyer)")
+         ```
+
+3. To display the date information
+   1. Click Table View on the navigation area of Main.storyboard
+      1. On the Attribute Inspector, change Sections to 2
+   2. Click the second Tabel View Section on the navigation area of Main.storyboard
+      1. On the Attribute Inspector, change Rows to 4
+      2. Ecah row was copied from the first section rows, so delete the Text Fields
+   3. From Object Library, add Label to the left of the first row
+      1. On the Attribute Inspector, chanage the title to `Departure Date`
+   4. From Object Library, add Label to the right of the first row
+      1. On the Attribute Inspector
+         1. Change Alignment to `Right`
+         2. Change the title to `January 1, 2022`
+   5. From Object Library, add Label to the left of the third row
+      1. On the Attribute Inspector, chanage the title to `Return Date`
+   6. From Object Library, add Label to the right of the third row
+      1. On the Attribute Inspector
+         1. Change Alignment to `Right`
+         2. Change the title to `January 1, 2022`
+   7. From Object Library, add Date Pickter to the second row and the fourth row
+      1. On the Attribute Inspector
+         1. Change Preferred Style to `Wheels`
+         2. Change Mode to `Date`
+      2. Click the each Tabel View Cell on the navigation area
+      3. On the Size Inspector, change Row Height to `216`
+      4. Move the each Data Picker to the center of the each Table View Cell
 
 ---
 

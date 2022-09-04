@@ -3211,6 +3211,30 @@
 
    8. Add `updateNumberOfPassengers()` into `viewdidLoad`
 
+7. Meals Switch
+
+   1. Click Table View on Main.storyboard
+      1. On the Attribute Inspector, Change Sections to 4
+   2. Click the fourth Table View Section on Main.storyboard
+      1. On the Attirbute Inspector, Change Rows to 1
+   3. Remove Stepper for the row
+   4. Change Label from Adults to `Meals`
+   5. Change Label from 0 to `$5`
+   6. From Obejct Library, add switch to the right of the row
+   7. Ctrl + Click Drag from the switch to below numberOfChildrenStepper on AddFlightTableViewController.swift
+      1. Connection: Outlet, Name: mealsSwitch, Type: UISwitch > Connect
+   8. Ctrl + Click Drag from the switch to below updateNumberOfPassengers on AddFlightTableViewController.swift
+
+      1. Connection: Action, Name: mealsSwitchChanges, Type: UISwitch > Connect
+      2. Add `print("Meals Changed")` into `mealsSwitchChanges`
+      3. Add below code into `doneButtonTapped` on AddFlightTableViewController.swift
+
+         - ```swift
+            let hasMeals = mealsSwitch.isOn
+
+            print("hasMeals: \(hasMeals)")
+           ```
+
 ---
 
 ## Errors

@@ -3157,7 +3157,7 @@
             }
            ```
 
-5. To display the family information
+5. To display the passengers information
 
    1. Click Table View on Main.storyboard
       1. On the Attribute Inspector, change Sections to 3
@@ -3174,6 +3174,42 @@
       4. Add Label to the left of the second Table View Cell, Title: Children
       5. Add Stepper to the right of the second Table View Cell, Alignment: Right
       6. Add Label next to the Stepper, Alignment: Right, Title: 0
+
+6. To collect the passengers information
+
+   1. Ctrl + Click Drag from number of Adults Label to under `returnDatePicker` on AddFlightTableViewController
+      1. Connection: Outlet, Name: numberOfAdultsLable, Type: UILabel > Connect
+   2. Ctrl + Click Drag from number of Children Label
+      1. Connection: Outlet, Name: numberOfChildrenLable, Type: UILabel > Connect
+   3. Ctrl + Click Drag from stepper of Adults
+      1. Connection: Outlet, Name: numberOfAdultsStepper, Type: UIStepper > Connect
+   4. Ctrl + Click Drag from stepper of Children
+      1. Connection: Outlet, Name: numberOfChildrenStepper, Type: UIStepper > Connect
+   5. Add below code to under `viewDidLoad`
+
+      - ```swfit
+          func updateNumberOfPassengers() {
+              numberOfAdultsLabel.text = "\(Int(numberOfAdultsStepper.value))"
+              numberOfChildrenLabel.text = "\(Int(numberOfChildrenStepper.value))"
+          }
+
+          @IBAction func stepperValueChanged(_ sender: UIStepper) {
+              updateNumberOfPassengers()
+          }
+        ```
+
+   6. Ctrl + Click Drag from adults stepper and children stepper on Main.stroyboard to `stepperValueChnaged` on AddFlightTableViewController.swift
+   7. Add below code into `doneButtonTapped` on AddFlightTableViewController.swift
+
+      - ```swift
+          let numberOfAdults = (Int(numberOfAdultsStepper.value))
+          let numberOfChildren = (Int(numberOfChildrenStepper.value))
+
+          print("numberOfAdults: \(numberOfAdults)")
+          print("numberOfChildren: \(numberOfChildren)")
+        ```
+
+   8. Add `updateNumberOfPassengers()` into `viewdidLoad`
 
 ---
 

@@ -3235,6 +3235,142 @@
             print("hasMeals: \(hasMeals)")
            ```
 
+## Construct an AR App
+
+### Intro to Augmented Reality (AR)
+
+- What is Augmented Reality?
+  - Augmented Reality (AR) refers to a display that is composed of reality that also has computer-generated content superimposed on top of it
+    - While any sense can be augmented, the most common is the 'visual' sense
+    - Cenerally, the reality is a camera feed of the user's surroundings from the point of view of the device
+    - The content superimposed can be in two or three dimensions, photographic or animated
+- Swift and AR Apps
+  - The ARKit framework provides a platform with the tools necessary for developing AR apps
+    - ARKit operates in a visual 3D space, such that animated 3D objects can move in the 3D space of reality
+    - ARKit removes all the 'nuts and bolts' of making an AR app, however every 3D object and interaction between reality and the object must still be specified by the developer
+
+### AR Project Template
+
+- The AR App Templated
+  - In Xcode, our existing Apps have been built from a 'Single View App' (SV) template
+    - This allows us to use components such as Buttons, TextFields, Sliders and so forth
+  - Xcode provides us with an 'Augmented Reality App' template that allows us to use AR-focused components
+- Content Technology
+  - Apple has a bunch of frameworks that can be used to develop an AR app
+    - <img src="https://developer.apple.com/assets/elements/icons/spritekit/spritekit-128x128_2x.png" alt="SpriteKit" with="30" height="30"/> SpriteKit is focused in 2D-space
+    - <img src="https://developer.apple.com/assets/elements/icons/metal/metal-96x96_2x.png" alt="Metal" with="30" height="30"/> Metal is a powerful (and complex) toolkit for 3D-space
+    - <img src="https://developer.apple.com/assets/elements/icons/scenekit/scenekit-128x128_2x.png" alt="SceneKit" with="30" height="30"/> SceneKit is also used for 3D-space and it is what we'll be using in this course
+- AR Project Template
+  - Similar to when we create a SV App, creating an 'AR App' also generates a bunch of files in Xcode as part of the initial project
+    - A .scnassets catalogue is created which catalogues .scn files used to describe each 3D model as well as .png files used for textures (look and feel)
+    - Main.storyboard is still there, however instead of having View Controllers composed of UIViews, they are compsed of ARSCNViews
+- AR Project Template
+  - The Info.plist file contains a few different properties compared to SV Apps:
+    - There is a minimum requirement for ARKit within Device Capabilities
+    - There is a Camera Usage Description to specify the text for when the App asks the User for permission to use the camera (which is sort of necessary)
+
+### Using AR Frameworks
+
+- Using AR Frameworks
+  - When writing Swift code in our View Controllers, we will need to use a couple of extra frameworks
+    - ARKit and SceneKit - which we just discussed - must be imported to be used. We do still need UIKit as well
+- ARSCNView
+  - The sceneView outlet in ViewController.swift is connected to the ARSCNView in Interface Builder
+    - We can override its viewDidLoad to set up the AR scene, for example by loading in 3D models
+    - When ARSCNView is loaded, a session property of type ARSession is initialised. This ARSession takes care of the 'magic' of AR, such as image processing and tracking
+  - We have to set up the ARSession in our viewWillAppear function, but we can give it default values
+  - We can aslo call pause() in viewWillDisappear
+    - This will pause the AR processing
+    - Whe the View Controller isn't seen, it is a waste to do all that processing
+- Delegation
+  - By default in the AR template, the View Controller will be declared as an ARSCNViewDelegate
+    - This enables the ARSCNView to communicate with the View Controller, such that we can override functions
+    - These functions correspond with events (as in the case of most of the built-in classes that we use)
+- Scene Positioning
+  - Whe you run your App, if you move the phone around, you'll see the ART stays the same
+    - With respect to reality - it will stay in the same place of the room!
+    - This is based on where the ART is specified in 3D space
+    - We will see in the exercises that the three axes correspond to (0,0,0) and the ART is offset from that
+
+### AR Components in SceneKit
+
+- 3D Objects in SceneKit
+  - Recall back to when we looked at objects in UIKit. Each object required a size and a position
+    - In this case, it was only in two dimensions (2D)
+    - Positioning items was with respect to the parent
+  - SceneKit functions similarly; except in 3D
+    - Keep in mind, we won't be putting in things like TableViews, Checkboxes, Labels etc.
+    - We use SCNNode's to represent things (lik ART) instead
+- Creating a Scene
+  - Again constrasting to building apps with traditional UIKit components, we can build scenes programmatically or visually with ARKit
+    - A scene being one ViewController; one thing we use the camera to interact with
+    - A single scene, as before, can be a combination of both programmatic and visual elements
+- Adding Nodes
+  - Nodes are one type of Objects we have with ARKit
+    - We can also add geometric shapes, lighting and cameras (representing the point of view) to our Scene
+  - We will examine the different types of Objects in action during our exercise
+    - Right now, we'll go over a few of them in detail
+    - Firstly - geometric shapes that inherit from SCNGeometry
+- Geometry Types
+  - Box: a rectangular prism
+    - Programmatically is the SCNBox class, can specify width, height, length and chamfer when constructed
+  - Plane: a two-dimensional flat surface
+    - Programmatically is the SCNPlane class, can specify width and height when constructed
+    - Must be viewed at an angle, and needs to be rotated (using euler in the Inspector) if the plane is to be along a different combination of axes to default
+  - Cylinder:
+    - Programmatically is a SCNCylinder, specify radius and height on construction
+  - Sphere:
+    - Programmatically is a SCNSphere, specify only radius on construction
+  - Cone:
+    - Prgramatically is a SCNCone, specify topRadius, bottomRadius and height
+- Programmatic Properties: Geometry
+  - We will explore setting properties of the SCNGeometries first hand in the exercise
+    - firstMateral?.diffuse.contents: to set the colour (using UIColor)
+    - firstMaterial?.isDoubleSided: to colour both sides of a plane (well, both sides of any geometry)
+- Programmatic Properties: Node
+  - We will explore setting properties of the SCNNode first hand in the exercise
+    - node.geometry: to assign / create a relationship betwen a SCNGeometry to a SCNNode
+    - node.eulerAngles: to rotate a SCNNode
+    - node.position: to move a SCNNode
+  - There is a SCNVector3 obejct to representation 3D sets of reotation angles or positions
+- Lighting Elements
+  - Light sources are used to make the surfaces of objets appear more realistic
+  - ARKit provides a range of different types of lighting
+    - Just like going down to the hardware stroe
+    - The differences are generally regarding where the light comes from and where it is going to
+    - We'll look in depth in the Exercises
+
+### Surface Detection and Interaction
+
+- Feature Points
+  - So far, we've just built scenes we don't really interact with
+    - Well, we can move the camera around, but the objects don't do anything. They don't respond to the movement
+  - Traditionally, it was very difficult for the developer to make Augmented Reality apps
+    - Tracking motion and orientation, determining features (elements of reality such as objects and floors)
+  - There features are represented as Feature Points by ARKit, which can be visualised using a DebugOption
+    - We can use these to detect planes (like tables or floors)
+    - Hoever, we need to ensure there is sufficient lighting and texture (as well as not too much movement) for ARKit to be able to work on detecting these
+    - Too much movement of the camera will also cause issues
+- Plane Detection
+  - By adjusting our ARSession (the ARWorldTracking-Configuration) properties, we can enable plane detection. For example, to detect horizontal planes
+    - configuration.planeDetection = [.horizontal]
+  - We can override the renderer() function to capture the event when a plane is detected
+    - This is as our ViewController is a delegate to the SceneView. We then have to filter for ARPlaneAnchor
+- Visualising Planes
+  - We can create an Augmented Reality plane within our App
+    - By using the information passed through the renderer() event
+    - and our knowledge of creating new SCNNodes (and SCNPlane geometries)
+  - We'll do this with our project in the Exercises
+- Updating Plane Size
+  - As time goes by, ARKit may determine that a plane is bigger than first thought
+    - As such, we need to consider what will happen
+    - By using a different overloading of renderer() and the guard keyword, we can instead update our AR plane as it changes
+- Connecting Assets to Planes
+  - Much in the way we attached the SCNPlane to the plane in reality, we can connect other nodes to it as well. Let's consider ART
+    - The trick here is that we need to create a new ART for each plane
+    - To do this, we would want to re-run a block of code... what construct?
+    - We then call that function in our renderer() function
+
 ---
 
 ## Errors

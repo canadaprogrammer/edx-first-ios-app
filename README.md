@@ -3371,6 +3371,32 @@
     - To do this, we would want to re-run a block of code... what construct?
     - We then call that function in our renderer() function
 
+### Demo: Create an Augmented Reality Project
+
+1. Create New Xcode Project
+2. iOS > Augmented Reality App > Next
+3. Choose team, Interface: Storyboard, Language: Swift, Content Technology: SceneKit > Next > Create
+4. Download a 3D model (fender_stratocaster) from https://developer.apple.com/augmented-reality/quick-look/
+5. Right click on art.scnassets > Click Add Files to "art.scnassets" > Downloads folder > Choose the downloaded 3D model (.usdz) > Add
+6. Click fender_stratocaster.usdz under art.scnassets
+   1. Click fender_stratocaster on the navigation area
+   2. Click Show the Node Inspector on the Untility area
+      1. Click Opacity and push tab button
+         1. Convert this document to SCN format > Convert
+         2. Remove "copy" from the filename, 'fender_stratocaster.scn'
+         3. Delete fender_stratocaster.usdz
+7. Click fender_stratocaster.scn
+   1. Click fender_stratocaster on the navigation area
+      1. Click Show the Node Inspector on the Untility area
+         1. Change the Scale to all 0.1
+         2. Change Position y to -10 on the Node Inspector for testing
+   2. Right click on fender_stratocaster
+      1. Click Focus Selection
+8. Click Viewcontroller.swift
+   1. Change `ship.scn` to `fender_stratocaster.scn` inside `viewDidLoad`
+9. Choose your device as a simulator
+10. Hit OK on you device for Camera permission
+
 ---
 
 ## Errors
@@ -3396,6 +3422,28 @@
 - I found connection between frequentTextField and Root View Controller from the Connection Inspector of Frequent Flyer Text Field on Main.storyboard
 - I removed the connection and the issue solved.
 - It's because I removed `@IBOutlet weak var frequentTextField` on `AddFlightTableViewController`
+
+### Signing for "..." requires a development team.
+
+1. Add you Apple ID in Xcode
+   - On menu bar, Xcode > Preferences > Accounts > Add Apple ID
+2. Choose your project > Choose a target > Click Signing & Capabilities tab
+   - Check Automatically manage signing
+   - Choose Team
+
+### Could not launch App because it has an invalid code signature, inadequate entitlements or its profile has not been explicitly trusted by the user
+
+- Untrusted Developer on iPhone
+  - Settings > General > VPN & Device Management > Select Developer App > Trust
+
+### The operation couldn't be completed. Unable to log in with account
+
+- From the menu, Xcode > Preferences
+  - Accounts tab > Sign in
+
+### Fatal error: Unexpectedly found nil while unwrapping an Optional value
+
+- Check if filenames are correct
 
 ---
 

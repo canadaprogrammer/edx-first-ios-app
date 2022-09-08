@@ -2321,7 +2321,7 @@
    4. Language: Swift
    5. Next > Create
 2. On ContentView.swift
-   1. Click Resume on the Canvas (If you can't see the Canvas, Editor > Canvas on the tool bar)
+   1. Click Resume on the Canvas (If you can't see the Canvas, Editor > Canvas on the menu bar)
    2. When you change the code, the Canvas will show the results simultaneously
 3. On the Canvas
    1. Cmd + Click the Text
@@ -2376,7 +2376,7 @@
        ```
 
 7. Drag an image file, turtlerock.jpg, to Assets.xcassets
-8. On the tool bar, File > New > File > iOS > SwiftUI View > Next > Save As: CircleImage.swift > Create
+8. On the menu bar, File > New > File > iOS > SwiftUI View > Next > Save As: CircleImage.swift > Create
 9. Change the code inside body to below
 
    - ```swift
@@ -2386,7 +2386,7 @@
         .shadow(radius: 10)
      ```
 
-10. On the tool bar, File > New > File > iOS > SwiftUI View > Next > Save As: MapView.swift > Create
+10. On the menu bar, File > New > File > iOS > SwiftUI View > Next > Save As: MapView.swift > Create
 11. Type code `import MapKit` under `import SwiftUI`
 12. Change the MapView to below code
 
@@ -2969,7 +2969,7 @@
       1. Make them wider to fit the width
       2. Click Add New Constraints
       3. Click the edges > Add 4 Constraints
-   5. On the tool bar
+   5. On the menu bar
       1. File > New > File
       2. iOS > Cocoa Touch Class > Next
       3. Class: AddFlightTableViewController, Subclass of: UITableViewController, Language: Swift > Next
@@ -3292,6 +3292,32 @@
     - This is based on where the ART is specified in 3D space
     - We will see in the exercises that the three axes correspond to (0,0,0) and the ART is offset from that
 
+### Demo: Create an Augmented Reality Project
+
+1. Create New Xcode Project
+2. iOS > Augmented Reality App > Next
+3. Choose team, Interface: Storyboard, Language: Swift, Content Technology: SceneKit > Next > Create
+4. Download a 3D model (fender_stratocaster) from https://developer.apple.com/augmented-reality/quick-look/
+5. Right click on art.scnassets > Click Add Files to "art.scnassets" > Downloads folder > Choose the downloaded 3D model (.usdz) > Add
+6. Click fender_stratocaster.usdz under art.scnassets
+   1. Click fender_stratocaster on the navigation area
+   2. Click Show the Node Inspector on the Untility area
+      1. Click Opacity and push tab button
+         1. Convert this document to SCN format > Convert
+         2. Remove "copy" from the filename, 'fender_stratocaster.scn'
+         3. Delete fender_stratocaster.usdz
+7. Click fender_stratocaster.scn
+   1. Click fender_stratocaster on the navigation area
+      1. Click Show the Node Inspector on the Untility area
+         1. Change the Scale to all 0.1
+         2. Change Position y to -10 on the Node Inspector for testing
+   2. Right click on fender_stratocaster
+      1. Click Focus Selection
+8. Click Viewcontroller.swift
+   1. Change `ship.scn` to `fender_stratocaster.scn` inside `viewDidLoad`
+9. Choose your device as a simulator
+10. Hit OK on you device for Camera permission
+
 ### AR Components in SceneKit
 
 - 3D Objects in SceneKit
@@ -3340,6 +3366,78 @@
     - The differences are generally regarding where the light comes from and where it is going to
     - We'll look in depth in the Exercises
 
+### Demo: Build a podium
+
+1. Create a new Xcod project
+2. iOS > Augmented Reality App > Next
+3. Choose Team, Interface: Storyboard, Language: Swift, Content Technology: SceneKit > Next
+4. Click art.scnassets
+5. From menu bar, File > New > File
+6. Change the name to podium.scn
+7. On ViewController.swift, change `ship.scn` to `podium.scn`
+8. On the Node Inspector of Camera
+   1. Change Euler 0,0,0
+9. From Object Library, add Box into camera
+   1. On the Node Inspector of Box
+      1. Change Name to box1
+      2. Change Position to 0, -1, -5
+   2. On the Attribute Inspector of Box 3. Change the height to 2
+   3. On the Material Inspector
+      1. Change Diffuse to Cantaloupe
+10. From Object Library, add Box into camera
+    1. On the Node Inspector of Box
+       1. Change Name to box2
+       2. Change Editing space to World
+       3. Change Position to -2.3, 0, -2.5
+    2. On the Material Inspector
+       1. Change Diffuse to Magnesium
+11. From Object Library, add Box into camera
+    1. On the Node Inspector of Box
+       1. Change Name to box3
+       2. Change Position to -1.5, 0.25, -2.5
+    2. On the Attribute Inspector of Box
+       1. Change the height to 1.5
+    3. On the Material Inspector
+       1. Change Diffuse to Mocha
+12. From Object Library, add Sphere into camera
+    1. On the Node Inspector of Sphere
+       1. Change Position to -2.5, 2, -2.5
+    2. On the Attribute Inspector
+       1. Change Radius to 0.5
+    3. On the Material Inspector
+       1. Change Diffuse to Turquoise
+13. From Object Library, add Plane into camera
+    1. On the Node Inspector of Plane
+       1. Change Position to -2.5, -0.5, -2.5
+    2. On the Attribute Inspector
+       1. Change Size to 4, 2
+    3. On the Material Inspector
+       1. Change Diffuse to Moss
+14. From Object Library, add Ambient Light into camera
+    1. On the Node Inspector of Ambient Light
+       1. Change Position to -2.5, -0.5, -2.5
+    2. On the Attribute Inspector
+       1. Change Color to Maroon
+15. From Object Library, add Spot Light into camera
+    1. On the Node Inspector of Spot Light
+       1. Change Editing space to Local
+       2. Change Position to 0, -4, -5
+       3. Change Euler to -90,0,0
+    2. On the Attribute Inspector
+       1. Change Intensity to 100
+       2. Change Outer angle to 60
+       3. Change End of Attenuation to 6
+       4. Check Enable shadows
+16. For changing the position of the camera
+    1. Click '+', Add a child node, on the bottom of navigation area
+       1. Change the name to root
+       2. Move all objects from camera to root
+17. Click root
+    1. On the Node Inspector
+       1. Change Scale to 0.5, 0.5, 0.5
+       2. Change Editing space to World
+       3. Change Position to 1.5, -1, -1
+
 ### Surface Detection and Interaction
 
 - Feature Points
@@ -3370,32 +3468,6 @@
     - The trick here is that we need to create a new ART for each plane
     - To do this, we would want to re-run a block of code... what construct?
     - We then call that function in our renderer() function
-
-### Demo: Create an Augmented Reality Project
-
-1. Create New Xcode Project
-2. iOS > Augmented Reality App > Next
-3. Choose team, Interface: Storyboard, Language: Swift, Content Technology: SceneKit > Next > Create
-4. Download a 3D model (fender_stratocaster) from https://developer.apple.com/augmented-reality/quick-look/
-5. Right click on art.scnassets > Click Add Files to "art.scnassets" > Downloads folder > Choose the downloaded 3D model (.usdz) > Add
-6. Click fender_stratocaster.usdz under art.scnassets
-   1. Click fender_stratocaster on the navigation area
-   2. Click Show the Node Inspector on the Untility area
-      1. Click Opacity and push tab button
-         1. Convert this document to SCN format > Convert
-         2. Remove "copy" from the filename, 'fender_stratocaster.scn'
-         3. Delete fender_stratocaster.usdz
-7. Click fender_stratocaster.scn
-   1. Click fender_stratocaster on the navigation area
-      1. Click Show the Node Inspector on the Untility area
-         1. Change the Scale to all 0.1
-         2. Change Position y to -10 on the Node Inspector for testing
-   2. Right click on fender_stratocaster
-      1. Click Focus Selection
-8. Click Viewcontroller.swift
-   1. Change `ship.scn` to `fender_stratocaster.scn` inside `viewDidLoad`
-9. Choose your device as a simulator
-10. Hit OK on you device for Camera permission
 
 ---
 
@@ -3450,4 +3522,4 @@
 ## Tips
 
 - Changing default simulator
-  - On the tool bar, Product > Destination > Choose Destination > Select device
+  - On the menu bar, Product > Destination > Choose Destination > Select device

@@ -3447,7 +3447,7 @@
     - Tracking motion and orientation, determining features (elements of reality such as objects and floors)
   - There features are represented as Feature Points by ARKit, which can be visualised using a DebugOption
     - We can use these to detect planes (like tables or floors)
-    - Hoever, we need to ensure there is sufficient lighting and texture (as well as not too much movement) for ARKit to be able to work on detecting these
+    - However, we need to ensure there is sufficient lighting and texture (as well as not too much movement) for ARKit to be able to work on detecting these
     - Too much movement of the camera will also cause issues
 - Plane Detection
   - By adjusting our ARSession (the ARWorldTracking-Configuration) properties, we can enable plane detection. For example, to detect horizontal planes
@@ -3468,6 +3468,64 @@
     - The trick here is that we need to create a new ART for each plane
     - To do this, we would want to re-run a block of code... what construct?
     - We then call that function in our renderer() function
+
+### Demo: Detecting planes
+
+1. Cont'd the Podium project
+2. Remove camera node
+3. Remove plane from root
+4. On the Node Inspector of root
+   1. Change Position to 0,0,0
+   2. Chnage Scale to 0.1, 0.1, 0.1
+5. Change Position of box1 to 0,1,0
+6. Change Position of box2 to -1,0.5,0
+7. Change Position of box3 to 1,0.75,0
+8. Change Position of sphere to 0,3,0
+9. Change Position of ambient to 0,0,0
+10. Change Position of spot to 0,5,0
+11. On ViewController.swift
+
+    1. Add `sceneView.debugOptions = [ARSCNDebugOptions.showFeaturePoints, ARSCNDebugOptions.showWorldOrigin]` before `sceneView.scene = scene` inside `viweDidLoad`
+    2. Add `configuration.planeDetection = [.horizontal]` after declaration of `configuration` inside `viewWillAppear`
+    3. Add below code before `session` function
+
+       - ```swift
+          func createFloor(planeAnchor: ARPlaneAnchor) -> SCNNode {
+              let node = SCNNode()
+              let plane = SCNPlane(width: CGFloat(planeAnchor.extent.x), height: CGFloat(planeAnchor.extent.z))
+              node.geometry = plane
+              node.eulerAngles.x = -Float.pi / 2
+              node.opacity = 0.5
+              return node
+          }
+          func createPodium(planeAnchor: ARPlaneAnchor) -> SCNNode {
+              let node = SCNScene(named: "art.scnassets/podium.scn")!.rootNode.clone()
+              node.position = SCNVector3(planeAnchor.center.x, 0, planeAnchor.center.z)
+              return node
+          }
+
+          func renderer(_ renderer: SCNSceneRenderer, didAdd node: SCNNode, for anchor: ARAnchor) {
+              guard let planeAnchor = anchor as? ARPlaneAnchor else {return}
+              let floor = createFloor(planeAnchor: planeAnchor)
+              node.addChildNode(floor)
+              let podium = createPodium(planeAnchor: planeAnchor)
+              node.addChildNode(podium)
+          }
+          func renderer(_ renderer: SCNSceneRenderer, didUpdate node: SCNNode, for anchor: ARAnchor) {
+              DispatchQueue.main.async {
+                  guard let planeAnchor = anchor as? ARPlaneAnchor else {return}
+                  for node in node.childNodes {
+                      node.position = SCNVector3(planeAnchor.center.x, 0, planeAnchor.center.z)
+                      if let plane = node.geometry as? SCNPlane {
+                          plane.width = CGFloat(planeAnchor.extent.x)
+                          plane.height = CGFloat(planeAnchor.extent.z)
+                      }
+                  }
+              }
+          }
+         ```
+
+    4. Remove `let scene = SCNScene(named: "art.scnassets/podium.scn")!` and `sceneView.scene = scene` from `viewDidLoad`
 
 ---
 

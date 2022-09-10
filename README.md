@@ -3527,6 +3527,107 @@
 
     4. Remove `let scene = SCNScene(named: "art.scnassets/podium.scn")!` and `sceneView.scene = scene` from `viewDidLoad`
 
+## Interact with an AR App
+
+### Augmented Reality and User Interaction
+
+- Capturing a 'Tapped' Event
+  - If we want to allow a user to interact with the AR world by touch, we need to know when they've tapped the screen and when.
+  - We will use a UITapGestureRecognizer (part of UIKit) as it can track where it has been touched
+- Connecting the Object
+  - Tap Gesture Recogniser needs to be connected to a Swift code file to allow us to write code to consider what to do when tapped
+  - We also need to ensure it covers the entire View Controller (hence device screen)
+- Writing the Code
+  - When an action is created, it will pass an input parameter named sender of type UITapGesture-Recognizer
+    - This has a property (technically function) location that is used to store where the user tapped
+    - Our Scene View has a function named hitTest that determines the plane at a supplied point
+    - We can then get the closest (first) plane from there
+- Nearest Plane
+  - Imagine your finger is a laser pointer. Where that laser pointer shines on is the first plane detected
+
+### Demo: Augmented Reality and User Interaction
+
+1. Cont'd Podium project
+2. Change `.horizontal` to `.vertical` in `viewWillAppear`
+3. Change `createPodium` function as below
+
+   - ```swift
+      func createPodium(result: ARRaycastResult) {
+        let podiumScene = SCNScene(named: "art.scnassets/podium.scn")!
+        let podiumNode = podiumScene.rootNode
+        let planePosition = result.worldTransform.columns.3
+        podiumNode.position = SCNVector3(planePosition.x, planePosition.y, planePosition.z)
+        sceneView.scene.rootNode.addChildNode(podiumNode)
+      }
+     ```
+
+4. Remove below code from `renderer( didAdd)`
+
+   - ```swift
+      let podium = createPodium(planeAnchor: planeAnchor)
+      node.addChildNode(podium)
+     ```
+
+   - It creates vertical planes.
+
+5. On Main.storyboard
+
+   1. From Object Library, add Tap Gesture Recognizer to Scene View
+      1. When you check the Connection Inspector of Tap Gesture Recognizer, Referencing Outlet Collections has connection between qestureRecognizers and Scene View
+   2. Click Adjust Editor Options > Assistant
+   3. Ctrl + Click Drag from Tap Gesture Recognizer to above `viewDidLoad`
+
+      1. Connection: Action, Object: View Controller, Name: screenTapped, Type: UITapGestureRecognizer > Connect
+      2. Add below code into the created function
+
+         - ```swift
+            let touchLocation = sender.location(in: sceneView)
+            guard let raycastQuery = sceneView.raycastQuery(from: touchLocation, allowing: .estimatedPlane, alignment: .vertical) else {return}
+            if let result = sceneView.session.raycast(raycastQuery).first {
+                createPodium(result: result)
+            }
+           ```
+
+### Physics
+
+- The SCNPhysicsBody
+  - SCNPhysicsBody is provided by SceneKit to allow a node to participate in a physics simulation
+    - Interaction (affection with forces and collisions) can be static (unaffected), dynamic (affected) or kinematic (can only be moved)
+    - A Physics Shape must be specified (as different shapes are affected in different ways; consider a spinning coin)
+    - The physics shape can just be the geometry passed to the physics body (via the shape)
+- Free Falling
+  - If I drop a ball, it will just bounce on the ground
+    - If we want an object to not just fall down, we must apply a force in another direction on the object
+    - If we want to let the user 'push' an obejct in the direction of view, we can use the cameraTransform value to apply a force in the same direction
+- Other Programmatic Options
+  - A few things to be aware of with Physics Shapes
+    - We can pass a type value to our Physics Shape to better model the physics of the object. This lets us choose a level of detail to save processing effort
+    - There's another option called collisionMargin which allows us to define how precise a 'hit' must be
+
+### Image Recognition
+
+- Image Detection allows us to determine what actual things are within the view the camera sees
+  - We do have to tell ARKit what these objects are first by providing reference images
+  - These images are stored in the .xcassets file in the same way images were with a traditional UIKit app
+- Reference Images
+  - Be aware of the following caveats
+    - For each image, you'll need to specify the physical size of the thing in the Attributes Inspector
+    - Images can't have an alpha channel (transparency)
+    - The higher the contrast and higher the resolution the more chance of discovery
+- Swift Code Additions
+  - A lot of the heavy lifting is done by ARKit
+    - Specify the reference images by creating a ARReference-Image.referenceImages object
+    - Pass this into the detectionImages property of the ARWorldTrackingConfiguration you create in viewWillAppear
+- Responding to Images
+  - The render(..., didAdd node: scnNode, ...) function not only detects planes but also images
+    - The difference is the detection of an ARImageAnchor rather than an ARPlaneAnchor
+    - These aren't the only two Anchors that can be detected - there's also an ARObjectAnchor
+- Properties of an ARImageAnchor
+  - The ARImageAnchor has a bunch of useful properties
+    - referenceImage is the image in .xcassets that was detected
+    - From that, we can determine the physicalSize of the referenceImage as well as the name of the image (so we know which one it is)
+    - We can use this information to put a plane on top of the image, perhaps presenting a different image
+
 ---
 
 ## Errors

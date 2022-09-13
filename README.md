@@ -3604,6 +3604,53 @@
     - We can pass a type value to our Physics Shape to better model the physics of the object. This lets us choose a level of detail to save processing effort
     - There's another option called collisionMargin which allows us to define how precise a 'hit' must be
 
+### Demo: Physics and Augmented Reality
+
+1. Cont'd Podium project
+2. Remove Sphere from podium.scn
+3. Add below code to below `createPodium` function on ViewController.swift
+
+   - ```swift
+      func createBall() {
+          guard let currentFrame = sceneView.session.currentFrame else {return}
+          let ball = SCNNode(geometry: SCNSphere(radius: 0.125))
+          ball.geometry?.firstMaterial?.diffuse.contents = UIColor.cyan
+          let cameraTransform = SCNMatrix4(currentFrame.camera.transform)
+          ball.transform = cameraTransform
+          let physicsBody = SCNPhysicsBody(type: .dynamic, shape: SCNPhysicsShape(node: ball))
+          ball.physicsBody = physicsBody
+          let power = Float(10.0)
+          let force = SCNVector3(-cameraTransform.m31 * power, -cameraTransform.m32 * power, -cameraTransform.m33 * power)
+          ball.physicsBody = physicsBody
+          ball.physicsBody?.applyForce(force, asImpulse: true)
+          sceneView.scene.rootNode.addChildNode(ball)
+      }
+     ```
+
+4. Declare boolean as `podiumAdded` and modify ViewController.swift
+
+   - ```swift
+      var podiumAdded = false
+
+      @IBAction func screenTapped(_ sender: UITapGestureRecognizer) {
+          if !podiumAdded {
+              ...
+              if let result = sceneView.session.raycast(raycastQuery).first {
+                  createPodium(result: result)
+                  podiumAdded = true
+              }
+          } else {
+              createBall()
+          }
+      }
+
+      func createPodium(result: ARRaycastResult) {
+          ...
+          podiumNode.physicsBody = SCNPhysicsBody(type: .static, shape: SCNPhysicsShape(node: podiumNode))
+          sceneView.scene.rootNode.addChildNode(podiumNode)
+      }
+     ```
+
 ### Image Recognition
 
 - Image Detection allows us to determine what actual things are within the view the camera sees

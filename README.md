@@ -3675,6 +3675,178 @@
     - From that, we can determine the physicalSize of the referenceImage as well as the name of the image (so we know which one it is)
     - We can use this information to put a plane on top of the image, perhaps presenting a different image
 
+## Closures and Animation
+
+### Closures
+
+- What are closures?
+
+  - Simply, a funcion used as an input parameter
+    - Not quite, it's a block of code that can be used as a value and executed at a later time
+
+- Closure Syntax
+
+  - ```swift
+      Let productClosure = { (numbers: [Int]) -> Int in
+        return product
+      }
+    ```
+
+- Calling the Closure
+
+  - Very similar to that of a function, despite the differences so far
+
+    - ```swift
+        let productResult = productClosure([14, 378])
+        print(productResult) // Outputs 5292
+      ```
+
+- Different Types fo Closures
+  - Closures are no differnt with combinations of functions
+    - If there is no return, the return type must still be specified, but as type Void
+    - If there are no input parameters, there will be emplty brackets before the return type
+- Remember that Closures can be used as a value
+  - As such, they can be passed to a function as a value
+  - We can use these with both the sorted function as well as some collection funtions (that act on groups of data)
+
+### Defined Functions
+
+- What are defined functions?
+
+  - Built-in functions that use closures as arguments. We will look at four of them
+    - `sorted(by:)` used to sort data in a user0supplied fashion
+    - `map()` which manipulates each element of an array before making a new one with the elements
+    - `filter()` which allows selecting some elements within an array
+    - `reduce()` which turns an array into a single value
+
+- Sorting with Sorted
+
+  - `sorted(by:)` will run the content of the closure on every pair of objects in an array
+    - It compares the value of the firest object to the second object in the pair
+    - If the closure returns true, the objects don't swap
+    - If the closure returns false, the objects do swap
+    - This repeats, and is the logically the same as BubbleSort
+  - Consider an array of structures or classes
+
+    - We can therefore sort via any element of the class/struct
+    - For example, a 'Lesson' struct:
+
+      - ```swift
+          struct Lesson {
+            var name: String
+            var number: Int
+          }
+        ```
+
+  - We create an array of those structs: `lessons = [Lesson(name: "AR", number: 2), Lesson(name: "revision", number: 1)]`
+  - Then, sort the array
+
+    - In ascending order - but what if descending?
+
+      - ```swift
+          let sortedLessons = lessons.sorted{(first, second) -> Boll in
+            return first.number < second.number
+          }
+        ```
+
+- More on Closures
+
+  - Swift and sorted are smart enough to realise the structure of a closure
+    - You can just specify the return and use $0 and $1 to refer to the first/second pair elements
+  - There are other alternate syntaxes (slightly) as well
+
+- The Map Function
+
+  - Take each element of an array, and do something to each of them
+
+    - ```swift
+      let cities = ["Perth", "Adelaide", "Canberra", "Sydney"]
+      let longCities = cities.map{$0 + ", Australia"}
+      ```
+
+  - Each element would then be 'Perth, Australia' and so forth
+
+- The Filter Function
+
+  - Inspect each element of the array, and place it in a new array if it meets some condition
+
+    - ```swift
+      let guessNumbers = [7, 14, 27, 36, 99, 18, 26]
+      let validNumbers = guessNumbers.filter{$0 < 40}
+      ```
+
+  - The new validNumbers list wouldn't have 99 in it
+
+- The Reduce Function
+
+  - Combines all elements of the array into a single value
+
+    - ```swift
+      let invoiceValues = [279.50, 1000.00, 105.50]
+      let invoiceTotal = invoiceValues.reduce(0, {$0 + $1})
+      // invocieTotle: 1385.00
+      ```
+
+  - The invoiceTotal wuold start at zero and each element wiould be added to the previous.
+
+### Animation Theory
+
+- Animations in Apps
+  - Animations can be useful in many types of apps
+    - Even in productivity-style apps where subtle animations help direct the user's attention, amongst other things
+    - Consider segue animations as an example - the push animation, most notably
+    - The following advice has been collated an interpreted from various Apple material
+- Directing Attention
+  - Using consistent animations makes the app flow and hence the user engaged
+  - An animation can signal to the User that something has changed
+  - This will then elicit a response from the User
+- User Orientation
+  - By using consistent animations, users can know where they are in the workflow of an App
+  - Consider when launching an App or opening a folder on the Home Screen
+  - The 'push' segue in this regard has the same effect; the user knows they are descending down the hierarchy
+- Connecting Behaviour
+  - Animations should be optional (for accessibility), realistic and also limited
+    - Overuse can be uncomfortable and take away from the main purpose of the App
+    - When animations are realistic, they ground the App. For example, when the user swipes their finger, and the contents of a list change
+
+### Animations with UIKit
+
+- UIView and animate()
+  - UIView provides an animate function (a.k.a. method) that allows you to define animation on views
+    - Six properties can be animated: frame, bounds, center, transform, alpha and backgroundColour
+    - Three function overloads are provided
+    - They're really each just a twist on the same basic thing, but with the option to do extra things
+- Animate With Duration
+
+  - Can specify two input parameters to UIView
+
+    - The duration of the animation (in seconds) called withDuration and
+    - a closure that specifies what the 'end result' of the animation is named animations
+
+      - ```swift
+          UIView.animate(withDuration: 2.0) {
+            theView.backgroundColor = UIColor.blue
+          }
+        ```
+
+- Also with a Completion Handler
+  - Also have a second closure as the third argument (completion), which is what to do when the animation is finished (after the withDuration)
+  - You could make it do another animation (but please don't)
+- Also with a Delay or Other Options
+  - Can specify the number of seconds to wait before the animation is run as the delay input parameter
+  - The options parameter allows non-linear time animations as well as repeat options (as seen in UIViewAnimationOptions)
+- Affine Transforms
+  - What about that 'transform' property of UIView?
+    - Cna supply transformation matrices to map each point of a View to another point
+    - There are initialisers to handle the common cases of scaling, rotating and translating to save time and effort
+- CGAffineTransform initialisers
+  - Examples of the code for each:
+    - Scale: CGAffineTransform(scaleX:, scaleY:)
+    - Rotate: CGAffineTransform(rotationsAngle:)
+    - Translate: CGAffineTransform(translationX:, y:)
+  - Go back to the start (i.e. no transformations)
+    - CGAffineTransform.identity
+
 ---
 
 ## Errors

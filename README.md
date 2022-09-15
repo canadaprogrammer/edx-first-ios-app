@@ -3712,7 +3712,7 @@
 
 ### Demo: Create a closure
 
-1. Xcode > File > New > iOS > Blank > Next > ClouserPlayground.playground > Create
+1. Xcode > File > New > iOS > Blank > Next > ClosurePlayground.playground > Create
 
    - ```swift
       func addition (numbers: [Int]) -> Int {
@@ -3724,14 +3724,14 @@
       }
       print(addition(numbers: [1,2,3,4,5,6,7,8,9,10]))
 
-      let addClouser = { (numbers: [Int]) -> Int in
+      let addClosure = { (numbers: [Int]) -> Int in
           var total = 0
           for number in numbers {
               total = total + number
           }
           return total
       }
-      let add = addClouser([1,2,3,4,5,6,7,8,9,10])
+      let add = addClosure([1,2,3,4,5,6,7,8,9,10])
       print(add)
 
       func division (numbers: [Int]) -> Double {
@@ -3743,14 +3743,14 @@
       }
       print(division(numbers: [2,2]))
 
-      let divClouser = { (numbers: [Int]) -> Double in
+      let divClosure = { (numbers: [Int]) -> Double in
           var divide = 1.0
           for number in numbers {
               divide = divide / Double(number)
           }
           return divide
       }
-      let div = divClouser([2,2])
+      let div = divClosure([2,2])
       print(div)
      ```
 
@@ -3833,6 +3833,66 @@
       ```
 
   - The invoiceTotal wuold start at zero and each element wiould be added to the previous.
+
+### Demo: Defined Functions
+
+1. Xcode > File > New > iOS > Blank > Next > DefinedFunctionsPlayground.playground > Create
+
+   - ```swift
+      struct Person {
+          var name: String
+          var age: Int
+          var address: String
+          var email: String
+      }
+
+      var people = [Person(name: "Jin", age: 28, address: "123 Fake Street", email: "email@example.com"),
+                    Person(name: "John", age: 30, address: "123 Fake St.", email: "jdoe@example.com"),
+                    Person(name: "Smith", age: 34, address: "123 Fake St.", email: "smith@example.com"),
+                    Person(name: "Kim", age: 23, address: "123 Fake St.", email: "kim@example.com"),
+      ]
+      print(people)
+      /*
+      [__lldb_expr_19.Person(name: "Jin", age: 28, address: "123 Fake Street", email: "email@example.com"), __lldb_expr_19.Person(name: "John", age: 30, address: "123 Fake St.", email: "jdoe@example.com"), __lldb_expr_19.Person(name: "Smith", age: 34, address: "123 Fake St.", email: "smith@example.com"), __lldb_expr_19.Person(name: "Kim", age: 23, address: "123 Fake St.", email: "kim@example.com")]
+      */
+      var sortedPeople = people.sorted {(firstPerson, secondPerson) -> Bool in
+          return firstPerson.age < secondPerson.age
+      }
+      print(sortedPeople)
+      /*
+      [__lldb_expr_19.Person(name: "Kim", age: 23, address: "123 Fake St.", email: "kim@example.com"), __lldb_expr_19.Person(name: "Jin", age: 28, address: "123 Fake Street", email: "email@example.com"), __lldb_expr_19.Person(name: "John", age: 30, address: "123 Fake St.", email: "jdoe@example.com"), __lldb_expr_19.Person(name: "Smith", age: 34, address: "123 Fake St.", email: "smith@example.com")]
+      */
+      var sortedPeople1 = people.sorted {(firstPerson, secondPerson) in
+          return firstPerson.age < secondPerson.age
+      }
+      print(sortedPeople1)
+
+      var sortedPeople2 = people.sorted { $0.age < $1.age }
+      print(sortedPeople2)
+
+      var sortedPeople3 = people.sorted(by: { $0.age < $1.age })
+      print(sortedPeople3)
+
+      var numbers = [7,42,9,18,27]
+
+      var numMap = numbers.map{ (number) in
+          return number * 2
+      }
+      print(numMap)
+      // [14, 84, 18, 36, 54]
+
+      var numFilter = numMap.filter { number in
+          return number < 20
+      }
+      print(numFilter)
+      // [14, 18]
+
+      var numReduce = numFilter.reduce(0) { currentSum, number in
+          return currentSum + number
+      }
+      print(numReduce)
+      // 32
+     ```
 
 ### Animation Theory
 

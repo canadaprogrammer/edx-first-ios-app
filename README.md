@@ -3688,6 +3688,7 @@
 
   - ```swift
       Let productClosure = { (numbers: [Int]) -> Int in
+        // Multiply the numbers together
         return product
       }
     ```
@@ -3708,6 +3709,50 @@
 - Remember that Closures can be used as a value
   - As such, they can be passed to a function as a value
   - We can use these with both the sorted function as well as some collection funtions (that act on groups of data)
+
+### Demo: Create a closure
+
+1. Xcode > File > New > iOS > Blank > Next > ClouserPlayground.playground > Create
+
+   - ```swift
+      func addition (numbers: [Int]) -> Int {
+          var total = 0
+          for number in numbers {
+              total = total + number
+          }
+          return total
+      }
+      print(addition(numbers: [1,2,3,4,5,6,7,8,9,10]))
+
+      let addClouser = { (numbers: [Int]) -> Int in
+          var total = 0
+          for number in numbers {
+              total = total + number
+          }
+          return total
+      }
+      let add = addClouser([1,2,3,4,5,6,7,8,9,10])
+      print(add)
+
+      func division (numbers: [Int]) -> Double {
+          var divide = 1.0
+          for number in numbers {
+              divide = divide / Double(number)
+          }
+          return divide
+      }
+      print(division(numbers: [2,2]))
+
+      let divClouser = { (numbers: [Int]) -> Double in
+          var divide = 1.0
+          for number in numbers {
+              divide = divide / Double(number)
+          }
+          return divide
+      }
+      let div = divClouser([2,2])
+      print(div)
+     ```
 
 ### Defined Functions
 

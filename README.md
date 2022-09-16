@@ -3952,6 +3952,71 @@
   - Go back to the start (i.e. no transformations)
     - CGAffineTransform.identity
 
+### Demo: Animations with UIKit
+
+1. Xcode > File > New > Playground > iOS > Single View > Next > AnimationPlayground.playground > Create
+2. Below code will be there
+
+   - ```swift
+      import UIKit
+      import PlaygroundSupport
+
+      class MyViewController : UIViewController {
+          override func loadView() {
+              let view = UIView()
+              view.backgroundColor = .white
+
+              let label = UILabel()
+              label.frame = CGRect(x: 150, y: 200, width: 200, height: 20)
+              label.text = "Hello World!"
+              label.textColor = .black
+
+              view.addSubview(label)
+              self.view = view
+          }
+      }
+      // Present the view controller in the Live View window
+      PlaygroundPage.current.liveView = MyViewController()
+     ```
+
+3. Change label to square
+
+   - ```swift
+      let square = UIView()
+      square.frame = CGRect(x: 175, y: 200, width: 50, height: 50)
+      square.backgroundColor = .black
+
+      view.addSubview(square)
+     ```
+
+4. Scale Animation
+
+   - ```swift
+      UIView.animate(withDuration: 10, delay: 10, options: [.repeat, .autoreverse], animations: {
+          square.alpha = 0.5
+          square.backgroundColor = .blue
+          square.frame = CGRect(x: 100, y: 200, width: 100, height: 100)
+      }) { (_) in
+          square.frame = CGRect(x: 175, y: 200, width: 50, height: 50)
+          square.alpha = 1.0
+          square.backgroundColor = .black
+      }
+     ```
+
+5. Multiple Animations
+
+   - ```swift
+      UIView.animate(withDuration: 2, delay: 0, options: [.repeat, .autoreverse], animations: {
+          square.alpha = 0.5
+          square.backgroundColor = .blue
+          let affineScale = CGAffineTransform(scaleX: 2, y: 2)
+          let affineRotates = CGAffineTransform(rotationAngle: .pi)
+          let affineTranslate = CGAffineTransform(translationX: 50, y: 50)
+          let combined = affineScale.concatenating(affineRotates).concatenating(affineTranslate)
+          square.transform = combined
+      })
+     ```
+
 ---
 
 ## Errors

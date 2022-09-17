@@ -4017,6 +4017,122 @@
       })
      ```
 
+## Communicating with the Web
+
+### "Interweb" Fundamentals
+
+- What's in an Address?
+  - URL: Uniform Resource Locator:
+  - Protocols:
+    - http:// Hypertext Trnasfer Protocol
+    - https:// Hypertext Trnasfer Protocol - Secure
+- What else is there
+  - Domain: curtin.edu.au
+  - Subdomain: scieng.curtin.edu.au
+  - Port: 80(HTTP) or 443(HTTPS)
+  - Path: https://scieng.curtin.edu.au/research/institues-centres-and-grops/
+  - Query Parameters: give more information to the server about a request, like Swift dictionaries:
+    - https://www.amazon.com.au/s?k=stan_grant&ref=nb_sb_noss_2
+  - Request type i.e. the HTTP method, e.g. GET, POST
+  - Header: tell the server how to deal with request
+  - Body: data sent (request) or received (response)
+
+### Requests and Responses
+
+- How does it all work in Swift?
+
+  - Create a URL; `let url = URL(string: "https://www.curtin.edu.au")!`
+  - Create a network request and execute it
+  - A data task must be created:
+
+    - `URLSession.shared.dataTask(with: url, completionHandler: @escaping (Data?, Response?, Error?)) ->Void)`
+    - Data?: this is ther response's body, the requested data
+    - URLResopnse?: information about the response
+    - Error?: errors that occurred
+
+  - ```swift
+      let url = URL(string: "https://www.curtin.edu.au")!
+
+      let task = URLSession.shared.dataTask(with: url) {
+        (data, response, error) in
+        if let data = data {
+          print(data)
+        }
+      }
+      task.resume()
+      // 100593 bytes
+    ```
+
+  - ```swift
+      import UIKit
+      import PlaygroundSupport
+
+      PlaygroundPage.current.needsIndefiniteExecution = true
+
+      let url = URL(string: "https://www.curtin.edu.au")!
+
+      let task = URLSession.shared.dataTask(with: url) {
+        (data, response, error) in
+        if let data = data,
+          let string - String(data: data, encoding: .utf8) {
+            print(string)
+          }
+          PlaygroundPage.current.finishExecution()
+      }
+      task.resume()
+      // html code
+    ```
+
+- Application Programming Interface
+  - Also knwo as APIs for short
+  - An API allows two pieces of software to talk to each other through providing routines, protocols or tools
+  - The frameworks we have used are APIs
+  - An API on the web is a web service enabling the transferring of data using network requests
+- Using APIs
+  - APIs read the path and query parameters
+  - Web servers process these to respond correctly
+  - Data publicly available data through web services give examples of how to construct URLs for data retrieval
+- Example of an API Request
+  - `let url = URL(string: "https://api.nasa.gov/planetary/apod?api_key=DEMO_KEY")!`
+- Modifying URLs
+  - Use URLComponents with individual components to dynamically update the query in a URL
+  - Query parameters are supplied as a Dictionary and can be used to update URLs when queries need to be changed
+  - Simply add and call the extension URL{} function
+- Using extension URL
+
+  - ```swift
+      import UIKit
+      import PlaygroundSupport
+
+      PlaygroundPage.current.needsIndefiniteExecution = true
+
+      extension URL {
+        func withQueries(_ queries: [String: String]) -> URL? {
+          var components = URLComponents(url: self, resolveingAgainstBaseURL: true)
+          components?.queryItems = queries.map {
+            URLQueryItem(name: $0.0, value: $0.1)
+          }
+          return components?.url
+        }
+      }
+
+      let baseURL = URL(string: "https://api.nasa.gov/planetary/apod?api_key=DEMO_KEY")!
+
+      let query:[String: String] = ["api_key": "DEMO_KEY", "date": "2022-09-16"]
+
+      let url = baseURL.withQueryies(query)!
+
+      let task = URLSession.shared.dataTask(with: url) {
+        (data, response, error) in
+        if let data = data,
+          let string = String(data: data, encoding: .utf8) {
+            print(string)
+          }
+          PlaygroundPage.current.finishExecution()
+      }
+      task.resume()
+    ```
+
 ---
 
 ## Errors

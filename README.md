@@ -4133,6 +4133,88 @@
       task.resume()
     ```
 
+### Demo: HTTP calls and URL sessions
+
+1. Xcode > File > New > Playground
+2. iOS > Blank > Next
+
+   - ```swift
+     import UIKit
+     import PlaygroundSupport
+
+     PlaygroundPage.current.needsIndefiniteExecution = true
+
+     let url = URL(string: "https://www.curtin.edu.au")!
+
+     let task = URLSession.shared.dataTask(with: url) {
+         (data, response, error) in
+         if let data = data {
+             print(data as NSData)
+         }
+         PlaygroundPage.current.finishExecution()
+     }
+     task.resume()
+     // {length = 252991, bytes = 0x3c21444f 43545950 45206874 6d6c3e0a ... 3c2f6874 6d6c3e0a }
+     ```
+
+   - ```swift
+     ...
+         if let data = data,
+           let string = String(data: data, encoding: .utf8){
+             print(string)
+         }
+     ...
+     /* <!DOCTYPE html>
+       <html lang="en">
+       <!--noindex--><head>
+       ...
+     */
+     ```
+
+   - ```swift
+     import UIKit
+     import PlaygroundSupport
+
+     PlaygroundPage.current.needsIndefiniteExecution = true
+
+     let url = URL(string: "https://api.openweathermap.org/data/2.5/onecall?lat=33.44&lon=-94.04&exclude=hourly,daily&appid={your_appid}")!
+
+     let task = URLSession.shared.dataTask(with: url) {
+         (data, response, error) in
+         if let data = data,
+           let string = String(data: data, encoding: .utf8){
+             print(string)
+         }
+         PlaygroundPage.current.finishExecution()
+     }
+     task.resume()
+     /*
+     {"lat":33.44,"lon":-94.04,"timezone":"America/Chicago","timezone_offset":-18000,"current":{"dt":1663643911,"sunrise":1663588938,"sunset":1663633061,"temp":299.96,"feels_like":301.76,"pressure":1016,"humidity":71,"dew_point":294.26,"uvi":0,"clouds":0,"visibility":10000,"wind_speed":2.57,"wind_deg":140,"weather":[{"id":800,"main":"Clear","description":"clear sky","icon":"01n"}]},
+     "minutely":[{"dt":1663643940,"precipitation":0},...,{"dt":1663647540,"precipitation":0}]}
+     */
+     ```
+
+   - ```swift
+     ...
+     extension URL {
+         func withQueries(_ queries: [String: String]) -> URL? {
+             var components = URLComponents(url: self, resolvingAgainstBaseURL: true)
+             components?.queryItems = queries.map {
+                 URLQueryItem(name: $0.0, value: $0.1)
+             }
+             return components?.url
+         }
+     }
+
+     let baseURL = URL(string: "https://api.openweathermap.org/data/2.5/onecall")!
+
+     let query:[String: String] = ["appid": "7d91988239d070118da74c34ea13ab33", "lat": "33.44", "lon": "-94.04", "exclude": "hourly,daily", ]
+
+     let url = baseURL.withQueries(query)!
+     ...
+     // the same results
+     ```
+
 ---
 
 ## Errors

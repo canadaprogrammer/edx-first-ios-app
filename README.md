@@ -4217,7 +4217,7 @@
 
 ### Demo: Integrating Web APIs
 
-- ```swift
+```swift
   import UIKit
   import PlaygroundSupport
 
@@ -4241,7 +4241,111 @@
   https://geo-info.co/-32.007000,115.895096
   {"altName":"Waterford","city":"Perth","community":"","communityCode":"","country":"AU","county":"TANGNEY","countyCode":"","isCity":true,"isPlace":false,"latitude":-32.0153,"location":[115.8879,-32.0153],"longitude":115.8879,"mileDistance":0.5566987894697565,"neabyCities":[{"city":"Karawara","community":"","communityCode":"","country":"AU","county":"TANGNEY","countyCode":"","isCity":true,"isPlace":false,"latitude":-32.0079,"location":[115.8838,-32.0079],"longitude":115.8838,"mileDistance":0.78095141176321,"postalCode":"6152","state":"Western Australia","stateCode":"WA"},...
   */
-  ```
+```
+
+## An Introduction to JSON - JSON and Swift Types
+
+- JSON Introduction
+  - JSON: JavaScript Obejct Notation
+  - Data returned from the web is often JSON
+- JSON Example
+
+  - ```json
+    {
+      "name": "David",
+      "partner": {
+        "p_name": "Andrew"
+      }
+    }
+    ```
+
+- JSON and Swift
+  - {} Curly brackets are found in dictionaries
+  - [] Square brackets are found in arrays
+  - Text inside of quotation marks " " means we have strings
+  - Numbers and Boolean values don't have quotation marks
+- JSON Expanded
+
+  - ```json
+    {
+      "name": "David",
+      "partners": [
+        {
+          "p_name": "Andrew"
+        },
+        {
+          "p_name": "Dave"
+        }
+      ]
+    }
+    ```
+
+- JSON Data to Swift Types
+  - Conveting to Swift we will use `JSONDecoder`
+  - Accepts parameters: type Type and Data
+  - Attempts to decode the Data object
+  - Must conform to Codable protocol
+- Into Our Own Model Objects
+
+  - ```swift
+    struct NASAImageInfo {
+      var title: String
+      var description: String
+      var url: URL
+      var copyright: String?
+    }
+    ```
+
+- `CodingKeys` and `CodingKey`
+
+  - ```swift
+    struct Car: Codable {
+      let yearModel: Date
+      let colour: String
+      let manufacturer: String
+
+      enum CodingKeys: String, CodingKey {
+        case yearModel = "manufactured_year"
+        case colour: "paintColour"
+        case manufacturer = "make"
+      }
+    }
+    ```
+
+- init(form decoder: Decoder) throws
+  - The `init` method must be implemented
+  - Ignore key/value pairs we will not use in our model
+  - It is a throwing function
+- What will we have?
+  - Our own model and object
+  - It will have its properties
+  - An enumeration `CodingKeys`
+  - An initializer `init(from:)`
+- Completion Handler Request
+  - Our model's initializer is ready
+  - `JSONDecoder` uses this to put the JSON into our model
+  - Completion handler must be updated
+- Working Smoothly with JSON
+  - JSON can be complex: nexted data structures, multiple data types
+  - Check your code matches the structure
+  - `CodingKeys` enumeration must match
+  - Network connections can fail
+  - URL and the returned response
+- Structuring Your Project
+  - Where do we put this code?
+  - In its own file?
+  - In a function?
+  - Where do we call it from?
+  - How do we reuse it?
+- Completion Handler
+  - Network request is created
+  - Code, completion handler, added to the URLSession
+  - Network session ends, completion handler executes
+  - As the developer we write that handler
+- When it Fails
+  - What do we do when things don't go as planned?
+  - Network fails
+  - JSON cannot be decoded
 
 ---
 

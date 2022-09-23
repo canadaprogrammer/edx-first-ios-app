@@ -4347,6 +4347,75 @@
   - Network fails
   - JSON cannot be decoded
 
+### Demo: JSON and Swift Types
+
+```swift
+import UIKit
+import PlaygroundSupport
+
+PlaygroundPage.current.needsIndefiniteExecution = true
+
+struct Current: Codable {
+    var dt: Int
+    var sunrise: Int
+}
+struct LocInfo: Codable {
+    var latitude: Double
+    var longitude: Double
+    var timezone: String
+    var current: Current
+
+    enum CodingKeys: String, CodingKey {
+        case latitude = "lat"
+        case longitude = "lon"
+        case timezone
+        case current
+    }
+    init(from decoder: Decoder) throws {
+        let valueContainer = try decoder.container(keyedBy: CodingKeys.self)
+        self.latitude = try valueContainer.decode(Double.self, forKey: CodingKeys.latitude)
+        self.longitude = try valueContainer.decode(Double.self, forKey: CodingKeys.longitude)
+        self.timezone = try valueContainer.decode(String.self, forKey: CodingKeys.timezone)
+        self.current = try valueContainer.decode(Current.self, forKey: CodingKeys.current)
+    }
+}
+extension URL {
+  func withQueries(_ queries: [String: String]) -> URL? {
+      var components = URLComponents(url: self, resolvingAgainstBaseURL: true)
+      components?.queryItems = queries.map {
+          URLQueryItem(name: $0.0, value: $0.1)
+      }
+      return components?.url
+  }
+}
+
+func fetchLocInfo(completion: @escaping (LocInfo?) -> Void){
+    let baseURL = URL(string: "https://api.openweathermap.org/data/2.5/onecall")!
+    let query:[String: String] = ["appid": "7d91988239d070118da74c34ea13ab33", "lat": "33.44", "lon": "-94.04", "exclude": "hourly,daily", ]
+    let url = baseURL.withQueries(query)!
+
+    let task = URLSession.shared.dataTask(with: url) {
+        (data, response, error) in
+        let jsonDecoder = JSONDecoder()
+        if let data = data,
+           let locInfo = try? jsonDecoder.decode(LocInfo.self, from: data) {
+            completion(locInfo)
+            //print(locInfo)
+
+        } else {
+            completion(nil)
+        }
+        PlaygroundPage.current.finishExecution()
+    }
+    task.resume()
+}
+fetchLocInfo{ (fetchedInfo) in print(fetchedInfo ?? "Either no data was returned or data was not decoded correctly!")}
+// LocInfo(latitude: 33.44, longitude: -94.04, timezone: "America/Chicago", current: __lldb_expr_78.Current(dt: 1663909627, sunrise: 1663934697))
+
+// error or no data
+// Either no data was returned or data was not decoded correctly!
+```
+
 ---
 
 ## Errors

@@ -4416,6 +4416,53 @@ fetchLocInfo{ (fetchedInfo) in print(fetchedInfo ?? "Either no data was returned
 // Either no data was returned or data was not decoded correctly!
 ```
 
+## Concurrency and the Web
+
+### Concurrency
+
+- Concurrency: The fact of two or more events or circumstances happening or existing at the same time
+  - On iOS multiple things can happen at the same time
+  - Multiple things happening concurrently wasn't always possible
+  - Multicore processors facilitate multiple things to happen at once
+- Grand Central Dispatch
+  - An iOS technology managing multiple things simultaneously
+  - Manages what is being processed at any given time
+  - Manages things on different queues
+  - Processes things with different priority levels
+- Different Queues of Threads
+  - Queues are software abstractions on top of multicore processing
+  - We tell our code which thread to run on
+  - The main queue executes the majority of the code
+  - The main queue has the highest priority
+- Prioritising
+  - User interface, user input thread: highest priority
+  - Background queues have lower priority
+  - Long operations usually have lower priority
+- Data from the Web
+  - `URLSession` network requests run on low priority queues
+  - Grabbing stuff from the Web, things can go wrong
+  - User interface code is always on the main queue
+- DispatchQueue
+  - Is used to put user interface code onto the main thread
+  - `DispatchQueue.main.async { // our code goes in herre }`
+- Displaying Retrieved Data
+  - When we are pulling data down off the web, we need to think through how we will display this to the user
+  - Once we have thought it through we need to design our interface to be able to do that which we have designed
+- What can go wrong?
+  - The web is volatile, things can go wrong
+  - The web is volatile, things can change
+  - Errors occur, and they may not be our errors
+- App Transport Security (ATS) error
+  - ATS is designed for security and privacy
+  - It requires HTTPS network connections
+  - The best resolution: all requests use HTTPS
+  - To temporarily fix this, update the Info.plist file
+- Network Activity Indicator
+  - Show the user something is happening
+  - Enable the network Activity Indicator
+  - Simply set the visible property to true at the start
+  - Set the visible property to false upon completion
+
 ---
 
 ## Errors

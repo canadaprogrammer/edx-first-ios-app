@@ -4463,6 +4463,147 @@ fetchLocInfo{ (fetchedInfo) in print(fetchedInfo ?? "Either no data was returned
   - Simply set the visible property to true at the start
   - Set the visible property to false upon completion
 
+### Demo: Concurrency in your App
+
+1. Create a new project
+2. Select Swift 4 from Build Settings > Swift Compiler - Language > Swift Language Version
+3. Click Main.storyboard
+   1. From Object Library, add Navigation Controller
+   2. Remove Root View Controller
+   3. Click Navigation Controller
+      1. On the Attributes Inspector, check Is Initial View Controller
+   4. Ctrl + Drag from Navigation Controller to View Controller
+      1. Click Relationship Segue > root view controller
+   5. From Object Library, add Image View to the top of View Controller
+      1. Change the size to width: 100% and height: 300
+      2. Click Add new constraints
+         1. Click each edge and click Add 4 constraints
+   6. From Object Library, add Label to below the Image View
+      1. Extend the width
+      2. Click Add new constraints
+         1. Click top edge and side edges and click Add 3 constrints
+         2. On the Attributes Inspector
+            1. Change the label to Description
+            2. Change the Line Break to Word Wrap
+   7. Add one more Label like above
+      1. On the attributes Inspector
+         1. Change the label to copyright
+         2. Change the font size to 14
+   8. Click View Controller
+      1. Click Adjust Editor Options > Assistant
+      2. Ctrl + Drag from Image View to above `viewDidLoad`
+         1. Connection: Outlet, Name: imageView > Connect
+      3. Ctrl + Drag from Description Label to below `imageView`
+         1. Connection: Outlet, Name: descriptionLabel > Connect
+      4. Ctrl + Drag from Copyright Label to below `imageView`
+         1. Connection: Outlet, Name: copyrightLabel > Connect
+4. File > New > File > iOS > Swift File > Next
+
+   1. Save As: PhotoInfo.swift > Create
+   2. Add below code
+
+      - ```swift
+          import Foundation
+
+          struct PhotoInfo: Codable {
+              var title: String
+              var description: String
+              var url: URL
+              var copyright: String?
+
+              enum CodingKeys: String, CodingKey {
+                  case title
+                  case description = "explanation"
+                  case url
+                  case copyright
+              }
+
+              init(from decoder: Decoder) throws {
+                  let valueContainer = try decoder.container(keyedBy: CodingKeys.self)
+                  self.title = try valueContainer.decode(String.self, forKey: CodingKeys.title)
+                  self.description = try valueContainer.decode(String.self, forKey: CodingKeys.description)
+                  self.url = try valueContainer.decode(URL.self, forKey: CodingKeys.url)
+                  self.copyright = try valueContainer.decode(String.self, forKey: CodingKeys.copyright)
+              }
+          }
+        ```
+
+5. File > New > File > iOS > Swift File > Next
+
+   1. Save As: URL+Helpers.swift > Create
+   2. Add below code
+
+      - ```swift
+          import Foundation
+
+          extension URL {
+              func withQueries(_ queries: [String: String]) -> URL? {
+                  var components = URLComponents(url: self, resolvingAgainstBaseURL: true)
+                  components?.queryItems = queries.map {
+                      URLQueryItem(name: $0.0, value: $0.1)
+                  }
+                  return components?.url
+              }
+          }
+        ```
+
+6. File > New > File > iOS > Swift File > Next
+
+   1. Save As: PhotoInfoController.swift > Create
+   2. Add below code
+
+      - ```swift
+          import Foundation
+
+          class PhotoInfoController {
+              func fetchPhotoInfo(completion: @escaping (PhotoInfo?) -> Void) {
+                  let baseURL = URL(string: "https://api.nasa.gov/planetary/apod")!
+                  let query:[String: String] = ["api_key": "YOUR_API_KEY", "data":"2022-09-26"]
+                  let url = baseURL.withQueries(query)!
+
+                  let task = URLSession.shared.dataTask(with:url) {
+                      (data, response, error) in
+                      let jsonDecoder = JSONDecoder()
+                      if let data = data,
+                        let photoInfo = try? jsonDecoder.decode(PhotoInfo.self, from: data) {
+                          completion(photoInfo)
+                      } else {
+                          print("Either no data was returned or data was not decoded correctly!")
+                          completion(nil)
+                      }
+                  }
+                  task.resume()
+              }
+          }
+        ```
+
+7. On ViewController.swift
+
+   1. Add `let photoInfoController = PhotoInfoController()` to above `viewDidLoad()`
+   2. Add below code into `viewDidLoad()`
+
+      - ```swift
+          descriptionLabel.text = ""
+          copyrightLabel.text = ""
+
+          photoInfoController.fetchPhotoInfo {(photoInfo) in
+              guard let photoInfo = photoInfo else {return}
+              self.title = photoInfo.title
+              self.descriptionLabel.text = photoInfo.description
+              if let copyright = photoInfo.copyright {
+                  self.copyrightLabel.text = "Copyright \(copyright)"
+              } else {
+                  self.copyrightLabel.isHidden = true
+              }
+          }
+        ```
+
+8. Debugging
+   1. Click PhotoInfoController.swift
+      1. Click the number line of `completion(photoInfo)`
+      2. Add `print(photoInfo)` to under `completion(photoInfo)`
+      3. Click Start the active scheme
+
 ---
 
 ## Errors

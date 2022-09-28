@@ -3297,7 +3297,7 @@
 1. Create New Xcode Project
 2. iOS > Augmented Reality App > Next
 3. Choose team, Interface: Storyboard, Language: Swift, Content Technology: SceneKit > Next > Create
-4. Download a 3D model (fender_stratocaster) from https://developer.apple.com/augmented-reality/quick-look/
+4. Download a 3D model (fender_stratocaster) from <https://developer.apple.com/augmented-reality/quick-look/>
 5. Right click on art.scnassets > Click Add Files to "art.scnassets" > Downloads folder > Choose the downloaded 3D model (.usdz) > Add
 6. Click fender_stratocaster.usdz under art.scnassets
    1. Click fender_stratocaster on the navigation area
@@ -4030,9 +4030,9 @@
   - Domain: curtin.edu.au
   - Subdomain: scieng.curtin.edu.au
   - Port: 80(HTTP) or 443(HTTPS)
-  - Path: https://scieng.curtin.edu.au/research/institues-centres-and-grops/
+  - Path: <https://scieng.curtin.edu.au/research/institues-centres-and-grops/>
   - Query Parameters: give more information to the server about a request, like Swift dictionaries:
-    - https://www.amazon.com.au/s?k=stan_grant&ref=nb_sb_noss_2
+    - <https://www.amazon.com.au/s?k=stan_grant&ref=nb_sb_noss_2>
   - Request type i.e. the HTTP method, e.g. GET, POST
   - Header: tell the server how to deal with request
   - Body: data sent (request) or received (response)
@@ -4599,10 +4599,20 @@ fetchLocInfo{ (fetchedInfo) in print(fetchedInfo ?? "Either no data was returned
         ```
 
 8. Debugging
+
    1. Click PhotoInfoController.swift
+
       1. Click the number line of `completion(photoInfo)`
       2. Add `print(photoInfo)` to under `completion(photoInfo)`
       3. Click Start the active scheme
+      4. It returned
+
+         - ```
+            2022-09-27 19:43:41.454099-0700 NASADailyPhoto[36114:1556726] [boringssl] boringssl_metrics_log_metric_block_invoke(153) Failed to log metrics
+            Either no data was returned or data was not decoded correctly!
+           ```
+
+         - No data was because copyright was nil. When I hid copyright from PhotoInfo.swift and ViewController.swift, it got the data
 
 ---
 
@@ -4630,7 +4640,7 @@ fetchLocInfo{ (fetchedInfo) in print(fetchedInfo ?? "Either no data was returned
 - I removed the connection and the issue solved.
 - It's because I removed `@IBOutlet weak var frequentTextField` on `AddFlightTableViewController`
 
-### Signing for "..." requires a development team.
+### Signing for "..." requires a development team
 
 1. Add you Apple ID in Xcode
    - On menu bar, Xcode > Preferences > Accounts > Add Apple ID

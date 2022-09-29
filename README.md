@@ -4644,6 +4644,52 @@ fetchLocInfo{ (fetchedInfo) in print(fetchedInfo ?? "Either no data was returned
                 }
                ```
 
+9. Download an image from the url
+
+   1. On ViewController.swift
+
+      1. Modify `viewDidLoad()` and add `updateUI`
+
+         - ```swift
+            override func viewDidLoad() {
+                super.viewDidLoad()
+                descriptionLabel.text = ""
+                copyrightLabel.text = ""
+
+                photoInfoController.fetchPhotoInfo {(photoInfo) in
+                    if let photoInfo = photoInfo {
+                        self.updateUI(with: photoInfo)
+                    }
+                }
+            }
+
+            func updateUI(with photoInfo: PhotoInfo) {
+                print(photoInfo.url)
+                let task = URLSession.shared.dataTask(with: photoInfo.url, completionHandler: {(data, response, error) in
+
+                        guard let data = data,
+                              let image = UIImage(data: data) else {return}
+
+                        DispatchQueue.main.async {
+                            self.title = photoInfo.title
+                            self.imageView.image = image
+                            self.descriptionLabel.text = photoInfo.description
+                            if let copyright = photoInfo.copyright {
+                                self.copyrightLabel.text = "Copyright \(copyright)"
+                            } else {
+                                self.copyrightLabel.isHidden = true
+                            }
+                        }
+                    }
+                )
+                task.resume()
+            }
+           ```
+
+   2. On Main.storyboard
+      1. Click ImageView and Add Constraints
+         1. Check Aspect Ratio and click Add 1 constraint
+
 ---
 
 ## Errors

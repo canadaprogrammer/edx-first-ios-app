@@ -4558,7 +4558,7 @@ fetchLocInfo{ (fetchedInfo) in print(fetchedInfo ?? "Either no data was returned
           class PhotoInfoController {
               func fetchPhotoInfo(completion: @escaping (PhotoInfo?) -> Void) {
                   let baseURL = URL(string: "https://api.nasa.gov/planetary/apod")!
-                  let query:[String: String] = ["api_key": "YOUR_API_KEY", "data":"2022-09-26"]
+                  let query:[String: String] = ["api_key": "DEMO_KEY", "data":"2022-09-26"]
                   let url = baseURL.withQueries(query)!
 
                   let task = URLSession.shared.dataTask(with:url) {
@@ -4607,12 +4607,42 @@ fetchLocInfo{ (fetchedInfo) in print(fetchedInfo ?? "Either no data was returned
       3. Click Start the active scheme
       4. It returned
 
-         - ```
+         - ```console
             2022-09-27 19:43:41.454099-0700 NASADailyPhoto[36114:1556726] [boringssl] boringssl_metrics_log_metric_block_invoke(153) Failed to log metrics
             Either no data was returned or data was not decoded correctly!
            ```
 
-         - No data was because copyright was nil. When I hid copyright from PhotoInfo.swift and ViewController.swift, it got the data
+           - No data was because copyright was nil. ~~When I hid copyright from PhotoInfo.swift and ViewController.swift, it got the data~~
+           - change copyright in init to `try?`
+           - On PhotoInfo.swift
+
+             - ```swift
+                init(from decoder: Decoder) throws {
+                    ...
+                    self.copyright = try? valueContainer.decode(String.self, forKey: CodingKeys.copyright)
+                }
+               ```
+
+         - `Thread 2: "Modifications to the layout engine must not be performed from a background thread after it has been accessed from the main thread."`
+         - Swift 4, must be used from main thread only warning
+
+           - Wrap the code with `DispatchQueue.main.async{}`
+           - On ViewController.swift
+
+             - ```swift
+                photoInfoController.fetchPhotoInfo {(photoInfo) in
+                    guard let photoInfo = photoInfo else {return}
+                    DispatchQueue.main.async {
+                        self.title = photoInfo.title
+                        self.descriptionLabel.text = photoInfo.description
+                        if let copyright = photoInfo.copyright {
+                            self.copyrightLabel.text = "Copyright \(copyright)"
+                        } else {
+                            self.copyrightLabel.isHidden = true
+                        }
+                    }
+                }
+               ```
 
 ---
 

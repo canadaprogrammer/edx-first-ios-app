@@ -4690,6 +4690,103 @@ fetchLocInfo{ (fetchedInfo) in print(fetchedInfo ?? "Either no data was returned
       1. Click ImageView and Add Constraints
          1. Check Aspect Ratio and click Add 1 constraint
 
+## Planning
+
+### Outline
+
+- Planning your App
+- Budgeting and Funding
+- Minimum Viable Product
+
+### Planning considerations
+
+- Before we even think of writing a line of code, we need to consider the following:
+  - What is the idea of the app (what does it do?)
+  - What are you building and what does it do? Try to explain it to yourself
+  - Does it solve a common or specialised problem?
+- Later on, we will break these down into smaller steps
+
+### Budget and Funding
+
+- How will you pay for the app?
+  - Build it yourself - labour is free but will need others to do parts of it
+  - Paying someone else = where is the money coming from?
+  - Still other costs e.g. server fees and Apple Developer
+- How will you get your money back?
+  - Ads, In-App Purchases, Paid App
+- When will you work on the App?
+  - Part-Time, Full-Time, Weekends...
+
+### Building a budget
+
+- Consider what you will need staffing for.
+  - Visual Design, Software Development (Sever Backend/App Frontend), Marketing...
+- Consider other costs
+  - Backend server costs (cloud computing, generally)
+  - Apple Developer (USD99 or thereabouts)
+  - Laptops, test devices, etc
+- If people are investing, they will want to know this as well as how you will recoup their investment!
+
+### App models
+
+- One-off purchase: before the user downloads the app, they pay a fee to download it. They then don't need to pay again
+- Subscription: the user pays a certain amount per month or year, while they pay the fee they can use the App
+- Advertising: advertisers pay to display ads to the user. The user doesn't (directly) pay anything
+
+### Differences between them
+
+- Ads annoy people - they get in the way
+- But, people don't want to pay for things if they don't have to
+- If they do pay, they may not want to pay over and over
+- But, ads make apps free and subscriptions are cheaper than one-off
+
+### Apple's cut
+
+- Check the Apple Website for the percentage cut they take from purchase and subscription fees
+- They are bringing you your customers
+
+### Estimating income
+
+- Determine the number of users you envisage will use your app
+  - Look at existing apps in this space - can use AppTweak or similar services
+  - Think about your target audience, their size and percentage likely to use the App. How much will they pay to use the App? Multiply through
+  - Consider how your app will appeal to them
+- Look at what other Apps don't do well and do it better
+
+### Minimal viable product
+
+- Build something that just solves the basic problem, that works
+- Add bells and whistles once you've confirmed people are interested
+- Your App will get to market earlier and generate revenue...
+- You also get user feedback
+
+### Methodologies
+
+- A methodology provides a framework for building an App
+- Namely, it describes what work is completed and the order in which it is completed
+- There are many different software development methodologies, but we will discuss two popular ones: Waterfall and Agile
+- Both are ver different, but many other methodologies take aspects of both of these
+
+### Waterfall
+
+- A sequential process, where one stage cannot be entered until the last one is completed
+- Progress 'flows down' through the stages, like a literal waterfall
+- The main phases are:
+  - Requirements: understanding what to build
+  - System Design: understand what we will need to build the solution
+  - Implementation: actually build it, in pieces
+  - Integration and Testing: ensuring it does what it should
+  - Deployment: making the solution available for use
+  - Maintenance: improving and fixing things over time
+
+### Agile
+
+- Based on collaboration; work is split into components that may sit within multiple of the phases detailed in the Waterfall model
+- Each of these are joined to form larger units of work that eventually form the whole product
+- Each component may need to be iterated upon and improving upon
+- Sprints are often used to build particular components in set timeframes
+- Introduces new roles to manage the process itself
+
 ---
 
 ## Errors

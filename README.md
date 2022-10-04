@@ -4753,7 +4753,7 @@ fetchLocInfo{ (fetchedInfo) in print(fetchedInfo ?? "Either no data was returned
   - Consider how your app will appeal to them
 - Look at what other Apps don't do well and do it better
 
-### Minimal viable product
+### Minimal viable product (MVP)
 
 - Build something that just solves the basic problem, that works
 - Add bells and whistles once you've confirmed people are interested
@@ -4786,6 +4786,38 @@ fetchLocInfo{ (fetchedInfo) in print(fetchedInfo ?? "Either no data was returned
 - Each component may need to be iterated upon and improving upon
 - Sprints are often used to build particular components in set timeframes
 - Introduces new roles to manage the process itself
+
+## Example: Wonders of the World App
+
+### Business Plan
+
+1. Project Outline
+   1. Throughout history, many lists of the "seven wonders of the world" have been made by many groups of people. As times have changed, so have the lists. What remains constant, however, is the beauty and stature of the monuments referred to in these lists. As such, with the advent of "cheap" air travel, many people are making it a goal to visit all of these "seven wonders". As such, an opportunity exists to provide tools to assist people to track and manage their visits to the "seven wonders".
+   2. Such tools could provide maps and directions, information regarding the wonders and the ability to track which wonders have been visited.
+2. Business Plan
+   1. What does your app do?
+      1. My app allows users to see on a map where the Seven Wonders of the World are, some information regarding the wonders and the ability to track which wonders they have visited.
+   2. Who is your target audience?
+      1. The target audience for my App are users who are avid travellers who like to keep track of where they visit. As such, they are likely to want a solution that allows them to understand the context around the Wonders and help them decide when and how the visit the wonders. This could also figure into deciding the type of ads to show them.
+   3. Why do they need your app?
+      1. The users will need my App as it will allow them to better manage their travel, saving them time, effort and money, by understanding where and how to visit the Seven Wonders.
+   4. Who are your competitors? Do your research! Remember to check different countries' and platforms' App Stores as well.
+      1. There are many Seven Wonders applications on the Australian App Store, however one noticeable theme is poor design that does not meet the Apple Human Interface Guidelines. As such, there exists an opportunity to make a HIG-compliant App that provides the same popular user experience as the iOS operating system and built-in App themselves.
+      2. Similar Apps which already exist:
+         1. 'Been'?
+         2. World Heritage - UNESCO List
+   5. How are you going to monetise your app? For example, free versus paid, using in-App advertisements...
+      1. As the app is simple, it would be difficult to justify a cost to the App. As such, we will use in-app advertisements for monetisation. These can be relatively non-intrusive and also targeted based on our understanding of the target audience.
+   6. What is an MVP? What is your MVP?
+      1. An MVP is the minimum viable product - in this case, the smallest App you can make and still think it is a worthwhile and useful product to release. Our features we will contain in the MVP are marking off Wonders, a map with the location of Wonders anda description of the Wonders.
+   7. How big is your team?
+      1. My team consists of myself and David as the developers alongside the rest of the APP3x team as designers, testers and project managers. In total, we have five people.
+   8. How big is your budget?
+      1. Our budget is $0, this will be done for free - as such, not too much time can be dedicated to developing the App.
+   9. How much time do you have?
+      1. We have a total of four weeks, working one day a week per person to develop the App. In total, this works out to 160 hours.
+   10. Which project methodology will you use?
+       1. We will use the Agile project methodology where we will split up our work into sprints (time periods) that contain features based on those required to build the App that are allocated to the relevant team member based on their skills, to form a working product at the end of each Sprint by combining these features into relevant Epics derived from User Stories.
 
 ---
 

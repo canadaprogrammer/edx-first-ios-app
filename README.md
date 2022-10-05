@@ -4819,6 +4819,61 @@ fetchLocInfo{ (fetchedInfo) in print(fetchedInfo ?? "Either no data was returned
    10. Which project methodology will you use?
        1. We will use the Agile project methodology where we will split up our work into sprints (time periods) that contain features based on those required to build the App that are allocated to the relevant team member based on their skills, to form a working product at the end of each Sprint by combining these features into relevant Epics derived from User Stories.
 
+## Wireframing and Storyboarding
+
+### Prioritising key app features
+
+- Recapping
+  - What does your App do?
+  - Who is your target audience?
+  - Why would they use your App?
+  - Resources: team, budget, project methodology
+  - Wonders of thw World: IDEAL
+    - Select and 7 Wonders of the world
+    - Automatically provides important & interesting information about it and surrounding it
+    - Attach photos from our visit to each location
+    - Attach videos, voice recordings to each location
+    - Enter text similar to a diary
+    - Internet search results about each one could be attached
+- Essential Features Decision Time
+  - What are the essentials?
+  - From the list, we start picking
+  - Reduce to the MVP
+  - Features of first release
+  - Less features that work, better than lots of broken features
+- How to decide?
+  - Difficult decisions must be made by what is your App, who is the audience
+  - Wonders fo the World - Features, MVP
+    - Developers choose the 7 Wonders, not user
+    - Developers add information about each Wonder
+    - Each Wonder is on a Map
+    - Our features are defined
+    - MVP content is known
+
+### Flow and user interaction
+
+- Screens of the App
+  - What screens are needed?
+  - How many screens are needed?
+  - You then know what you are building
+  - You know when it is finished; and
+  - See what is missing as you go
+- Keep track of other features
+  - Don't forget other features
+  - Create a simple way to record these
+  - Prioritise these features
+  - Version 2 features to add
+  - At another point in time features to add
+  - Features to dream about
+- User Flow
+  - How will your App work?
+  - What does the user flow through your App look like?
+  - User Experience - UX is crucial
+- Plan the Flow, Plan the UX
+  - Multiple ways to plan App flow
+- Mockup
+  - with Keynote, Sketch, or balsamiq
+
 ---
 
 ## Errors

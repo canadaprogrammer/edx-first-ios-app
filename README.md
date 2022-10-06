@@ -4852,6 +4852,8 @@ fetchLocInfo{ (fetchedInfo) in print(fetchedInfo ?? "Either no data was returned
 
 ### Flow and user interaction
 
+- Launch screen
+  - Two swipes / clicks
 - Screens of the App
   - What screens are needed?
   - How many screens are needed?
@@ -4874,6 +4876,19 @@ fetchLocInfo{ (fetchedInfo) in print(fetchedInfo ?? "Either no data was returned
 - Mockup
   - with Keynote, Sketch, or balsamiq
 
+### Wireframes, storyboards and mock-ups
+
+- A wireframe is at the most basic end of the spectrum, with just sketched out views and no actual functionality
+- A storyboard also includes the flow between views/screens, and usually some content
+- Mockups provide a much more visually refined model that shows a version of desired design and more detailed elements
+
+### keynote
+
+<figure>
+  <video width="320" height="240" allowfullscreen="true" controls>
+    <source src="./app_slide.mov" type="video/mp4">
+  </video>
+</fegure>
 ---
 
 ## Errors

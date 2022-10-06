@@ -4884,11 +4884,8 @@ fetchLocInfo{ (fetchedInfo) in print(fetchedInfo ?? "Either no data was returned
 
 ### keynote
 
-<figure>
-  <video width="320" height="240" allowfullscreen="true" controls>
-    <source src="./app_slide.mov" type="video/mp4">
-  </video>
-</fegure>
+- <img src="./app_slide.gif" alt="prototype" width="300" />
+
 ---
 
 ## Errors

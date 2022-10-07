@@ -4886,6 +4886,22 @@ fetchLocInfo{ (fetchedInfo) in print(fetchedInfo ?? "Either no data was returned
 
 - <img src="./app_slide.gif" alt="prototype" width="300" />
 
+### Wireframes vs Prototypes
+
+- Wireframes
+  - Used for communication and ideation
+  - Fast / "cheap"
+  - Rough
+  - Mostly visual with some text / annotation
+  - Limited use of color
+  - Placeholder text and images
+  - Low - Medium fidelity
+  - Limited interactivity (if any)
+- Prototypes
+  - Used for presentation and selling
+  - Time-consuming / "expensive"
+  - Polished
+
 ---
 
 ## Errors

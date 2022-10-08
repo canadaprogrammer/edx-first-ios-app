@@ -4902,6 +4902,60 @@ fetchLocInfo{ (fetchedInfo) in print(fetchedInfo ?? "Either no data was returned
   - Time-consuming / "expensive"
   - Polished
 
+## Design Principles
+
+- The visual design of your app
+  - What sort of look and feel do you want your app to have?
+  - What colours, images, fonts, styles will help convey that effect?
+  - An app;s visual design signals things to the user - so you want those signals to be in sync with your app's function. All elements should work together.
+- Visual design: Colour
+  - It's worth learning a bit about colour theory (particularly the Colour Whell) and the psychology of colour
+  - Colours can help you to:
+    - Build a recognisable brand
+    - Elicit an emotional response
+    - Communicate without words
+  - For example:
+    - Red can convey danger or passion
+    - Green can convey growth or nature
+    - Blue can convey comfort and relaxation
+- Visual design: Fonts and typography
+  - Typography refers to how to you style your text in your design
+  - Common fonts are Arial, Times New Roman, Helvetica
+  - Apple's Human Interface Guidelines cover Typography in the Visual Design component of the guidelines
+- Visual design: Images and graphics
+  - Images can convey a meaning or evoke a feeling within seconds and it should help convey the purpose of your app
+  - Think about your target audience and the end result you are trying to achieve
+  - Createive Commons is a great starting point
+  - It is crucial to check the copyright conditions. Every site and creator many have different conditions for individual images
+- Design a memorable icon
+  - Can make or break whether a user downloads your app - first impressions count
+  - Remember to check Apple's Human Interface Guidelines on icons, including:
+    - Keep it simple
+    - Avoid trasparency
+    - Only use words if essential or part of the logo
+    - Test your icon against different wallpapers
+  - Remember to communicate your app's function to users with your chocie of colour, fonts, imagery, etc.
+  - Check how it looks on a simulator
+- Design an effective launch screen
+  - Apple recently updated launch screen requirements - you must now supply a launch screen as an Xcode storyboard
+  - Don't make it look like the app's already loaded and fully functioning
+- iOS Human Interface Guidelines
+  - You must become familiar with Apple's iOS Human Interface Guidelines (HIG)
+  - Following the guidelines improves your chances of creating a successful app in the App Store
+  - The HIG cover everything from app architecture and user interactions, to visual design elements and icons, across all devices
+- Accessibility
+  - You should aim to make your app accessible to everyone, including people with vision, hearing, mobility, or learning disability
+  - Check your colours and fonts to ensure they are readable by people with colour blindness
+  - Apple has tools for SwiftUI developers to make iOS apps more accessible
+- Build a prototype
+  - Need to start bringing your design elements together
+    - Make decision about colours
+    - Make decision about fonts
+    - Make decision about the types of images you'd like to use
+    - Design your app icon
+    - Start adding placeholder graphics to your wireframes, so you can check sizes and alignment
+    - Build our your launch screen, and then follow with other key screens
+
 ---
 
 ## Errors

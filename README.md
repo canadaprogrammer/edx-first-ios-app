@@ -4956,6 +4956,94 @@ fetchLocInfo{ (fetchedInfo) in print(fetchedInfo ?? "Either no data was returned
     - Start adding placeholder graphics to your wireframes, so you can check sizes and alignment
     - Build our your launch screen, and then follow with other key screens
 
+### Crete Emotion with Color in UX Design
+
+- Color is essential part of the visual language we use to communicate with our users. In modern world we need to communicate without words and color is a key to that.
+
+#### Red: Danger, Importance, Passion
+
+- Red elements are more noticeable, adding a sense of importance.
+  - Light red tones are good for topics like youth and love
+  - Dark red emphasizes power and durability
+- Red can be used as a warning color, as in traffic lights and signs, a reference
+- Red is great color for highlighting individual elements and need attention
+- Res is associated with heat
+
+#### Orange: Confidence, Energy, Optimism
+
+- Orange shares red's stimulating aspects, but to a lesser degree.
+  - This gives it an energetic aura without red's aggression
+- Orange can be associated with health, such as vitamin C
+- Orange is playful, upbeat color, great for casual sites
+- Some researches show that it denotes sheapness, for better or worse.
+
+#### Yellow: Attention, Happiness
+
+- Oddly, yellow represents both happiness and anxiety.
+- It's generally gnergetic and upbeat.
+- Yellow is often used for warning signs.
+- When combined with black, it can gain a lot of attention.
+- Light yellow reminds users of sun and happiness
+- Dark shades (like gold) are more serious and also give the impression of antiquity
+
+#### Green: Growth, Nature, Success
+
+- The most obvious associations with green and plants, it is also associated with growth and health
+- When you introduce green to your color scheme, pay attention on the color saturation
+  - Saturated green colors are exciting and dynamic to the eyes
+    - They grap a lot of attention. This is why they work good for coll-to-action buttons
+
+#### Blue: Trust, Comfort, Relaxation
+
+- Blue is one of the most important colors in UI design, and one of the most frequent.
+- Depending on the tint and shade of blue, it can represent different feelings, thoughts, and emotions.
+  - Dark shades of blue can give a sense of sadness
+    - An expression that goes along with thi is "feeling blue."
+  - Light blue is the color of the sky and of water, which can be refreshing and calm
+
+#### Purple: Luxury, Romance, Creativity
+
+- Historically linked to royalty, purple retains this air of luxury today
+- Purple insinuates that a product is high-end
+- Because purple cycles back to red on the spectrum, it shares some of red's passion features but without red's aggression
+- Lighter shades of purple can create positive atmosphere
+
+#### Pink: Femininity, Innocence, Youth
+
+- Pink is often used to create an atmosphere of joy and playfulness
+- When you want to delight users with nice visual effect, try to use a bit of pink color
+- Many people think pink as feminine color. However, it doesn't always mean feminine
+
+#### Brown: Conservatism, Earth, Stability
+
+- It generates a bit old-fashioned feel
+- The connotations with wood suggest stability and reliability.
+- Thisproperty can be perfect for organic products
+- In general, desaturated brown color is good for menus, panels and backgrounds
+
+#### Black: Formality, Power, Sophistication
+
+- Black is the strongest of all colors, it attracts attention faster than other colors, even red
+  - That's why it's recommended to use black only for text and accents
+- When used as a main component in a color scheme, such as a background, black creates its own emotional ties like any color
+- Combined with silver or grey, it can represent sophistication
+
+#### White: Freshness, Sterility, Health
+
+- Like its opposite black, white accents other colors around it, making it a popular choice for a secondary color
+- When white is the dominant color, its sterility can be overwhelming
+- Your users might feel like the layout is missing something
+- It's possible to beat this feeling by using ivory and cream color combinations
+- Try to use shades to make white color elements look decent
+
+#### Grey: Formality, Neutrality, Sophistication
+
+- Gray represents neutrality
+- By altering its shade, gray can take on the characteristics of either black or white
+- Whe used as a primary color, gray gives the impression of formality, but it doesn't always mean bad thing
+- You can use content and accompanying images to create a strong focus on a particular element
+- Light grey color also works best for the buttons in disabled (inactive) state
+
 ---
 
 ## Errors

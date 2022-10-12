@@ -5044,6 +5044,39 @@ fetchLocInfo{ (fetchedInfo) in print(fetchedInfo ?? "Either no data was returned
 - You can use content and accompanying images to create a strong focus on a particular element
 - Light grey color also works best for the buttons in disabled (inactive) state
 
+### The Colour Wheel
+
+- The Colour Wheel is a centruies-old tool designed to help you better understand and be able to apply colour theory
+- There are three **primary colours**: red, yellow, and blue.
+  - They are 'primary', because they cannot be created by mixing other colour pigments together.
+  - <img src="./L3_primary.png" alt="primary colors" width="300" />
+- These can be mixed in pairs to create three **secondary colours**: orange, purple, and green
+  - Orange = red + yellow
+  - Purple = red + blue
+  - Green = yellow + blue
+  - <img src="./L3_secondary.png" alt="secondary colors" width="300" />
+- The secondary colours can then be mixed with their mearest primary colours on the colour wheel, to produce six **tertiary colours**, including yellow-green and red-orange.
+  - yellow-green / chartreuse
+  - yellow-orange / amber
+  - red-orange / vermilion
+  - red-purple / magenta
+  - blue-green / teal
+  - blue-purple / violet
+  - <img src="./L3_tertiary.png" alt="tertiary colors" width="300" />
+- There are different ways of using the colour wheel to create harmonious colour palettes - if, for example, you decide that you want the main colour of your app to be a medium blue, you could choose...
+  - Complementary
+    - Two colours that are on opposite sides of the color wheel. This combination provides a high contrast and high impact color combination - together, these colors will appear brighter and more prominent
+  - Monochromatic
+    - Three shades, tones and tints of the base color. Provides a subtle and conservative color combination. This is a versatile color combination that is easy to apply to design projects for a harmonious look
+  - Analogous
+    - Three colors that are side by side on the color wheel. This color combination is versatile, but can be overwhelming. To balance an analogous color scheme, choose one dominant color, and use the others as accents
+  - Triadic
+    - Three colors that are evenly spaced on the color wheel. This provides a high contrast color scheme, but less so than the complementary color combination making it more versatile. This combination creates bold, vibrant color palettes.
+  - Tetradic
+    - Four colors that are evenly spaced on the color wheel. Tetradic color schemes are bold and work best if you let one color be dominant, and use the others as accents. The more colors you have in your palette, The more difficult it is to balance.
+  - <img src="./L3_colour_wheel_all.png" alt="harmonious color palettes" width="900" style="background-color:white;"/>
+- For an interactive experience and to experiment more with colour palettes, you may want to try out [Canva’s interactive colour wheel](https://www.canva.com/colors/color-wheel/).
+
 ---
 
 ## Errors

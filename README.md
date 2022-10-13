@@ -5077,6 +5077,41 @@ fetchLocInfo{ (fetchedInfo) in print(fetchedInfo ?? "Either no data was returned
   - <img src="./L3_colour_wheel_all.png" alt="harmonious color palettes" width="900" style="background-color:white;"/>
 - For an interactive experience and to experiment more with colour palettes, you may want to try out [Canva’s interactive colour wheel](https://www.canva.com/colors/color-wheel/).
 
+### Fonts and typography
+
+- Typography refers to how you style your text in your design and like colour, typography can incite feelings or tell a story.
+- Anything that ca be read as text, needs to be presented in a font or typeface.
+- Using the right font can increase legibility and help to highlight key features of your app
+
+#### Common types of fonts
+
+- **Serif** fonts have little strokes called serifs attached to the main part of the letter
+  - Because of their classic look, they're a good choice for more traditional project
+  - They're also common in print publications, like magazines and newspaper
+- **Sans serif** fonts don't have that extra stroke - hence the name, which is French for "without serif"
+  - The style is considered more clean and modern than serif fonts
+  - Also, it tends to be easier to read on computer screens, including smartphones and tablets
+- **Display** fonts come in many different styles, like script, blackletter, all-caps, and just plain fancy
+  - Because of their decorative nature, display fonts are best for small amounts of text
+  - For example, titles and headers, and more graphic heavy designs
+- When deciding which fonts to use, less is more
+  - It's best to limit yourself to one or two per project
+  - If you need more contrast, try repeating one of your fonts in a different size, weight, or style
+- Don't be afraid to combine fonts styles that are different but complementary, like sans serif with serif, short with tall, or decorative with simple
+
+#### Terms
+
+- Kerning, Leading, Tracking, and Hierarchy
+- Hierarchy is used to guide the reader's eye to whatever is most important
+  - It shows them where to begin and where to go next, using different levels of emphasis
+  - High-level items are usually larger, bolder, or different in some way
+  - Remember to keep it simple and stick to just a few complementary styles
+- Leading is the space between lines of text, also known as line spacing
+  - The goal is to make your text as comfortable to read as possible
+- Tracking is the overall space between characters, sometimes called character spacing
+- Kerning is the space between specific characters
+  - Unlike tracking, it varies over the course of the word, because each letter fits together differently
+
 ---
 
 ## Errors

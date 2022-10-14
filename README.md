@@ -5112,6 +5112,48 @@ fetchLocInfo{ (fetchedInfo) in print(fetchedInfo ?? "Either no data was returned
 - Kerning is the space between specific characters
   - Unlike tracking, it varies over the course of the word, because each letter fits together differently
 
+#### Best fonts for mobile app design
+
+- San Francisco (iOS)
+- Proxima Nova
+  - The result is a hybrid that combines modern proportions with a geometric appearance.
+  - Best used for: Modern, Content-centric Websites & Mobile Apps. It's already a hit font with most of the content platforms.
+    - Equally great for headings and body type. Try 12-16px for main Content and 24-30px for Headings
+  - Best paired with: Skolar, Adelle, Adobe Garamond, Georgia, Museo Slab and Playfair Display
+- Lato
+  - This slender font family supports over 100 latin-based languages and even Greek! Its sheer versatility alone makes it worthy of consideration
+- Nexa
+  - With 32 font styles and weights, this is one free font for apps that you can rely on in any situation
+- Open Sans (San Serif)
+  - Based on Droid Sans, it works wonders in various types of Android app UI design
+  - It has excellent legibility characteristics in its letterforms
+  - Best used for: Websites and Bivile Apps for prolonged usage and legibility. the great use is in Body Copy or Navigational Elements. Try 12-16px for main Content and 24-30px for Headings
+  - Best paired with: Montserrat, Brandon Grotesque, Playfair Display, Georgia and Source Sans Pro
+- Montserrat (New libre Sans)
+  - It is a new libre sans text typeface for the web.
+  - Best used for: Minimal and modern Websites & Mobile Apps. The geometric type, optimised for digital usage, is best used in minimal User Interfaces.
+    - Great for headings, even in cpas. Try 14-18px for main Content and 28-34px for Headings
+  - Best paired with: Open Sans, Source Sans Pro, Roboto Slab, Gill Sans and Lora
+- Playfair Display (Serif)
+  - Avoid using it in large paragraphs of text or in long passages in your UI designs
+  - It is well suited for titling and headlines. It has an extra large x-height and short descenders.
+  - Best used for: Stylised, elegant and sophisticated Websites & Mobile Apps.
+    - This style font is best used in agency, portfolio websites, travel and fashion blogs.
+    - Great for headings and quotes. Try 34-38px for main Content and 84-92px for Headings
+  - Best paired with: Open Sans, Lato, Roboto, Georgia, Museo Sans and Proxima Nova
+- Roboto
+  - This neo-grotesque font is the perfect choice for any Android app as it was designed directly in Google's laboratories
+  - It has a mechanicla skeleton and the forms are largely geometric.
+  - It makes a more natural reading rhythm more commonly found in humanist and serif types.
+  - Best used for: It works weel as the default app font including chat app, ecommerce and more.
+    - Great for body copy test and navigation.
+    - Try 14-18px for main Content and 28-34px for Headings
+  - Best paired with: Open Sans, Lato, Roboto, Georgia, Museo Sans and Proxima Nova
+- Source Sans
+  - Taking inspiration from fonts such as Franklin, News and Lihtline Gothic, Source Sans offers a large x-height and works wonders when using multiple styles variations, expecially italics
+- Nunito
+  - Similar to Playfair, Nunito is a well-rounded font for apps that was designed with the goal of being used as a display font
+
 ---
 
 ## Errors

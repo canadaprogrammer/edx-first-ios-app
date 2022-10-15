@@ -5198,6 +5198,56 @@ fetchLocInfo{ (fetchedInfo) in print(fetchedInfo ?? "Either no data was returned
   9. Test your icon against different wallpapers
   10. Keep icon corners square (the system masks corners)
 
+### iOS Human Interface Guidelines
+
+- To give your app the best chance of integrating seamlessly with Apple platforms and being accepted into the App Store, you will need to familiarise yourself with Apple's (iOS Human Interface Guidelines)[https://developer.apple.com/design/human-interface-guidelines/ios/overview/themes/].
+- The Guidelines cover everything from app architecture and user interactions, to visual design elements and icons.
+- Overall, it's a pretty big read, but the more closely you follow the recommendations, the more likely your app will succeed.
+- iOS
+  - Mac Catalyst
+    - The best way to ensure that your app will work well on a Mac is to make sure it works well on iPad.
+      - Support multitasking
+      - Support drag and drop
+      - Respond to keyboard shortcuts
+    - The conventions and design patterns that have the biggest impact on adaptation can be grouped into four key areas
+      - Navigation
+      - User input and interactions
+      - Menus
+      - Content scaling
+- App Architecture
+  - Loading
+    - Make it clear when loading is occurring
+    - Show content as soon as possible
+    - Educate or entertain people to mask loading time
+  - Modality
+    - Modality is a design technique that presents content in a temporary mode that's separate from the user's previous current content.
+    - Create a modal experience only when it's critical to focus people's attention on making a choice or performing a task that's different form their current task.
+    - Keep modal tasks simple, short, and narrowly focused.
+  - Navigation
+    - Hierarchical Navigation
+      - Settings and Mail use this navigation style
+    - Flat Navigation
+      - Switch between multiple content categories.
+      - Music and App Store use this navigation style
+    - Content-Driven or Experience-Driven Navigation
+      - Move freely through content, or the content itself defines the navigation.
+      - Games books, and other immersive apps generally use this navigation style.
+    - Some apps combine multiple navigation styles.
+      - For example, an app that uses flat navigation may implement hierarchical navigation within each category.
+    - Use standard navigation components.
+      - Users are already familiar with these controls, and will intuitively know how to get around your app.
+- User Interaction
+  - Haptics
+    - Designing with Haptics
+      - Build a clear causal relationship between each haptic and its trigger
+        - Ideally, people always knwo why your app plays a haptic pattern.
+        - If a haptic doesn't reinforce a cause-and-effect relationship, it can be confusing and seem gratuitous.
+      - Use haptics consistently.
+- System Capabilities
+  - Augmented Reality
+    - Creating an Engaging, Comfortable Experience
+    - Using coaching to get people started
+
 ---
 
 ## Errors

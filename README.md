@@ -5154,6 +5154,50 @@ fetchLocInfo{ (fetchedInfo) in print(fetchedInfo ?? "Either no data was returned
 - Nunito
   - Similar to Playfair, Nunito is a well-rounded font for apps that was designed with the goal of being used as a display font
 
+### Images and where to find them
+
+- It's true when they say a picture is worth a thousand words.
+- Before you source any images, think about your target audience and the end result you are trying to achieve with your app.
+- If you were creating an outdoor activities app, you would probably opt for photographic images to relay a sense of reality.
+- Whereas if you were creating an app for children, illustrations are a fun and colourful option.
+- [Creative Commons](https://creativecommons.org) is a great starting point. Creative Commons is a nonprofit organisation that helps artists share their works under a variety of licenses.
+  - You can search resources on [openverse](https://wordpress.org/openverse/?referrer=creativecommons.org)
+- There are also a number of Royalty-Free or Free-For-Commercial-Use image websites available.
+  - https://pixabay.com/
+  - https://unsplash.com/
+  - https://www.pexels.com/
+  - https://stocksnap.io/
+  - https://wunderstock.com/
+
+### Colour vision deficiency
+
+- <img src="./colour_vision_deficiency.jpg" alt="Eight Ishihara Charts" width="400"/>
+- Colour Blindness, or colour vision deficiency, is a condition where people see colours differently to most other people.
+- Globally, over 300 million people have a form of colour blindness, so it's likely that some of them will be using your app.
+- There are a number of tools available to help you work out whether the colours you're using are accessible to people with a colour vision deficiency.
+  - (WebAIM)[https://webaim.org/] is an organisation whose mission is to help companies make their web content accessible to people with disabilities.
+    - Their excellent (Contrast Checker)[https://webaim.org/resources/contrastchecker/] tool can help you to determine whether or not there is enough contrast between two colours for them to be perceived separately
+      - this is particularly important when checking whether text is readable against a particular colour background.
+  - (Coblis)[https://www.color-blindness.com/coblis-color-blindness-simulator/] is a Color Blindness Simulator that allows you to view images as if you had colour blindness.
+    - It also lets you upload your own images to see how they look in the simulator.
+  - (Kuler)[https://kuler-api.adobe.com/create/color-wheel] is an Adobe Color web tool that allows you to check colour schemes with a ‘Colour Blind Safe’ accessibility tool that identifies colour conflicts
+  - Adobe Photoshop CC software can help designers to create accessible online content.
+    - For example, Adobe Photoshop has colour blindness filters that can help to replicate what screens look like to people how have colour blindness.
+
+### Designing a memorable icon
+
+- Apple dedicates a whole section of its Human Interface Guidelines.
+  1. Embrace simplicity
+  2. Provide a single focus point
+  3. Design a recognisable icon
+  4. Keep the background simple and avoid transparency
+  5. Use words only when they're essential or part of a logo
+  6. Don't include photos, screenshots or interface elements
+  7. Don't use replicas of Apple hardware products
+  8. Don't place your app icon throughout the interface
+  9. Test your icon against different wallpapers
+  10. Keep icon corners square (the system masks corners)
+
 ---
 
 ## Errors

@@ -5248,6 +5248,26 @@ fetchLocInfo{ (fetchedInfo) in print(fetchedInfo ?? "Either no data was returned
     - Creating an Engaging, Comfortable Experience
     - Using coaching to get people started
 
+### Accessibility
+
+- A key aspect of the Human Interface Guidelines is (Accessibility)[https://developer.apple.com/design/human-interface-guidelines/foundations/accessibility]
+  - Making your app accessible to everyone, including people with vision, hearing, mobility, or learning disabilities.
+  - Apple has recently developed some new tools for designing accessible apps.
+- Accessibility on iOS
+  - For SwiftUI developers who would like to use the tools to make apps more accessible.
+
+### Build a prototype
+
+- With the iOS Human Interface Guidelines in mind, we'd now like you to start bringing your design elements together.
+- You need to
+  - Make decisions about colours
+  - Make decisions about fonts
+  - Make decisions about the types of images you'd like to use
+  - Design your app icon
+  - Start adding placeholder graphics to your wireframes, so you can check sizes and alignment
+  - Build out your launch screen, and then follow with other key screens
+- When building prototypes, you may find (MockUPhone)[https://mockuphone.com/#ios] is a useful tool.
+
 ---
 
 ## Errors
